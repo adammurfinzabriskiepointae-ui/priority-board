@@ -86,6 +86,11 @@ section{margin-top:36px}
 .dropzone.over{outline:2px dashed var(--accent);outline-offset:8px;border-radius:4px}
 .chip.star{background:var(--accent);color:var(--accent-ink)}
 .chip.dept{font-family:var(--mono);font-size:10px;letter-spacing:.08em;background:var(--fg);color:var(--bg);padding:2px 7px}
+.chip.dept.d-COSMETICS{background:#f4a6c8;color:#5a1238}
+.chip.dept.d-HOME{background:#f5d35c;color:#4a3a00}
+.chip.dept.d-OTHER{background:#9ad8a8;color:#0f3d1c}
+.chip.dept.d-ECOM{background:#9cc5f5;color:#0d2d5a}
+.col .card.dc-COSMETICS{border-left-color:#e2679f}.col .card.dc-HOME{border-left-color:#e3b800}.col .card.dc-OTHER{border-left-color:#3fae5f}.col .card.dc-ECOM{border-left-color:#3b82d6}
 .card .chip.dept{align-self:flex-start}
 .sec-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .add-panel{margin-top:18px}
@@ -332,7 +337,7 @@ function render(){
         <div class="rank">${ctx==="queue"?i+1:"·"}</div>
         <div>
           <div class="title">${esc(r.title)}</div>
-          <div class="meta">${r.dept?`<span class="chip dept">${esc(r.dept)}</span>`:""}${r.name?`<span class="by">${esc(r.name)}</span>`:""}</div>
+          <div class="meta">${r.dept?`<span class="chip dept d-${esc(r.dept)}">${esc(r.dept)}</span>`:""}${r.name?`<span class="by">${esc(r.name)}</span>`:""}</div>
         </div>
         <div class="chips">${r.top?'<span class="chip star">★ Top</span>':""}${deadlineChip(r)}${statusChip(r.status)}</div>
       </div>
@@ -366,9 +371,9 @@ function render(){
   const rankOf=id=>{const i=active.findIndex(x=>x.id===id);return i<0?"":"#"+(i+1)};
   $("#kanban").innerHTML=cols.map(([s,label,items])=>{
     return `<div class="col c-${s}" data-stage="${s}"><div class="col-head"><h3>${label}</h3><span class="n">${items.length}</span></div>
-      ${items.length?items.map(r=>`<button type="button" class="card" data-jump="${esc(r.id)}" ${isAdmin?'draggable="true"':''}>
+      ${items.length?items.map(r=>`<button type="button" class="card dc-${esc(r.dept||"")}" data-jump="${esc(r.id)}" ${isAdmin?'draggable="true"':''}>
         <span class="cr">${r.top?"★ Top priority · ":""}${rankOf(r.id)?rankOf(r.id)+" in queue":(r.status==="requested"?"New request":esc(STATUS[r.status]||""))}</span>
-        ${r.dept?`<span class="chip dept">${esc(r.dept)}</span>`:""}
+        ${r.dept?`<span class="chip dept d-${esc(r.dept)}">${esc(r.dept)}</span>`:""}
         <span class="ct">${esc(r.title)}</span>
         ${r.name?`<span class="cm">${esc(r.name)}</span>`:""}
         ${deadlineChip(r)}</button>`).join(""):`<div class="none">${isAdmin?"Drop a card here":"Nothing here"}</div>`}
