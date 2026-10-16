@@ -85,11 +85,12 @@
     "assets": "",
     "status": "queued",
     "rank": 4,
-    "top": false,
+    "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:09:15.434Z",
-    "dept": "HOME"
+    "updatedAt": "2026-10-16T11:09:24.289Z",
+    "dept": "HOME",
+    "topOrder": 4
   },
   {
     "id": "p07-home",
