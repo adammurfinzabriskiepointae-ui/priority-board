@@ -7,11 +7,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 14,
+    "rank": 13,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:52:21.928Z",
+    "updatedAt": "2026-10-16T11:00:34.112Z",
     "dept": "COSMETICS"
   },
   {
@@ -22,11 +22,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 15,
+    "rank": 14,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:52:21.930Z",
+    "updatedAt": "2026-10-16T11:00:34.113Z",
     "dept": "COSMETICS"
   },
   {
@@ -52,11 +52,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 17,
+    "rank": 16,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:52:21.932Z",
+    "updatedAt": "2026-10-16T11:00:34.114Z",
     "dept": "COSMETICS"
   },
   {
@@ -97,11 +97,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 16,
+    "rank": 15,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:52:21.931Z",
+    "updatedAt": "2026-10-16T11:00:34.114Z",
     "dept": "HOME"
   },
   {
@@ -112,11 +112,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 12,
+    "rank": 18,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:52:21.923Z",
+    "updatedAt": "2026-10-16T11:00:34.115Z",
     "dept": "ECOM"
   },
   {
@@ -217,11 +217,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "in_progress",
-    "rank": 13,
+    "rank": 12,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:58:05.916Z",
+    "updatedAt": "2026-10-16T11:00:34.110Z",
     "dept": "OTHER"
   },
   {
@@ -277,11 +277,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 18,
+    "rank": 17,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:52:21.933Z",
+    "updatedAt": "2026-10-16T11:00:34.115Z",
     "dept": "OTHER"
   }
 ]
