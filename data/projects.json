@@ -7,11 +7,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 14,
+    "rank": 13,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.244Z",
+    "updatedAt": "2026-10-16T10:25:35.368Z",
     "dept": "COSMETICS"
   },
   {
@@ -22,11 +22,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 15,
+    "rank": 14,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.245Z",
+    "updatedAt": "2026-10-16T10:25:35.369Z",
     "dept": "COSMETICS"
   },
   {
@@ -52,11 +52,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 16,
+    "rank": 15,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.246Z",
+    "updatedAt": "2026-10-16T10:25:35.369Z",
     "dept": "COSMETICS"
   },
   {
@@ -97,11 +97,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 17,
+    "rank": 16,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.247Z",
+    "updatedAt": "2026-10-16T10:25:35.370Z",
     "dept": "HOME"
   },
   {
@@ -112,11 +112,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 18,
+    "rank": 17,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.248Z",
+    "updatedAt": "2026-10-16T10:25:35.371Z",
     "dept": "ECOM"
   },
   {
@@ -216,12 +216,12 @@
     "deadline": "",
     "brief": "",
     "assets": "",
-    "status": "queued",
-    "rank": 9,
+    "status": "in_progress",
+    "rank": 18,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.239Z",
+    "updatedAt": "2026-10-16T10:25:35.372Z",
     "dept": "OTHER"
   },
   {
@@ -232,11 +232,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 10,
+    "rank": 9,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.240Z",
+    "updatedAt": "2026-10-16T10:25:35.362Z",
     "dept": "OTHER"
   },
   {
@@ -247,11 +247,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 11,
+    "rank": 10,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.241Z",
+    "updatedAt": "2026-10-16T10:25:35.365Z",
     "dept": "OTHER"
   },
   {
@@ -262,11 +262,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 12,
+    "rank": 11,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.242Z",
+    "updatedAt": "2026-10-16T10:25:35.366Z",
     "dept": "OTHER"
   },
   {
@@ -277,11 +277,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 13,
+    "rank": 12,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.243Z",
+    "updatedAt": "2026-10-16T10:25:35.367Z",
     "dept": "OTHER"
   }
 ]
