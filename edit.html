@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Adam's Priority Board (editor)</title>
+<meta name="description" content="Live queue of Adam's creative projects: what is waiting, what is being worked on and what is done.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column, summary strip on top, then the ranked queue as a ledger, triage inbox and request form below. Admin controls live inline on each row. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --surface-2:#e9edf2; --line:#d3dae3;
+  --fg:#15202b; --muted:#5b6b7c; --accent:#0f5c6e; --accent-ink:#ffffff; --accent-soft:#d9eaee;
+  --good:#1f7a4d; --good-soft:#d9f0e3; --warn:#9a6200; --warn-soft:#fbeccd; --crit:#b3261e; --crit-soft:#f9dcd9;
+  --p1:#b3261e; --p2:#c7641a; --p3:#0f5c6e; --p4:#7a8794;
+  --display:"Archivo",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --body:"Public Sans",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f151c; --surface:#171f28; --surface-2:#202a35; --line:#2d3946;
+  --fg:#e8edf2; --muted:#93a1b0; --accent:#5fb9cc; --accent-ink:#06222a; --accent-soft:#163742;
+  --good:#5fcf94; --good-soft:#15382a; --warn:#f0b84a; --warn-soft:#3d2d0c; --crit:#ff7b72; --crit-soft:#46201d;
+  --p1:#ff7b72; --p2:#f5a05a; --p3:#5fb9cc; --p4:#8a98a6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151c; --surface:#171f28; --surface-2:#202a35; --line:#2d3946;
+  --fg:#e8edf2; --muted:#93a1b0; --accent:#5fb9cc; --accent-ink:#06222a; --accent-soft:#163742;
+  --good:#5fcf94; --good-soft:#15382a; --warn:#f0b84a; --warn-soft:#3d2d0c; --crit:#ff7b72; --crit-soft:#46201d;
+  --p1:#ff7b72; --p2:#f5a05a; --p3:#5fb9cc; --p4:#8a98a6; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-variation-settings:"wdth" 85;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:18px;font-weight:700;letter-spacing:-.005em}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.who img{width:26px;height:26px;border-radius:50%}
+.live{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.live.on i{background:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+.stat{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.stat b{font-family:var(--display);font-variation-settings:"wdth" 80;font-size:30px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.stat.crit b{color:var(--crit)} .stat.warn b{color:var(--warn)} .stat.accent b{color:var(--accent)}
+.stat span{font-size:12px;color:var(--muted)}
+
+section{margin-top:36px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin-bottom:12px}
+.sec-head p{margin:0;color:var(--muted);font-size:13px}
+
+.queue{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.row{border-bottom:1px solid var(--line);background:var(--surface);position:relative}
+.row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--line)}
+.row.status-queued::before,.row.status-requested::before{background:var(--crit)} .row.status-in_progress::before{background:var(--warn)} .row.status-done::before{background:var(--good)} .row.status-declined::before{background:var(--muted)}
+.row.status-in_progress{background:color-mix(in srgb,var(--warn-soft) 35%,var(--surface))}
+
+/* Kanban */
+.kanban{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.col{border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0;border:1px solid var(--line)}
+.col.c-waiting{background:var(--crit-soft);--col:var(--crit)} .col.c-doing{background:var(--warn-soft);--col:var(--warn)} .col.c-done{background:var(--good-soft);--col:var(--good)}
+.col-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:2px 4px 8px;border-bottom:3px solid var(--col)}
+.col-head h3{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--col)}
+.col-head .n{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--col)}
+.card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--col);border-radius:4px;padding:10px 10px 8px;display:flex;flex-direction:column;gap:6px;cursor:pointer;text-align:left;width:100%}
+.card:hover{border-color:var(--fg);border-left-color:var(--col)}
+.card .ct{font-weight:600;font-size:14px;line-height:1.3;overflow-wrap:anywhere}
+.card .cm{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.card .cr{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.card .chip{font-size:11px;padding:1px 7px;align-self:flex-start}
+.col .none{font-size:12px;color:var(--muted);font-style:italic;padding:8px 4px}
+.dropzone.over{outline:2px dashed var(--accent);outline-offset:8px;border-radius:4px}
+.chip.star{background:var(--accent);color:var(--accent-ink)}
+.sec-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.add-panel{margin-top:18px}
+.add-panel .form{border-color:var(--accent)}
+.bin{margin-top:14px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 14px;border:2px dashed var(--line);background:transparent;--col:var(--muted);padding:12px 16px}
+.bin[hidden]{display:none}
+.bin-label{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:14px;color:var(--muted)}
+.bin-hint{font-size:13px;color:var(--muted)}
+.bin.over{border-color:var(--fg);background:var(--surface-2)}
+.row.status-archived::before{background:var(--muted)}
+.card[draggable="true"]{cursor:grab}
+.card.dragging{opacity:.4}
+.col.over{outline:2px dashed var(--col);outline-offset:-4px}
+.card.insert-before{box-shadow:0 -3px 0 0 var(--col)}
+.col.saving{opacity:.6;pointer-events:none}
+body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
+@media (max-width:640px){.kanban{grid-template-columns:1fr}}
+.row-main{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:8px 14px;align-items:center;padding:12px 14px 12px 18px;cursor:pointer}
+.rank{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right;padding-right:6px}
+.title{font-weight:600;font-size:16px;min-width:0;overflow-wrap:anywhere}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--muted);min-width:0}
+.meta .by{overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:3px;font-size:12px;font-weight:600;background:var(--surface-2);color:var(--fg);white-space:nowrap}
+.chip.mono{font-family:var(--mono);font-weight:500;letter-spacing:.02em}
+.chip.good{background:var(--good-soft);color:var(--good)} .chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.crit{background:var(--crit-soft);color:var(--crit)} .chip.accent{background:var(--accent-soft);color:var(--accent)}
+.chip.level{font-family:var(--mono);font-weight:600;color:var(--accent-ink);background:var(--p3)}
+.chip.level.P1{background:var(--p1)} .chip.level.P2{background:var(--p2)} .chip.level.P4{background:var(--p4)}
+
+.row-detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 28px;padding:4px 18px 18px 80px;border-top:1px dashed var(--line)}
+.row-detail[hidden]{display:none}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field .eyebrow{margin-bottom:2px}
+.field p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;max-width:65ch}
+.field .empty{color:var(--muted);font-style:italic}
+.assets a{display:block;overflow-wrap:anywhere;font-size:14px}
+.admin{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;padding:12px 14px;background:var(--surface-2);border-radius:4px}
+.admin label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.admin textarea{width:100%;min-width:0}
+.admin .notes{flex:1 1 260px}
+.btns{display:flex;gap:6px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);padding:6px 11px;border-radius:4px;font-size:13px;font-weight:600;line-height:1.2}
+.btn:hover{border-color:var(--fg)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.danger{color:var(--crit)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.sm{padding:4px 8px;font-size:12px}
+select,input[type=text],input[type=date],textarea{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:7px 9px;font-size:14px}
+textarea{resize:vertical;min-height:72px}
+
+.empty-state{padding:28px 18px;border:1px dashed var(--line);color:var(--muted);text-align:center;font-size:14px}
+
+.form{background:var(--surface);border:1px solid var(--line);padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 18px}
+.form label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;min-width:0}
+.form label small{font-weight:400;color:var(--muted)}
+.form .full{grid-column:1/-1}
+.form .actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.form input,.form select,.form textarea{width:100%}
+.msg{font-size:13px;color:var(--muted)} .msg.ok{color:var(--good)} .msg.err{color:var(--crit)}
+.notice{padding:12px 14px;background:var(--surface-2);border-left:3px solid var(--accent);font-size:14px;margin-bottom:14px}
+details.done summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:16px;padding:8px 0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:4px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+@media (max-width:640px){
+  .row-main{grid-template-columns:36px minmax(0,1fr)}
+  .chips{grid-column:2;justify-content:flex-start}
+  .row-detail{padding-left:18px}
+  .rank{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+
+.who{flex-wrap:wrap}
+.signin{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;width:100%}
+.signin label{font-size:12px;color:var(--muted);width:100%}
+.signin input{flex:1 1 220px;min-width:0}
+#who-name{font-weight:600;color:var(--fg)}
+body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Editor view · changes save to the live board</div>
+      <h1>Adam's Priority Board</h1>
+    </div>
+    <div class="who" id="who">
+      <span class="live" id="live"><i></i>Loading</span>
+      <span id="who-name"></span>
+      <span id="signin-wrap"><button type="button" class="btn sm" id="signin-open">Edit board</button>
+        <form id="signin-form" class="signin" hidden autocomplete="off">
+          <label for="tok">Editor sign-in: paste your GitHub access token once. This browser remembers it.</label>
+          <input type="password" id="tok" placeholder="github_pat_…" autocomplete="off">
+          <span class="btns"><button type="submit" class="btn sm primary">Sign in</button><button type="button" class="btn sm" id="signin-cancel">Cancel</button></span>
+        </form></span>
+      <button type="button" class="btn sm" id="signout" hidden>Stop editing</button>
+    </div>
+  </header>
+
+  <!-- Hidden for now: remove the `hidden` attribute to bring each section back -->
+  <div class="stats" id="stats" hidden></div>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-title"><h2>Board</h2><button type="button" class="btn primary" id="add-open" hidden>+ Add project</button></div>
+      <p id="kanban-hint">Every project by stage. Click a card to see its details.</p>
+    </div>
+    <div class="kanban" id="kanban"></div>
+    <div class="col bin" id="bin" data-stage="archive" hidden>
+      <span class="bin-label">Archive bin</span>
+      <span class="bin-hint">Drop finished cards here. They leave the board but keep their brief, assets and notes in the archive below.</span>
+    </div>
+
+<div id="add-section" class="add-panel" hidden>
+    <div class="sec-head">
+      <div><h2>Add a project</h2></div>
+      <p>New projects go to the bottom of Waiting. Drag the card to set its priority.</p>
+    </div>
+        <form class="form" id="form" autocomplete="off">
+      <label class="full">Project
+        <input type="text" id="f-title" maxlength="140" required placeholder="e.g. 3 × 9:16 cutdowns of the AW campaign film for Instagram">
+      </label>
+      <label>Requested by
+        <input type="text" id="f-name" maxlength="60" placeholder="Name or team">
+      </label>
+      <label>Deadline <small>the date you need it delivered</small>
+        <input type="date" id="f-deadline" required>
+      </label>
+      <label class="full">Brief <small>audience, channel, formats, sizes, key message, must-haves</small>
+        <textarea id="f-brief" rows="5" maxlength="4000" required placeholder="Who is it for, where it will run, sizes and lengths, key message, anything that must be included."></textarea>
+      </label>
+      <label class="full">Assets and references <small>one link per line: SharePoint, Drive, Frame.io, moodboards</small>
+        <textarea id="f-assets" rows="3" maxlength="2000" placeholder="https://..."></textarea>
+      </label>
+      <div class="actions">
+        <button type="submit" class="btn primary" id="f-submit">Add to board</button>
+        <button type="button" class="btn" id="f-cancel">Cancel</button>
+        <span class="msg" id="f-msg"></span>
+      </div>
+    </form>
+  </div>
+  </section>
+
+  <section id="top-section" class="dropzone" data-stage="top">
+    <div class="sec-head">
+      <div><h2>Top priorities <span class="chip mono" id="top-count">0</span></h2></div>
+      <p id="top-hint">The projects Adam has marked as top priority. Click a row to see the brief, assets and notes.</p>
+    </div>
+    <ol class="queue" id="queue"></ol>
+  </section>
+
+  <section id="archive-section">
+    <details class="done" id="archive-wrap">
+      <summary>Archive <span class="chip mono" id="archive-count">0</span></summary>
+      <ol class="queue" id="archive"></ol>
+    </details>
+  </section>
+
+  <section hidden id="inbox-section">
+    <div class="sec-head">
+      <div><h2>New requests</h2></div>
+      <p>Requests appear here first, then move into the queue once they are reviewed.</p>
+    </div>
+    <ol class="queue" id="inbox"></ol>
+  </section>
+
+  
+
+  <section hidden id="done-section">
+    <details class="done" id="done-wrap">
+      <summary>Done and declined <span class="chip mono" id="done-count">0</span></summary>
+      <ol class="queue" id="done"></ol>
+    </details>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+
+<script>window.PB_EDITOR=true;window.PB_CONFIG={owner:"adammurfinzabriskiepointae-ui",repo:"priority-board",branch:"main",path:"data/projects.json"};</script>
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const STATUS={requested:"Requested",queued:"Waiting",in_progress:"Doing",done:"Done",archived:"Archived",declined:"Declined"};
+const ACTIVE=["queued","in_progress"];
+const EDITOR=!!window.PB_EDITOR;
+const CFG=window.PB_CONFIG||{owner:"",repo:"",branch:"main",path:"data/projects.json"};
+const API=`https://api.github.com/repos/${CFG.owner}/${CFG.repo}/contents/${CFG.path}`;
+
+let addOpen=false,docs=[],fileSha=null,token=null,isAdmin=false,open=new Set(),dirty=false,commitTimer=null,saving=false;
+try{const o=JSON.parse(localStorage.getItem("pb-open")||"[]");open=new Set(o)}catch(e){}
+try{token=EDITOR?(localStorage.getItem("pb-token")||null):null}catch(e){}
+function rememberOpen(){try{localStorage.setItem("pb-open",JSON.stringify([...open]))}catch(e){}}
+
+function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function daysUntil(iso){if(!iso)return null;const t=new Date(todayISO()+"T00:00:00"),d=new Date(iso+"T00:00:00");if(isNaN(d))return null;return Math.round((d-t)/86400000)}
+function fmtDate(iso){if(!iso)return "No deadline";const d=new Date(iso+"T00:00:00");if(isNaN(d))return "No deadline";return d.toLocaleDateString(undefined,{day:"numeric",month:"short",year:d.getFullYear()!==new Date().getFullYear()?"numeric":undefined})}
+function deadlineChip(r){
+  if(r.status==="done"||r.status==="declined"||r.status==="archived")return `<span class="chip mono">${esc(fmtDate(r.deadline))}</span>`;
+  const n=daysUntil(r.deadline);
+  if(n===null)return `<span class="chip mono">No deadline</span>`;
+  if(n<0)return `<span class="chip mono crit">Overdue ${-n}d · ${esc(fmtDate(r.deadline))}</span>`;
+  if(n===0)return `<span class="chip mono crit">Due today</span>`;
+  if(n<=3)return `<span class="chip mono warn">Due in ${n}d · ${esc(fmtDate(r.deadline))}</span>`;
+  return `<span class="chip mono">Due ${esc(fmtDate(r.deadline))}</span>`;
+}
+function statusChip(s){const c=s==="in_progress"?"warn":s==="done"?"good":s==="declined"?"crit":s==="queued"||s==="requested"?"crit":"";return `<span class="chip ${c}">${esc(STATUS[s]||s)}</span>`}
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),2400)}
+function linkify(text){return String(text||"").split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>/^https?:\/\//i.test(l)?`<a href="${esc(l)}" target="_blank" rel="noopener">${esc(l)}</a>`:`<span>${esc(l)}</span>`).join("")}
+function sortActive(list){return list.slice().sort((a,b)=>(a.rank??1e9)-(b.rank??1e9)||String(a.createdAt).localeCompare(String(b.createdAt)))}
+function newId(){return "p"+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+
+function render(){
+  const active=sortActive(docs.filter(r=>ACTIVE.includes(r.status)));
+  const inbox=docs.filter(r=>r.status==="requested").sort((a,b)=>String(a.createdAt).localeCompare(String(b.createdAt)));
+  const closed=docs.filter(r=>r.status==="done"||r.status==="declined").sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt)));
+  const archived=docs.filter(r=>r.status==="archived").sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt)));
+  const who=r=>r.name||r.team||"Someone";
+
+  const overdue=active.filter(r=>{const n=daysUntil(r.deadline);return n!==null&&n<0}).length;
+  const week=active.filter(r=>{const n=daysUntil(r.deadline);return n!==null&&n>=0&&n<=7}).length;
+  $("#stats").innerHTML=`
+    <div class="stat warn"><b>${active.filter(r=>r.status==="in_progress").length}</b><span>Doing now</span></div>
+    <div class="stat crit"><b>${active.filter(r=>r.status==="queued").length+inbox.length}</b><span>Waiting</span></div>
+    <div class="stat"><b>${inbox.length}</b><span>New requests to review</span></div>
+    <div class="stat ${week?"warn":""}"><b>${week}</b><span>Due in the next 7 days</span></div>
+    <div class="stat ${overdue?"crit":""}"><b>${overdue}</b><span>Overdue</span></div>`;
+
+  const rowHTML=(r,i,ctx)=>{
+    const isOpen=open.has(r.id);
+    return `<li class="row status-${esc(r.status)}" data-id="${esc(r.id)}">
+      <div class="row-main" data-toggle="${esc(r.id)}" role="button" tabindex="0" aria-expanded="${isOpen}">
+        <div class="rank">${ctx==="queue"?i+1:"·"}</div>
+        <div>
+          <div class="title">${esc(r.title)}</div>
+          <div class="meta"><span class="by">${esc(who(r))}</span></div>
+        </div>
+        <div class="chips">${r.top?'<span class="chip star">★ Top</span>':""}${deadlineChip(r)}${statusChip(r.status)}</div>
+      </div>
+      <div class="row-detail" ${isOpen?"":"hidden"}>
+        <div class="field"><span class="eyebrow">Brief</span><p>${r.brief?esc(r.brief):'<span class="empty">No brief given</span>'}</p></div>
+        <div class="field assets"><span class="eyebrow">Assets &amp; references</span>${r.assets&&r.assets.trim()?linkify(r.assets):'<p class="empty">None linked</p>'}</div>
+        <div class="field"><span class="eyebrow">Notes from Adam</span><p>${r.notes?esc(r.notes):'<span class="empty">None yet</span>'}</p>
+          <span class="eyebrow" style="margin-top:8px">Requested</span><p>${esc(fmtDate(String(r.createdAt||"").slice(0,10)))}</p></div>
+        ${isAdmin?adminHTML(r,i,ctx,active.length):""}
+      </div>
+    </li>`;
+  };
+  const adminHTML=(r,i,ctx,n)=>`<div class="admin" data-admin="${esc(r.id)}">
+      <label>Title<input type="text" data-act="title" value="${esc(r.title)}" maxlength="140"></label>
+      <label>Requested by<input type="text" data-act="name" value="${esc(r.name||r.team||"")}" maxlength="60"></label>
+      <label>Status<select data-act="status">${Object.keys(STATUS).map(s=>`<option value="${s}" ${s===r.status?"selected":""}>${STATUS[s]}</option>`).join("")}</select></label>
+      <label>Deadline<input type="date" data-act="deadline" value="${esc(r.deadline||"")}"></label>
+      ${ACTIVE.includes(r.status)?`<label>Top priority<span class="btns"><button type="button" class="btn sm ${r.top?"primary":""}" data-act="star">${r.top?"★ Remove from top":"☆ Top priority"}</button></span></label>`:""}
+      ${ctx==="queue"?`<label>Order<span class="btns"><button type="button" class="btn sm" data-act="up" ${i===0?"disabled":""}>▲ Up</button><button type="button" class="btn sm" data-act="down" ${i===n-1?"disabled":""}>▼ Down</button><button type="button" class="btn sm" data-act="top" ${i===0?"disabled":""}>To top</button></span></label>`:""}
+      ${ctx==="inbox"?`<label>Triage<span class="btns"><button type="button" class="btn sm primary" data-act="accept">Add to queue</button><button type="button" class="btn sm danger" data-act="decline">Decline</button></span></label>`:""}
+      ${r.status==="done"?`<label>Archive<span class="btns"><button type="button" class="btn sm" data-act="archive">Move to archive</button></span></label>`:""}
+      ${ctx==="archive"?`<label>Restore<span class="btns"><button type="button" class="btn sm" data-act="restore">Back to Done</button></span></label>`:""}
+      <label class="notes">Brief<textarea data-act="brief" rows="3">${esc(r.brief||"")}</textarea></label>
+      <label class="notes">Assets &amp; references (one link per line)<textarea data-act="assets" rows="2">${esc(r.assets||"")}</textarea></label>
+      <label class="notes">Notes<textarea data-act="notes" rows="2">${esc(r.notes||"")}</textarea></label>
+      <span class="btns"><button type="button" class="btn sm primary" data-act="savetext">Save text</button><button type="button" class="btn sm danger" data-act="delete">Delete</button></span>
+    </div>`;
+
+  const cols=[["waiting","Waiting",active.filter(r=>r.status==="queued")],["doing","Doing",active.filter(r=>r.status==="in_progress")],["done","Done",closed.filter(r=>r.status==="done").slice(0,12)]];
+  const rankOf=id=>{const i=active.findIndex(x=>x.id===id);return i<0?"":"#"+(i+1)};
+  $("#kanban").innerHTML=cols.map(([s,label,items])=>{
+    return `<div class="col c-${s}" data-stage="${s}"><div class="col-head"><h3>${label}</h3><span class="n">${items.length}</span></div>
+      ${items.length?items.map(r=>`<button type="button" class="card" data-jump="${esc(r.id)}" ${isAdmin?'draggable="true"':''}>
+        <span class="cr">${r.top?"★ Top priority · ":""}${rankOf(r.id)?rankOf(r.id)+" in queue":(r.status==="requested"?"New request":esc(STATUS[r.status]||""))}</span>
+        <span class="ct">${esc(r.title)}</span>
+        <span class="cm">${esc(who(r))}</span>
+        ${deadlineChip(r)}</button>`).join(""):`<div class="none">${isAdmin?"Drop a card here":"Nothing here"}</div>`}
+    </div>`}).join("");
+
+  const top=active.filter(r=>r.top).slice(0,5);
+  $("#queue").innerHTML=top.length?top.map((r,i)=>rowHTML(r,i,"queue")).join(""):`<li class="empty-state">${isAdmin?"Drag a card from the board here, or press ★ Top priority in a card's controls. Up to five.":"No top priorities marked yet."}</li>`;
+  $("#top-count").textContent=top.length+"/5";
+  $("#top-hint").textContent=isAdmin?"Drag cards from the board here to mark them top priority, up to five. Drag out or press the star again to remove.":"The projects Adam has marked as top priority. Click a row to see the brief, assets and notes.";
+  $("#inbox").innerHTML=inbox.length?inbox.map((r,i)=>rowHTML(r,i,"inbox")).join(""):`<li class="empty-state">No new requests waiting.</li>`;
+  $("#done").innerHTML=closed.length?closed.map((r,i)=>rowHTML(r,i,"done")).join(""):`<li class="empty-state">Nothing finished yet.</li>`;
+  $("#done-count").textContent=closed.length;
+  $("#archive").innerHTML=archived.length?archived.map((r,i)=>rowHTML(r,i,"archive")).join(""):`<li class="empty-state">Nothing archived yet. Finished cards dropped in the bin are kept here with their details.</li>`;
+  $("#archive-count").textContent=archived.length;
+  $("#bin").hidden=!isAdmin;
+  $("#add-open").hidden=!isAdmin;if(!isAdmin){addOpen=false}$("#add-section").hidden=!isAdmin||!addOpen;
+  $("#kanban-hint").textContent=isAdmin?"Drag cards between columns to change stage, or up and down to reorder the queue. Click a card to see its details.":"Every project by stage. Click a card to see its details.";
+}
+
+// ---- Loading and saving: the project list is data/projects.json in the GitHub repository.
+function b64enc(str){return btoa(unescape(encodeURIComponent(str)))}
+function b64dec(str){return decodeURIComponent(escape(atob(str.replace(/\n/g,""))))}
+async function loadPublic(){
+  try{const r=await fetch(CFG.path+"?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();if(Array.isArray(j)){docs=j;render();setLive(true,"Live")}}catch(e){setLive(false,"Offline")}
+}
+async function loadViaApi(){
+  const r=await fetch(API+"?ref="+CFG.branch,{headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"},cache:"no-store"});
+  if(r.status===401||r.status===403){throw {code:"auth"}}
+  if(!r.ok)throw {code:"http"+r.status};
+  const j=await r.json();fileSha=j.sha;const arr=JSON.parse(b64dec(j.content));if(Array.isArray(arr)){docs=arr;render();setLive(true,"Live")}
+}
+function write(id,patch){const r=byId(id);if(!r)return;Object.assign(r,patch,{updatedAt:new Date().toISOString()});dirty=true;render();scheduleCommit()}
+function removeDoc(id){docs=docs.filter(r=>r.id!==id);dirty=true;render();scheduleCommit()}
+function addDoc(d){docs.push(d);dirty=true;render();scheduleCommit()}
+function scheduleCommit(){clearTimeout(commitTimer);commitTimer=setTimeout(commit,600)}
+async function commit(attempt){
+  if(!dirty||saving)return;
+  if(!token){toast("Sign in to edit before changes can be saved");return}
+  saving=true;document.body.classList.add("saving-page");setLive(true,"Saving");
+  try{
+    const body={message:"Board update",content:b64enc(JSON.stringify(docs,null,2)),branch:CFG.branch};
+    if(fileSha)body.sha=fileSha;
+    const r=await fetch(API,{method:"PUT",headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json","Content-Type":"application/json"},body:JSON.stringify(body)});
+    if(r.status===409||r.status===422){
+      // someone else saved first: reload their version, re-apply nothing, tell the user
+      saving=false;document.body.classList.remove("saving-page");
+      if(!attempt){const mine=docs;await loadViaApi();docs=mine;return commit(1)}
+      toast("Someone else saved at the same time. Reloading their version.");await loadViaApi();dirty=false;return;
+    }
+    if(r.status===401||r.status===403){throw {code:"auth"}}
+    if(!r.ok)throw {code:"http"+r.status};
+    const j=await r.json();fileSha=j.content.sha;dirty=false;toast("Saved");setLive(true,"Live");
+  }catch(e){
+    if(e&&e.code==="auth"){toast("GitHub rejected the access token. Sign in again.");signOut(false)}
+    else toast("Could not save ("+(e&&e.code||"error")+"). Will retry on your next change.");
+    setLive(false,"Not saved");
+  }
+  saving=false;document.body.classList.remove("saving-page");
+}
+
+// ---- Editor sign-in (a GitHub access token kept only in this browser)
+async function signIn(tok){
+  const t=(tok||"").trim();if(!t)return false;
+  try{const r=await fetch("https://api.github.com/user",{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"}});if(!r.ok)throw 0;const u=await r.json();
+    token=t;try{localStorage.setItem("pb-token",t)}catch(e){}
+    await loadViaApi();isAdmin=true;render();
+    $("#who-name").textContent=u.login||"editor";$("#signin-wrap").hidden=true;$("#signout").hidden=false;toast("Signed in as "+(u.login||"editor"));return true;
+  }catch(e){toast("That token did not work. Check it has Contents read and write on the board repository.");return false}
+}
+function signOut(say){token=null;isAdmin=false;fileSha=null;try{localStorage.removeItem("pb-token")}catch(e){}
+  $("#who-name").textContent="";$("#signout").hidden=true;$("#signin-wrap").hidden=false;$("#signin-form").hidden=false;$("#signin-open").hidden=true;render();if(say!==false)toast("Signed out of editing")}
+
+function byId(id){return docs.find(r=>r.id===id)}
+function act(id,action,el){
+  const r=byId(id);if(!r)return;
+  const active=sortActive(docs.filter(x=>ACTIVE.includes(x.status)));
+  const idx=active.findIndex(x=>x.id===id);
+  const maxRank=active.reduce((m,x)=>Math.max(m,x.rank||0),0);
+  if(action==="status"){const s=el.value;const patch={status:s};if(ACTIVE.includes(s)&&!ACTIVE.includes(r.status))patch.rank=maxRank+1;if(!ACTIVE.includes(s))patch.rank=null;write(id,patch);toast("Status: "+STATUS[s]);}
+  else if(action==="star"){if(r.top){write(id,{top:false});toast("Removed from top priorities")}else{const n=docs.filter(x=>x.top&&ACTIVE.includes(x.status)).length;if(n>=5){toast("Top priorities is full (5). Remove one first.");return}write(id,{top:true});toast("Marked as top priority")}}
+  else if(action==="deadline"){write(id,{deadline:el.value});toast("Deadline updated");}
+  else if(action==="title"){if(el.value.trim())write(id,{title:el.value.trim()});}
+  else if(action==="name"){write(id,{name:el.value.trim()});}
+  else if(action==="accept"){write(id,{status:"queued",rank:maxRank+1});toast("Added to queue at #"+(active.length+1));}
+  else if(action==="decline"){write(id,{status:"declined",rank:null});toast("Declined");}
+  else if(action==="archive"){write(id,{status:"archived",rank:null});toast("Archived");}
+  else if(action==="restore"){write(id,{status:"done"});toast("Back in Done");}
+  else if(action==="savetext"){const a=el.closest(".admin");write(id,{brief:a.querySelector('[data-act="brief"]').value.trim(),assets:a.querySelector('[data-act="assets"]').value.trim(),notes:a.querySelector('[data-act="notes"]').value.trim(),title:a.querySelector('[data-act="title"]').value.trim()||r.title,name:a.querySelector('[data-act="name"]').value.trim()});toast("Saved");}
+  else if(action==="up"||action==="down"){
+    const j=action==="up"?idx-1:idx+1;if(j<0||j>=active.length)return;
+    const list=active.slice();[list[idx],list[j]]=[list[j],list[idx]];
+    list.forEach((x,k)=>{if(x.rank!==k+1)write(x.id,{rank:k+1})});
+  }
+  else if(action==="top"){
+    const list=active.slice();list.splice(idx,1);list.unshift(r);
+    list.forEach((x,k)=>{if(x.rank!==k+1)write(x.id,{rank:k+1})});toast("Moved to the top");
+  }
+  else if(action==="delete"){
+    if(el.dataset.confirm==="1"){removeDoc(id);toast("Deleted")}
+    else{el.dataset.confirm="1";el.textContent="Really delete?";setTimeout(()=>{el.dataset.confirm="";el.textContent="Delete"},3000)}
+  }
+}
+
+// Drag and drop on the kanban (editors only)
+let dragId=null;
+function moveCard(id,stage,beforeId){
+  const r=byId(id);if(!r)return;
+  if(stage==="top"){
+    if(r.top)return;
+    const n=docs.filter(x=>x.top&&ACTIVE.includes(x.status)).length;if(n>=5){toast("Top priorities is full (5). Remove one first.");return}
+    const patch={top:true};if(!ACTIVE.includes(r.status)){const list=sortActive(docs.filter(x=>ACTIVE.includes(x.status)));patch.status="queued";patch.rank=list.length+1}
+    write(id,patch);toast("Marked as top priority");return;
+  }
+  const newStatus=stage==="waiting"?"queued":stage==="doing"?"in_progress":stage==="archive"?"archived":"done";
+  const list=sortActive(docs.filter(x=>ACTIVE.includes(x.status)&&x.id!==id));
+  if(newStatus==="done"||newStatus==="archived"){
+    if(r.status!==newStatus)write(id,{status:newStatus,rank:null,top:false});
+    list.forEach((x,k)=>{if(x.rank!==k+1)write(x.id,{rank:k+1})});
+  }else{
+    let at=list.findIndex(x=>x.id===beforeId);
+    if(at<0)at=list.length;
+    list.splice(at,0,r);
+    list.forEach((x,k)=>{const p={};if(x.rank!==k+1)p.rank=k+1;if(x.id===id&&x.status!==newStatus)p.status=newStatus;if(Object.keys(p).length)write(x.id,p)});
+  }
+  toast(stage==="archive"?"Archived":"Moved to "+(stage==="waiting"?"Waiting":stage==="doing"?"Doing":"Done"));
+}
+document.addEventListener("dragstart",e=>{const c=e.target.closest&&e.target.closest(".card[draggable]");if(!c)return;dragId=c.dataset.jump;c.classList.add("dragging");e.dataTransfer.effectAllowed="move";try{e.dataTransfer.setData("text/plain",dragId)}catch(x){}});
+document.addEventListener("dragend",e=>{dragId=null;document.querySelectorAll(".dragging,.insert-before").forEach(x=>x.classList.remove("dragging","insert-before"));document.querySelectorAll(".col.over,.dropzone.over").forEach(x=>x.classList.remove("over"))});
+document.addEventListener("dragover",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col,.dropzone");if(!col)return;e.preventDefault();e.dataTransfer.dropEffect="move";
+  document.querySelectorAll(".col.over,.dropzone.over").forEach(x=>{if(x!==col)x.classList.remove("over")});col.classList.add("over");
+  document.querySelectorAll(".insert-before").forEach(x=>x.classList.remove("insert-before"));
+  const card=e.target.closest(".card");if(card&&card.dataset.jump!==dragId){const b=card.getBoundingClientRect();if(e.clientY<b.top+b.height/2)card.classList.add("insert-before");else if(card.nextElementSibling&&card.nextElementSibling.classList.contains("card"))card.nextElementSibling.classList.add("insert-before")}});
+document.addEventListener("dragleave",e=>{const col=e.target.closest&&e.target.closest(".col,.dropzone");if(col&&!col.contains(e.relatedTarget))col.classList.remove("over")});
+document.addEventListener("drop",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col,.dropzone");if(!col)return;e.preventDefault();
+  const before=col.querySelector(".card.insert-before");const id=dragId;dragId=null;
+  moveCard(id,col.dataset.stage,before?before.dataset.jump:null)});
+
+document.addEventListener("click",e=>{
+  const j=e.target.closest("[data-jump]");
+  if(j){const id=j.dataset.jump;const row=document.querySelector(`.row[data-id="${CSS.escape(id)}"]`);
+    if(row){const wrap=row.closest("details");if(wrap)wrap.open=true;
+      if(!open.has(id)){open.add(id);rememberOpen();const det=row.querySelector(".row-detail");det.hidden=false;row.querySelector("[data-toggle]").setAttribute("aria-expanded","true")}
+      row.scrollIntoView({behavior:"smooth",block:"start"})}
+    return}
+  const b=e.target.closest("[data-act]");
+  if(b&&b.tagName==="BUTTON"){e.stopPropagation();act(b.closest("[data-admin]").dataset.admin,b.dataset.act,b);return}
+  if(e.target.closest(".admin"))return;
+  const t=e.target.closest("[data-toggle]");
+  if(t&&!e.target.closest("a")){const id=t.dataset.toggle;open.has(id)?open.delete(id):open.add(id);rememberOpen();const d=t.nextElementSibling;d.hidden=!open.has(id);t.setAttribute("aria-expanded",open.has(id));}
+});
+document.addEventListener("keydown",e=>{const t=e.target.closest("[data-toggle]");if(t&&(e.key==="Enter"||e.key===" ")){e.preventDefault();t.click()}});
+document.addEventListener("change",e=>{const s=e.target.closest("select[data-act],input[data-act]");if(s)act(s.closest("[data-admin]").dataset.admin,s.dataset.act,s)});
+
+$("#form").addEventListener("submit",e=>{
+  e.preventDefault();
+  const now=new Date().toISOString();
+  const active=sortActive(docs.filter(x=>ACTIVE.includes(x.status)));
+  const maxRank=active.reduce((m,x)=>Math.max(m,x.rank||0),0);
+  addDoc({id:newId(),title:$("#f-title").value.trim(),name:$("#f-name").value.trim(),deadline:$("#f-deadline").value,
+    brief:$("#f-brief").value.trim(),assets:$("#f-assets").value.trim(),status:"queued",rank:maxRank+1,notes:"",createdAt:now,updatedAt:now});
+  $("#form").reset();addOpen=false;$("#add-section").hidden=true;$("#add-open").textContent="+ Add project";toast("Added to Waiting");
+});
+$("#add-open").addEventListener("click",()=>{addOpen=!addOpen;$("#add-section").hidden=!addOpen;$("#add-open").textContent=addOpen?"Close form":"+ Add project";if(addOpen){$("#f-title").focus();$("#add-section").scrollIntoView({behavior:"smooth",block:"nearest"})}});
+$("#f-cancel").addEventListener("click",()=>{addOpen=false;$("#add-section").hidden=true;$("#add-open").textContent="+ Add project"});
+$("#signin-open").addEventListener("click",()=>{$("#signin-form").hidden=false;$("#tok").focus()});
+$("#signin-cancel").addEventListener("click",()=>{$("#signin-form").hidden=true});
+$("#signin-form").addEventListener("submit",async e=>{e.preventDefault();const ok=await signIn($("#tok").value);if(ok)$("#tok").value=""});
+$("#signout").addEventListener("click",()=>signOut(true));
+
+function setLive(on,label){const el=$("#live");if(!el)return;el.classList.toggle("on",!!on);el.innerHTML="<i></i>"+esc(label)}
+async function boot(){
+  $("#f-deadline").min=todayISO();
+  render();
+  if(!EDITOR){$("#signin-wrap").hidden=true;$("#signout").hidden=true}
+  if(token){const ok=await signIn(token);if(!ok)signOut(false)}
+  if(EDITOR&&!isAdmin){$("#signin-form").hidden=false;$("#signin-open").hidden=true}
+  if(!isAdmin)await loadPublic();
+  // Viewers refresh every 60s; editors re-check for others' changes when idle.
+  setInterval(()=>{if(isAdmin){if(!dirty&&!saving)loadViaApi().catch(()=>{})}else loadPublic()},60000);
+}
+boot();
+})();
+</script>
+</body>
+</html>
