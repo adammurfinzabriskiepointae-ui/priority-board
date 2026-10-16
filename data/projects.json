@@ -56,8 +56,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:03:55.370Z",
-    "dept": "COSMETICS"
+    "updatedAt": "2026-10-16T11:08:22.768Z",
+    "dept": "COSMETICS",
+    "topOrder": 3
   },
   {
     "id": "p05-home",
@@ -71,8 +72,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:04:07.048Z",
-    "dept": "HOME"
+    "updatedAt": "2026-10-16T11:08:22.766Z",
+    "dept": "HOME",
+    "topOrder": 2
   },
   {
     "id": "p06-home",
@@ -101,8 +103,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:03:41.147Z",
-    "dept": "HOME"
+    "updatedAt": "2026-10-16T11:08:22.765Z",
+    "dept": "HOME",
+    "topOrder": 1
   },
   {
     "id": "p08-ecom",
