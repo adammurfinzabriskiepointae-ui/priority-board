@@ -70,7 +70,18 @@ section{margin-top:36px}
 .row.status-in_progress{background:color-mix(in srgb,var(--warn-soft) 35%,var(--surface))}
 
 /* Kanban */
+.board-wrap{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}
 .kanban{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.top-side{border:2px solid var(--accent);border-radius:8px;padding:12px;background:var(--surface);--col:var(--accent);min-width:0}
+.top-side .col-head{border-bottom:3px solid var(--accent)} .top-side .col-head h3{color:var(--accent)} .top-side .col-head .n{color:var(--accent)}
+.top-hint{font-size:12px;color:var(--muted);margin:8px 0 10px}
+.toplist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.toprow{display:grid;grid-template-columns:28px minmax(0,1fr);gap:4px 8px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:4px;padding:8px 10px 8px 8px;cursor:pointer;text-align:left;width:100%}
+.toprow:hover{border-color:var(--fg);border-left-color:var(--accent)} .toprow[draggable="true"]{cursor:grab} .toprow.dragging{opacity:.4} .toprow.insert-before{box-shadow:0 -3px 0 0 var(--accent)}
+.toprow .tn{font-family:var(--display);font-variation-settings:"wdth" 80;font-size:22px;font-weight:800;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.toprow .tt{font-weight:600;font-size:14px;line-height:1.3;overflow-wrap:anywhere} .toprow .tm{display:flex;flex-wrap:wrap;gap:4px;grid-column:2}
+.toplist .none{font-size:12px;color:var(--muted);font-style:italic;padding:8px 4px}
+@media (max-width:900px){.board-wrap{grid-template-columns:1fr}}
 .col{border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0;border:1px solid var(--line)}
 .col.c-waiting{background:var(--crit-soft);--col:var(--crit)} .col.c-doing{background:var(--warn-soft);--col:var(--warn)} .col.c-done{background:var(--good-soft);--col:var(--good)}
 .col-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:2px 4px 8px;border-bottom:3px solid var(--col)}
@@ -200,7 +211,14 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
       <div class="sec-title"><h2>Board</h2><button type="button" class="btn primary" id="add-open" hidden>+ Add project</button></div>
       <p id="kanban-hint">Every project by stage. Click a card to see its details.</p>
     </div>
-    <div class="kanban" id="kanban"></div>
+    <div class="board-wrap">
+      <div class="kanban" id="kanban"></div>
+      <aside id="top-section" class="dropzone top-side" data-stage="top">
+        <div class="col-head"><h3>Top priorities</h3><span class="n" id="top-count">0/5</span></div>
+        <p class="top-hint" id="top-hint"></p>
+        <ol class="toplist" id="queue"></ol>
+      </aside>
+    </div>
     <div class="col bin" id="bin" data-stage="archive" hidden>
       <span class="bin-label">Archive bin</span>
       <span class="bin-hint">Drop finished cards here. They leave the board but keep their brief, assets and notes in the archive below.</span>
@@ -241,14 +259,6 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
       </div>
     </form>
   </div>
-  </section>
-
-  <section id="top-section" class="dropzone" data-stage="top">
-    <div class="sec-head">
-      <div><h2>Top priorities <span class="chip mono" id="top-count">0</span></h2></div>
-      <p id="top-hint">The projects Adam has marked as top priority. Click a row to see the brief, assets and notes.</p>
-    </div>
-    <ol class="queue" id="queue"></ol>
   </section>
 
   <section id="archive-section">
@@ -311,6 +321,7 @@ function deadlineChip(r){
 function statusChip(s){const c=s==="in_progress"?"warn":s==="done"?"good":s==="declined"?"crit":s==="queued"||s==="requested"?"crit":"";return `<span class="chip ${c}">${esc(STATUS[s]||s)}</span>`}
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),2400)}
 function linkify(text){return String(text||"").split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>/^https?:\/\//i.test(l)?`<a href="${esc(l)}" target="_blank" rel="noopener">${esc(l)}</a>`:`<span>${esc(l)}</span>`).join("")}
+function topList(){return docs.filter(r=>r.top&&ACTIVE.includes(r.status)).sort((a,b)=>(a.topOrder??99)-(b.topOrder??99)||(a.rank??1e9)-(b.rank??1e9)).slice(0,5)}
 function sortActive(list){return list.slice().sort((a,b)=>(a.rank??1e9)-(b.rank??1e9)||String(a.createdAt).localeCompare(String(b.createdAt)))}
 function newId(){return "p"+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
 
@@ -356,7 +367,7 @@ function render(){
       <label>Requested by<input type="text" data-act="name" value="${esc(r.name||"")}" maxlength="60"></label>
       <label>Status<select data-act="status">${Object.keys(STATUS).map(s=>`<option value="${s}" ${s===r.status?"selected":""}>${STATUS[s]}</option>`).join("")}</select></label>
       <label>Deadline<input type="date" data-act="deadline" value="${esc(r.deadline||"")}"></label>
-      ${ACTIVE.includes(r.status)?`<label>Top priority<span class="btns"><button type="button" class="btn sm ${r.top?"primary":""}" data-act="star">${r.top?"★ Remove from top":"☆ Top priority"}</button></span></label>`:""}
+      ${ACTIVE.includes(r.status)?`<label>Top priority<span class="btns"><button type="button" class="btn sm ${r.top?"primary":""}" data-act="star">${r.top?"★ Remove from top":"☆ Top priority"}</button>${r.top?`<button type="button" class="btn sm" data-act="topup">▲ Up</button><button type="button" class="btn sm" data-act="topdown">▼ Down</button>`:""}</span></label>`:""}
       ${ctx==="queue"?`<label>Order<span class="btns"><button type="button" class="btn sm" data-act="up" ${i===0?"disabled":""}>▲ Up</button><button type="button" class="btn sm" data-act="down" ${i===n-1?"disabled":""}>▼ Down</button><button type="button" class="btn sm" data-act="top" ${i===0?"disabled":""}>To top</button></span></label>`:""}
       ${ctx==="inbox"?`<label>Triage<span class="btns"><button type="button" class="btn sm primary" data-act="accept">Add to queue</button><button type="button" class="btn sm danger" data-act="decline">Decline</button></span></label>`:""}
       ${r.status==="done"?`<label>Archive<span class="btns"><button type="button" class="btn sm" data-act="archive">Move to archive</button></span></label>`:""}
@@ -379,10 +390,12 @@ function render(){
         ${deadlineChip(r)}</button>`).join(""):`<div class="none">${isAdmin?"Drop a card here":"Nothing here"}</div>`}
     </div>`}).join("");
 
-  const top=active.filter(r=>r.top).slice(0,5);
-  $("#queue").innerHTML=top.length?top.map((r,i)=>rowHTML(r,i,"queue")).join(""):`<li class="empty-state">${isAdmin?"Drag a card from the board here, or press ★ Top priority in a card's controls. Up to five.":"No top priorities marked yet."}</li>`;
+  const top=topList();
+  $("#queue").innerHTML=top.length?top.map((r,i)=>`<li><button type="button" class="toprow" data-jump="${esc(r.id)}" ${isAdmin?'draggable="true"':''}>
+      <span class="tn">${i+1}</span><span class="tt">${esc(r.title)}</span>
+      <span class="tm">${r.dept?`<span class="chip dept d-${esc(r.dept)}">${esc(r.dept)}</span>`:""}${deadlineChip(r)}${statusChip(r.status)}</span></button></li>`).join(""):`<li class="none">${isAdmin?"Drag cards from the board in here. Up to five.":"Nothing marked yet."}</li>`;
   $("#top-count").textContent=top.length+"/5";
-  $("#top-hint").textContent=isAdmin?"Drag cards from the board here to mark them top priority, up to five. Drag out or press the star again to remove.":"The projects Adam has marked as top priority. Click a row to see the brief, assets and notes.";
+  $("#top-hint").textContent=isAdmin?"Drag cards in from the board, drag rows to reorder, press the star in a card's panel to remove.":"What Adam is focusing on, in order. Click one for details.";
   $("#inbox").innerHTML=inbox.length?inbox.map((r,i)=>rowHTML(r,i,"inbox")).join(""):`<li class="empty-state">No new requests waiting.</li>`;
   $("#done").innerHTML=closed.length?closed.map((r,i)=>rowHTML(r,i,"done")).join(""):`<li class="empty-state">Nothing finished yet.</li>`;
   $("#done-count").textContent=closed.length;
@@ -460,7 +473,8 @@ function act(id,action,el){
   const idx=active.findIndex(x=>x.id===id);
   const maxRank=active.reduce((m,x)=>Math.max(m,x.rank||0),0);
   if(action==="status"){const s=el.value;const patch={status:s};if(ACTIVE.includes(s)&&!ACTIVE.includes(r.status))patch.rank=maxRank+1;if(!ACTIVE.includes(s))patch.rank=null;write(id,patch);toast("Status: "+STATUS[s]);}
-  else if(action==="star"){if(r.top){write(id,{top:false});toast("Removed from top priorities")}else{const n=docs.filter(x=>x.top&&ACTIVE.includes(x.status)).length;if(n>=5){toast("Top priorities is full (5). Remove one first.");return}write(id,{top:true});toast("Marked as top priority")}}
+  else if(action==="topup"||action==="topdown"){const t=topList();const k=t.findIndex(x=>x.id===id);const m=action==="topup"?k-1:k+1;if(k<0||m<0||m>=t.length)return;[t[k],t[m]]=[t[m],t[k]];t.forEach((x,n)=>{if(x.topOrder!==n+1)write(x.id,{topOrder:n+1})});}
+  else if(action==="star"){if(r.top){write(id,{top:false,topOrder:null});toast("Removed from top priorities")}else{const n=docs.filter(x=>x.top&&ACTIVE.includes(x.status)).length;if(n>=5){toast("Top priorities is full (5). Remove one first.");return}write(id,{top:true});toast("Marked as top priority")}}
   else if(action==="deadline"){write(id,{deadline:el.value});toast("Deadline updated");}
   else if(action==="title"){if(el.value.trim())write(id,{title:el.value.trim()});}
   else if(action==="name"){write(id,{name:el.value.trim()});}
@@ -490,15 +504,19 @@ let dragId=null;
 function moveCard(id,stage,beforeId){
   const r=byId(id);if(!r)return;
   if(stage==="top"){
-    if(r.top)return;
-    const n=docs.filter(x=>x.top&&ACTIVE.includes(x.status)).length;if(n>=5){toast("Top priorities is full (5). Remove one first.");return}
+    const cur=topList().filter(x=>x.id!==id);
+    if(!r.top&&cur.length>=5){toast("Top priorities is full (5). Remove one first.");return}
+    let at=cur.findIndex(x=>x.id===beforeId);if(at<0)at=cur.length;
+    cur.splice(at,0,r);
     const patch={top:true};if(!ACTIVE.includes(r.status)){const list=sortActive(docs.filter(x=>ACTIVE.includes(x.status)));patch.status="queued";patch.rank=list.length+1}
-    write(id,patch);toast("Marked as top priority");return;
+    write(id,patch);
+    cur.forEach((x,k)=>{if(x.topOrder!==k+1)write(x.id,{topOrder:k+1})});
+    toast(r.top?"Top priorities reordered":"Marked as top priority");return;
   }
   const newStatus=stage==="waiting"?"queued":stage==="doing"?"in_progress":stage==="archive"?"archived":"done";
   const list=sortActive(docs.filter(x=>ACTIVE.includes(x.status)&&x.id!==id));
   if(newStatus==="done"||newStatus==="archived"){
-    if(r.status!==newStatus)write(id,{status:newStatus,rank:null,top:false});
+    if(r.status!==newStatus)write(id,{status:newStatus,rank:null,top:false,topOrder:null});
     list.forEach((x,k)=>{if(x.rank!==k+1)write(x.id,{rank:k+1})});
   }else{
     let at=list.findIndex(x=>x.id===beforeId);
@@ -508,15 +526,16 @@ function moveCard(id,stage,beforeId){
   }
   toast(stage==="archive"?"Archived":"Moved to "+(stage==="waiting"?"Waiting":stage==="doing"?"Doing":"Done"));
 }
-document.addEventListener("dragstart",e=>{const c=e.target.closest&&e.target.closest(".card[draggable]");if(!c)return;dragId=c.dataset.jump;c.classList.add("dragging");e.dataTransfer.effectAllowed="move";try{e.dataTransfer.setData("text/plain",dragId)}catch(x){}});
+document.addEventListener("dragstart",e=>{const c=e.target.closest&&e.target.closest(".card[draggable],.toprow[draggable]");if(!c)return;dragId=c.dataset.jump;c.classList.add("dragging");e.dataTransfer.effectAllowed="move";try{e.dataTransfer.setData("text/plain",dragId)}catch(x){}});
 document.addEventListener("dragend",e=>{dragId=null;document.querySelectorAll(".dragging,.insert-before").forEach(x=>x.classList.remove("dragging","insert-before"));document.querySelectorAll(".col.over,.dropzone.over").forEach(x=>x.classList.remove("over"))});
 document.addEventListener("dragover",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col,.dropzone");if(!col)return;e.preventDefault();e.dataTransfer.dropEffect="move";
   document.querySelectorAll(".col.over,.dropzone.over").forEach(x=>{if(x!==col)x.classList.remove("over")});col.classList.add("over");
   document.querySelectorAll(".insert-before").forEach(x=>x.classList.remove("insert-before"));
-  const card=e.target.closest(".card");if(card&&card.dataset.jump!==dragId){const b=card.getBoundingClientRect();if(e.clientY<b.top+b.height/2)card.classList.add("insert-before");else if(card.nextElementSibling&&card.nextElementSibling.classList.contains("card"))card.nextElementSibling.classList.add("insert-before")}});
+  const card=e.target.closest(".card,.toprow");if(card&&card.dataset.jump!==dragId){const b=card.getBoundingClientRect();const isTop=card.classList.contains("toprow");const next=isTop?(card.parentElement.nextElementSibling&&card.parentElement.nextElementSibling.querySelector(".toprow")):card.nextElementSibling;
+    if(e.clientY<b.top+b.height/2)card.classList.add("insert-before");else if(next&&(next.classList.contains("card")||next.classList.contains("toprow")))next.classList.add("insert-before")}});
 document.addEventListener("dragleave",e=>{const col=e.target.closest&&e.target.closest(".col,.dropzone");if(col&&!col.contains(e.relatedTarget))col.classList.remove("over")});
 document.addEventListener("drop",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col,.dropzone");if(!col)return;e.preventDefault();
-  const before=col.querySelector(".card.insert-before");const id=dragId;dragId=null;
+  const before=col.querySelector(".card.insert-before,.toprow.insert-before");const id=dragId;dragId=null;
   moveCard(id,col.dataset.stage,before?before.dataset.jump:null)});
 
 document.addEventListener("click",e=>{
