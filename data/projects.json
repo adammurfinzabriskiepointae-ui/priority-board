@@ -183,21 +183,6 @@
     "dept": "OTHER"
   },
   {
-    "id": "p14-other",
-    "title": "Higgsfield enterprise agreement",
-    "name": "",
-    "deadline": "",
-    "brief": "",
-    "assets": "",
-    "status": "queued",
-    "rank": 9,
-    "top": false,
-    "notes": "",
-    "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:03:17.042Z",
-    "dept": "OTHER"
-  },
-  {
     "id": "p15-other",
     "title": "AI Model agency workflow",
     "name": "",
