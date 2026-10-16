@@ -85,6 +85,8 @@ section{margin-top:36px}
 .col .none{font-size:12px;color:var(--muted);font-style:italic;padding:8px 4px}
 .dropzone.over{outline:2px dashed var(--accent);outline-offset:8px;border-radius:4px}
 .chip.star{background:var(--accent);color:var(--accent-ink)}
+.chip.dept{font-family:var(--mono);font-size:10px;letter-spacing:.08em;background:var(--fg);color:var(--bg);padding:2px 7px}
+.card .chip.dept{align-self:flex-start}
 .sec-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .add-panel{margin-top:18px}
 .add-panel .form{border-color:var(--accent)}
@@ -206,8 +208,11 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
       <label class="full">Project
         <input type="text" id="f-title" maxlength="140" required placeholder="e.g. 3 × 9:16 cutdowns of the AW campaign film for Instagram">
       </label>
+      <label>Department
+        <select id="f-dept"><option>COSMETICS</option><option>HOME</option><option>ECOM</option><option>OTHER</option></select>
+      </label>
       <label>Requested by
-        <input type="text" id="f-name" maxlength="60" placeholder="Name or team">
+        <input type="text" id="f-name" maxlength="60" placeholder="Name (optional)">
       </label>
       <label>Deadline <small>the date you need it delivered</small>
         <input type="date" id="f-deadline" required>
@@ -270,6 +275,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const STATUS={requested:"Requested",queued:"Waiting",in_progress:"Doing",done:"Done",archived:"Archived",declined:"Declined"};
 const ACTIVE=["queued","in_progress"];
+const DEPTS=["COSMETICS", "HOME", "ECOM", "OTHER"];
 const EDITOR=!!window.PB_EDITOR;
 const CFG=window.PB_CONFIG||{owner:"",repo:"",branch:"main",path:"data/projects.json"};
 const API=`https://api.github.com/repos/${CFG.owner}/${CFG.repo}/contents/${CFG.path}`;
@@ -302,7 +308,7 @@ function render(){
   const inbox=docs.filter(r=>r.status==="requested").sort((a,b)=>String(a.createdAt).localeCompare(String(b.createdAt)));
   const closed=docs.filter(r=>r.status==="done"||r.status==="declined").sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt)));
   const archived=docs.filter(r=>r.status==="archived").sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt)));
-  const who=r=>r.name||r.team||"Someone";
+  const who=r=>r.name||"";
 
   const overdue=active.filter(r=>{const n=daysUntil(r.deadline);return n!==null&&n<0}).length;
   const week=active.filter(r=>{const n=daysUntil(r.deadline);return n!==null&&n>=0&&n<=7}).length;
@@ -320,7 +326,7 @@ function render(){
         <div class="rank">${ctx==="queue"?i+1:"·"}</div>
         <div>
           <div class="title">${esc(r.title)}</div>
-          <div class="meta"><span class="by">${esc(who(r))}</span></div>
+          <div class="meta">${r.dept?`<span class="chip dept">${esc(r.dept)}</span>`:""}${r.name?`<span class="by">${esc(r.name)}</span>`:""}</div>
         </div>
         <div class="chips">${r.top?'<span class="chip star">★ Top</span>':""}${deadlineChip(r)}${statusChip(r.status)}</div>
       </div>
@@ -335,7 +341,8 @@ function render(){
   };
   const adminHTML=(r,i,ctx,n)=>`<div class="admin" data-admin="${esc(r.id)}">
       <label>Title<input type="text" data-act="title" value="${esc(r.title)}" maxlength="140"></label>
-      <label>Requested by<input type="text" data-act="name" value="${esc(r.name||r.team||"")}" maxlength="60"></label>
+      <label>Department<select data-act="dept">${DEPTS.map(d=>`<option value="${d}" ${d===(r.dept||"")?"selected":""}>${d}</option>`).join("")}<option value="" ${!r.dept?"selected":""}>None</option></select></label>
+      <label>Requested by<input type="text" data-act="name" value="${esc(r.name||"")}" maxlength="60"></label>
       <label>Status<select data-act="status">${Object.keys(STATUS).map(s=>`<option value="${s}" ${s===r.status?"selected":""}>${STATUS[s]}</option>`).join("")}</select></label>
       <label>Deadline<input type="date" data-act="deadline" value="${esc(r.deadline||"")}"></label>
       ${ACTIVE.includes(r.status)?`<label>Top priority<span class="btns"><button type="button" class="btn sm ${r.top?"primary":""}" data-act="star">${r.top?"★ Remove from top":"☆ Top priority"}</button></span></label>`:""}
@@ -355,8 +362,9 @@ function render(){
     return `<div class="col c-${s}" data-stage="${s}"><div class="col-head"><h3>${label}</h3><span class="n">${items.length}</span></div>
       ${items.length?items.map(r=>`<button type="button" class="card" data-jump="${esc(r.id)}" ${isAdmin?'draggable="true"':''}>
         <span class="cr">${r.top?"★ Top priority · ":""}${rankOf(r.id)?rankOf(r.id)+" in queue":(r.status==="requested"?"New request":esc(STATUS[r.status]||""))}</span>
+        ${r.dept?`<span class="chip dept">${esc(r.dept)}</span>`:""}
         <span class="ct">${esc(r.title)}</span>
-        <span class="cm">${esc(who(r))}</span>
+        ${r.name?`<span class="cm">${esc(r.name)}</span>`:""}
         ${deadlineChip(r)}</button>`).join(""):`<div class="none">${isAdmin?"Drop a card here":"Nothing here"}</div>`}
     </div>`}).join("");
 
@@ -438,6 +446,7 @@ function act(id,action,el){
   else if(action==="deadline"){write(id,{deadline:el.value});toast("Deadline updated");}
   else if(action==="title"){if(el.value.trim())write(id,{title:el.value.trim()});}
   else if(action==="name"){write(id,{name:el.value.trim()});}
+  else if(action==="dept"){write(id,{dept:el.value});}
   else if(action==="accept"){write(id,{status:"queued",rank:maxRank+1});toast("Added to queue at #"+(active.length+1));}
   else if(action==="decline"){write(id,{status:"declined",rank:null});toast("Declined");}
   else if(action==="archive"){write(id,{status:"archived",rank:null});toast("Archived");}
@@ -513,7 +522,7 @@ $("#form").addEventListener("submit",e=>{
   const now=new Date().toISOString();
   const active=sortActive(docs.filter(x=>ACTIVE.includes(x.status)));
   const maxRank=active.reduce((m,x)=>Math.max(m,x.rank||0),0);
-  addDoc({id:newId(),title:$("#f-title").value.trim(),name:$("#f-name").value.trim(),deadline:$("#f-deadline").value,
+  addDoc({id:newId(),title:$("#f-title").value.trim(),dept:$("#f-dept").value,name:$("#f-name").value.trim(),deadline:$("#f-deadline").value,
     brief:$("#f-brief").value.trim(),assets:$("#f-assets").value.trim(),status:"queued",rank:maxRank+1,notes:"",createdAt:now,updatedAt:now});
   $("#form").reset();addOpen=false;$("#add-section").hidden=true;$("#add-open").textContent="+ Add project";toast("Added to Waiting");
 });
