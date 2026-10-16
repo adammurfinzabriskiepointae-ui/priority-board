@@ -83,6 +83,8 @@ section{margin-top:36px}
 .card .cr{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .card .chip{font-size:11px;padding:1px 7px;align-self:flex-start}
 .col .none{font-size:12px;color:var(--muted);font-style:italic;padding:8px 4px}
+.dropzone.over{outline:2px dashed var(--accent);outline-offset:8px;border-radius:4px}
+.chip.star{background:var(--accent);color:var(--accent-ink)}
 .sec-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .add-panel{margin-top:18px}
 .add-panel .form{border-color:var(--accent)}
@@ -232,10 +234,10 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
     </details>
   </section>
 
-  <section>
+  <section id="top-section" class="dropzone" data-stage="top">
     <div class="sec-head">
-      <div><h2>Top priorities</h2></div>
-      <p>The five projects at the top of the queue. Click a row to see the brief, assets and notes.</p>
+      <div><h2>Top priorities <span class="chip mono" id="top-count">0</span></h2></div>
+      <p id="top-hint">The projects Adam has marked as top priority. Click a row to see the brief, assets and notes.</p>
     </div>
     <ol class="queue" id="queue"></ol>
   </section>
@@ -319,7 +321,7 @@ function render(){
           <div class="title">${esc(r.title)}</div>
           <div class="meta"><span class="by">${esc(who(r))}</span></div>
         </div>
-        <div class="chips">${deadlineChip(r)}${statusChip(r.status)}</div>
+        <div class="chips">${r.top?'<span class="chip star">★ Top</span>':""}${deadlineChip(r)}${statusChip(r.status)}</div>
       </div>
       <div class="row-detail" ${isOpen?"":"hidden"}>
         <div class="field"><span class="eyebrow">Brief</span><p>${r.brief?esc(r.brief):'<span class="empty">No brief given</span>'}</p></div>
@@ -335,6 +337,7 @@ function render(){
       <label>Requested by<input type="text" data-act="name" value="${esc(r.name||r.team||"")}" maxlength="60"></label>
       <label>Status<select data-act="status">${Object.keys(STATUS).map(s=>`<option value="${s}" ${s===r.status?"selected":""}>${STATUS[s]}</option>`).join("")}</select></label>
       <label>Deadline<input type="date" data-act="deadline" value="${esc(r.deadline||"")}"></label>
+      ${ACTIVE.includes(r.status)?`<label>Top priority<span class="btns"><button type="button" class="btn sm ${r.top?"primary":""}" data-act="star">${r.top?"★ Remove from top":"☆ Top priority"}</button></span></label>`:""}
       ${ctx==="queue"?`<label>Order<span class="btns"><button type="button" class="btn sm" data-act="up" ${i===0?"disabled":""}>▲ Up</button><button type="button" class="btn sm" data-act="down" ${i===n-1?"disabled":""}>▼ Down</button><button type="button" class="btn sm" data-act="top" ${i===0?"disabled":""}>To top</button></span></label>`:""}
       ${ctx==="inbox"?`<label>Triage<span class="btns"><button type="button" class="btn sm primary" data-act="accept">Add to queue</button><button type="button" class="btn sm danger" data-act="decline">Decline</button></span></label>`:""}
       ${r.status==="done"?`<label>Archive<span class="btns"><button type="button" class="btn sm" data-act="archive">Move to archive</button></span></label>`:""}
@@ -350,13 +353,16 @@ function render(){
   $("#kanban").innerHTML=cols.map(([s,label,items])=>{
     return `<div class="col c-${s}" data-stage="${s}"><div class="col-head"><h3>${label}</h3><span class="n">${items.length}</span></div>
       ${items.length?items.map(r=>`<button type="button" class="card" data-jump="${esc(r.id)}" ${isAdmin?'draggable="true"':''}>
-        <span class="cr">${rankOf(r.id)?rankOf(r.id)+" in queue":(r.status==="requested"?"New request":esc(STATUS[r.status]||""))}</span>
+        <span class="cr">${r.top?"★ Top priority · ":""}${rankOf(r.id)?rankOf(r.id)+" in queue":(r.status==="requested"?"New request":esc(STATUS[r.status]||""))}</span>
         <span class="ct">${esc(r.title)}</span>
         <span class="cm">${esc(who(r))}</span>
         ${deadlineChip(r)}</button>`).join(""):`<div class="none">${isAdmin?"Drop a card here":"Nothing here"}</div>`}
     </div>`}).join("");
 
-  $("#queue").innerHTML=active.length?active.slice(0,5).map((r,i)=>rowHTML(r,i,"queue")).join(""):`<li class="empty-state">Nothing in the queue yet.</li>`;
+  const top=active.filter(r=>r.top).slice(0,5);
+  $("#queue").innerHTML=top.length?top.map((r,i)=>rowHTML(r,i,"queue")).join(""):`<li class="empty-state">${isAdmin?"Drag a card from the board here, or press ★ Top priority in a card's controls. Up to five.":"No top priorities marked yet."}</li>`;
+  $("#top-count").textContent=top.length+"/5";
+  $("#top-hint").textContent=isAdmin?"Drag cards from the board here to mark them top priority, up to five. Drag out or press the star again to remove.":"The projects Adam has marked as top priority. Click a row to see the brief, assets and notes.";
   $("#inbox").innerHTML=inbox.length?inbox.map((r,i)=>rowHTML(r,i,"inbox")).join(""):`<li class="empty-state">No new requests waiting.</li>`;
   $("#done").innerHTML=closed.length?closed.map((r,i)=>rowHTML(r,i,"done")).join(""):`<li class="empty-state">Nothing finished yet.</li>`;
   $("#done-count").textContent=closed.length;
@@ -427,6 +433,7 @@ function act(id,action,el){
   const idx=active.findIndex(x=>x.id===id);
   const maxRank=active.reduce((m,x)=>Math.max(m,x.rank||0),0);
   if(action==="status"){const s=el.value;const patch={status:s};if(ACTIVE.includes(s)&&!ACTIVE.includes(r.status))patch.rank=maxRank+1;if(!ACTIVE.includes(s))patch.rank=null;write(id,patch);toast("Status: "+STATUS[s]);}
+  else if(action==="star"){if(r.top){write(id,{top:false});toast("Removed from top priorities")}else{const n=docs.filter(x=>x.top&&ACTIVE.includes(x.status)).length;if(n>=5){toast("Top priorities is full (5). Remove one first.");return}write(id,{top:true});toast("Marked as top priority")}}
   else if(action==="deadline"){write(id,{deadline:el.value});toast("Deadline updated");}
   else if(action==="title"){if(el.value.trim())write(id,{title:el.value.trim()});}
   else if(action==="name"){write(id,{name:el.value.trim()});}
@@ -454,10 +461,16 @@ function act(id,action,el){
 let dragId=null;
 function moveCard(id,stage,beforeId){
   const r=byId(id);if(!r)return;
+  if(stage==="top"){
+    if(r.top)return;
+    const n=docs.filter(x=>x.top&&ACTIVE.includes(x.status)).length;if(n>=5){toast("Top priorities is full (5). Remove one first.");return}
+    const patch={top:true};if(!ACTIVE.includes(r.status)){const list=sortActive(docs.filter(x=>ACTIVE.includes(x.status)));patch.status="queued";patch.rank=list.length+1}
+    write(id,patch);toast("Marked as top priority");return;
+  }
   const newStatus=stage==="waiting"?"queued":stage==="doing"?"in_progress":stage==="archive"?"archived":"done";
   const list=sortActive(docs.filter(x=>ACTIVE.includes(x.status)&&x.id!==id));
   if(newStatus==="done"||newStatus==="archived"){
-    if(r.status!==newStatus)write(id,{status:newStatus,rank:null});
+    if(r.status!==newStatus)write(id,{status:newStatus,rank:null,top:false});
     list.forEach((x,k)=>{if(x.rank!==k+1)write(x.id,{rank:k+1})});
   }else{
     let at=list.findIndex(x=>x.id===beforeId);
@@ -468,13 +481,13 @@ function moveCard(id,stage,beforeId){
   toast(stage==="archive"?"Archived":"Moved to "+(stage==="waiting"?"Waiting":stage==="doing"?"Doing":"Done"));
 }
 document.addEventListener("dragstart",e=>{const c=e.target.closest&&e.target.closest(".card[draggable]");if(!c)return;dragId=c.dataset.jump;c.classList.add("dragging");e.dataTransfer.effectAllowed="move";try{e.dataTransfer.setData("text/plain",dragId)}catch(x){}});
-document.addEventListener("dragend",e=>{dragId=null;document.querySelectorAll(".dragging,.insert-before").forEach(x=>x.classList.remove("dragging","insert-before"));document.querySelectorAll(".col.over").forEach(x=>x.classList.remove("over"))});
-document.addEventListener("dragover",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col");if(!col)return;e.preventDefault();e.dataTransfer.dropEffect="move";
-  document.querySelectorAll(".col.over").forEach(x=>{if(x!==col)x.classList.remove("over")});col.classList.add("over");
+document.addEventListener("dragend",e=>{dragId=null;document.querySelectorAll(".dragging,.insert-before").forEach(x=>x.classList.remove("dragging","insert-before"));document.querySelectorAll(".col.over,.dropzone.over").forEach(x=>x.classList.remove("over"))});
+document.addEventListener("dragover",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col,.dropzone");if(!col)return;e.preventDefault();e.dataTransfer.dropEffect="move";
+  document.querySelectorAll(".col.over,.dropzone.over").forEach(x=>{if(x!==col)x.classList.remove("over")});col.classList.add("over");
   document.querySelectorAll(".insert-before").forEach(x=>x.classList.remove("insert-before"));
   const card=e.target.closest(".card");if(card&&card.dataset.jump!==dragId){const b=card.getBoundingClientRect();if(e.clientY<b.top+b.height/2)card.classList.add("insert-before");else if(card.nextElementSibling&&card.nextElementSibling.classList.contains("card"))card.nextElementSibling.classList.add("insert-before")}});
-document.addEventListener("dragleave",e=>{const col=e.target.closest&&e.target.closest(".col");if(col&&!col.contains(e.relatedTarget))col.classList.remove("over")});
-document.addEventListener("drop",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col");if(!col)return;e.preventDefault();
+document.addEventListener("dragleave",e=>{const col=e.target.closest&&e.target.closest(".col,.dropzone");if(col&&!col.contains(e.relatedTarget))col.classList.remove("over")});
+document.addEventListener("drop",e=>{if(!dragId)return;const col=e.target.closest&&e.target.closest(".col,.dropzone");if(!col)return;e.preventDefault();
   const before=col.querySelector(".card.insert-before");const id=dragId;dragId=null;
   moveCard(id,col.dataset.stage,before?before.dataset.jump:null)});
 
