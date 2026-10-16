@@ -83,6 +83,9 @@ section{margin-top:36px}
 .card .cr{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .card .chip{font-size:11px;padding:1px 7px;align-self:flex-start}
 .col .none{font-size:12px;color:var(--muted);font-style:italic;padding:8px 4px}
+.sec-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.add-panel{margin-top:18px}
+.add-panel .form{border-color:var(--accent)}
 .bin{margin-top:14px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 14px;border:2px dashed var(--line);background:transparent;--col:var(--muted);padding:12px 16px}
 .bin[hidden]{display:none}
 .bin-label{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:14px;color:var(--muted)}
@@ -183,7 +186,7 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
 
   <section>
     <div class="sec-head">
-      <div><h2>Board</h2></div>
+      <div class="sec-title"><h2>Board</h2><button type="button" class="btn primary" id="add-open" hidden>+ Add project</button></div>
       <p id="kanban-hint">Every project by stage. Click a card to see its details.</p>
     </div>
     <div class="kanban" id="kanban"></div>
@@ -191,6 +194,35 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
       <span class="bin-label">Archive bin</span>
       <span class="bin-hint">Drop finished cards here. They leave the board but keep their brief, assets and notes in the archive below.</span>
     </div>
+
+<div id="add-section" class="add-panel" hidden>
+    <div class="sec-head">
+      <div><h2>Add a project</h2></div>
+      <p>New projects go to the bottom of Waiting. Drag the card to set its priority.</p>
+    </div>
+        <form class="form" id="form" autocomplete="off">
+      <label class="full">Project
+        <input type="text" id="f-title" maxlength="140" required placeholder="e.g. 3 × 9:16 cutdowns of the AW campaign film for Instagram">
+      </label>
+      <label>Requested by
+        <input type="text" id="f-name" maxlength="60" placeholder="Name or team">
+      </label>
+      <label>Deadline <small>the date you need it delivered</small>
+        <input type="date" id="f-deadline" required>
+      </label>
+      <label class="full">Brief <small>audience, channel, formats, sizes, key message, must-haves</small>
+        <textarea id="f-brief" rows="5" maxlength="4000" required placeholder="Who is it for, where it will run, sizes and lengths, key message, anything that must be included."></textarea>
+      </label>
+      <label class="full">Assets and references <small>one link per line: SharePoint, Drive, Frame.io, moodboards</small>
+        <textarea id="f-assets" rows="3" maxlength="2000" placeholder="https://..."></textarea>
+      </label>
+      <div class="actions">
+        <button type="submit" class="btn primary" id="f-submit">Add to board</button>
+        <button type="button" class="btn" id="f-cancel">Cancel</button>
+        <span class="msg" id="f-msg"></span>
+      </div>
+    </form>
+  </div>
   </section>
 
   <section id="archive-section">
@@ -216,33 +248,7 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
     <ol class="queue" id="inbox"></ol>
   </section>
 
-  <section id="add-section" hidden>
-    <div class="sec-head">
-      <div><h2>Add a project</h2></div>
-      <p>New projects go to the bottom of Waiting. Drag the card to set its priority.</p>
-    </div>
-        <form class="form" id="form" autocomplete="off">
-      <label class="full">Project
-        <input type="text" id="f-title" maxlength="140" required placeholder="e.g. 3 × 9:16 cutdowns of the AW campaign film for Instagram">
-      </label>
-      <label>Requested by
-        <input type="text" id="f-name" maxlength="60" placeholder="Name or team">
-      </label>
-      <label>Deadline <small>the date you need it delivered</small>
-        <input type="date" id="f-deadline" required>
-      </label>
-      <label class="full">Brief <small>audience, channel, formats, sizes, key message, must-haves</small>
-        <textarea id="f-brief" rows="5" maxlength="4000" required placeholder="Who is it for, where it will run, sizes and lengths, key message, anything that must be included."></textarea>
-      </label>
-      <label class="full">Assets and references <small>one link per line: SharePoint, Drive, Frame.io, moodboards</small>
-        <textarea id="f-assets" rows="3" maxlength="2000" placeholder="https://..."></textarea>
-      </label>
-      <div class="actions">
-        <button type="submit" class="btn primary" id="f-submit">Add to board</button>
-        <span class="msg" id="f-msg"></span>
-      </div>
-    </form>
-  </section>
+  
 
   <section hidden id="done-section">
     <details class="done" id="done-wrap">
@@ -265,7 +271,7 @@ const ACTIVE=["queued","in_progress"];
 const CFG=window.PB_CONFIG||{owner:"",repo:"",branch:"main",path:"data/projects.json"};
 const API=`https://api.github.com/repos/${CFG.owner}/${CFG.repo}/contents/${CFG.path}`;
 
-let docs=[],fileSha=null,token=null,isAdmin=false,open=new Set(),dirty=false,commitTimer=null,saving=false;
+let addOpen=false,docs=[],fileSha=null,token=null,isAdmin=false,open=new Set(),dirty=false,commitTimer=null,saving=false;
 try{const o=JSON.parse(localStorage.getItem("pb-open")||"[]");open=new Set(o)}catch(e){}
 try{token=localStorage.getItem("pb-token")||null}catch(e){}
 function rememberOpen(){try{localStorage.setItem("pb-open",JSON.stringify([...open]))}catch(e){}}
@@ -357,7 +363,7 @@ function render(){
   $("#archive").innerHTML=archived.length?archived.map((r,i)=>rowHTML(r,i,"archive")).join(""):`<li class="empty-state">Nothing archived yet. Finished cards dropped in the bin are kept here with their details.</li>`;
   $("#archive-count").textContent=archived.length;
   $("#bin").hidden=!isAdmin;
-  $("#add-section").hidden=!isAdmin;
+  $("#add-open").hidden=!isAdmin;if(!isAdmin){addOpen=false}$("#add-section").hidden=!isAdmin||!addOpen;
   $("#kanban-hint").textContent=isAdmin?"Drag cards between columns to change stage, or up and down to reorder the queue. Click a card to see its details.":"Every project by stage. Click a card to see its details.";
 }
 
@@ -495,8 +501,10 @@ $("#form").addEventListener("submit",e=>{
   const maxRank=active.reduce((m,x)=>Math.max(m,x.rank||0),0);
   addDoc({id:newId(),title:$("#f-title").value.trim(),name:$("#f-name").value.trim(),deadline:$("#f-deadline").value,
     brief:$("#f-brief").value.trim(),assets:$("#f-assets").value.trim(),status:"queued",rank:maxRank+1,notes:"",createdAt:now,updatedAt:now});
-  $("#form").reset();toast("Added to Waiting");
+  $("#form").reset();addOpen=false;$("#add-section").hidden=true;$("#add-open").textContent="+ Add project";toast("Added to Waiting");
 });
+$("#add-open").addEventListener("click",()=>{addOpen=!addOpen;$("#add-section").hidden=!addOpen;$("#add-open").textContent=addOpen?"Close form":"+ Add project";if(addOpen){$("#f-title").focus();$("#add-section").scrollIntoView({behavior:"smooth",block:"nearest"})}});
+$("#f-cancel").addEventListener("click",()=>{addOpen=false;$("#add-section").hidden=true;$("#add-open").textContent="+ Add project"});
 $("#signin-open").addEventListener("click",()=>{$("#signin-form").hidden=false;$("#tok").focus()});
 $("#signin-cancel").addEventListener("click",()=>{$("#signin-form").hidden=true});
 $("#signin-form").addEventListener("submit",async e=>{e.preventDefault();const ok=await signIn($("#tok").value);if(ok)$("#tok").value=""});
