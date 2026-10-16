@@ -135,21 +135,6 @@
     "dept": "ECOM"
   },
   {
-    "id": "p10-other",
-    "title": "Briefing system",
-    "name": "",
-    "deadline": "",
-    "brief": "",
-    "assets": "",
-    "status": "queued",
-    "rank": 4,
-    "top": false,
-    "notes": "",
-    "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:25.230Z",
-    "dept": "OTHER"
-  },
-  {
     "id": "p11-other",
     "title": "Wild campaign ideas",
     "name": "",
