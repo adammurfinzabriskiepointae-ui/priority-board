@@ -6,12 +6,12 @@
     "deadline": "",
     "brief": "",
     "assets": "",
-    "status": "in_progress",
-    "rank": 13,
+    "status": "done",
+    "rank": null,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:00:34.112Z",
+    "updatedAt": "2026-10-16T11:03:41.141Z",
     "dept": "COSMETICS"
   },
   {
@@ -52,11 +52,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 15,
+    "rank": 14,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:02:34.022Z",
+    "updatedAt": "2026-10-16T11:03:41.150Z",
     "dept": "COSMETICS"
   },
   {
@@ -97,11 +97,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 14,
+    "rank": 13,
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:03:34.610Z",
+    "updatedAt": "2026-10-16T11:03:41.147Z",
     "dept": "HOME"
   },
   {
@@ -112,11 +112,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 17,
+    "rank": 16,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:02:34.026Z",
+    "updatedAt": "2026-10-16T11:03:41.155Z",
     "dept": "ECOM"
   },
   {
@@ -262,11 +262,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 16,
+    "rank": 15,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:02:34.024Z",
+    "updatedAt": "2026-10-16T11:03:41.153Z",
     "dept": "OTHER"
   }
 ]
