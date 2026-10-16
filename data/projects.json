@@ -56,9 +56,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:08:22.768Z",
+    "updatedAt": "2026-10-16T11:08:25.554Z",
     "dept": "COSMETICS",
-    "topOrder": 3
+    "topOrder": 2
   },
   {
     "id": "p05-home",
@@ -72,9 +72,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T11:08:22.766Z",
+    "updatedAt": "2026-10-16T11:08:25.556Z",
     "dept": "HOME",
-    "topOrder": 2
+    "topOrder": 3
   },
   {
     "id": "p06-home",
