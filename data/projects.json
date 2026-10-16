@@ -7,11 +7,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 16,
+    "rank": 15,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:45:10.775Z",
+    "updatedAt": "2026-10-16T10:52:08.568Z",
     "dept": "COSMETICS"
   },
   {
@@ -22,11 +22,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 17,
+    "rank": 16,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:45:10.776Z",
+    "updatedAt": "2026-10-16T10:52:08.569Z",
     "dept": "COSMETICS"
   },
   {
@@ -52,11 +52,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 13,
+    "rank": 18,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:45:06.035Z",
+    "updatedAt": "2026-10-16T10:52:08.570Z",
     "dept": "COSMETICS"
   },
   {
@@ -97,11 +97,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 18,
+    "rank": 17,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:45:10.778Z",
+    "updatedAt": "2026-10-16T10:52:08.569Z",
     "dept": "HOME"
   },
   {
@@ -112,11 +112,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 14,
+    "rank": 13,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:45:10.769Z",
+    "updatedAt": "2026-10-16T10:52:08.563Z",
     "dept": "ECOM"
   },
   {
@@ -217,11 +217,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 15,
+    "rank": 14,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:45:10.773Z",
+    "updatedAt": "2026-10-16T10:52:08.566Z",
     "dept": "OTHER"
   },
   {
