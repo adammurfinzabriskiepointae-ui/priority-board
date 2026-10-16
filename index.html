@@ -175,7 +175,7 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
       <span id="who-name"></span>
       <span id="signin-wrap"><button type="button" class="btn sm" id="signin-open">Edit board</button>
         <form id="signin-form" class="signin" hidden autocomplete="off">
-          <label for="tok">Paste your GitHub access token to edit</label>
+          <label for="tok">Editor sign-in: paste your GitHub access token once. This browser remembers it.</label>
           <input type="password" id="tok" placeholder="github_pat_…" autocomplete="off">
           <span class="btns"><button type="submit" class="btn sm primary">Sign in</button><button type="button" class="btn sm" id="signin-cancel">Cancel</button></span>
         </form></span>
@@ -270,12 +270,13 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const STATUS={requested:"Requested",queued:"Waiting",in_progress:"Doing",done:"Done",archived:"Archived",declined:"Declined"};
 const ACTIVE=["queued","in_progress"];
+const EDITOR=!!window.PB_EDITOR;
 const CFG=window.PB_CONFIG||{owner:"",repo:"",branch:"main",path:"data/projects.json"};
 const API=`https://api.github.com/repos/${CFG.owner}/${CFG.repo}/contents/${CFG.path}`;
 
 let addOpen=false,docs=[],fileSha=null,token=null,isAdmin=false,open=new Set(),dirty=false,commitTimer=null,saving=false;
 try{const o=JSON.parse(localStorage.getItem("pb-open")||"[]");open=new Set(o)}catch(e){}
-try{token=localStorage.getItem("pb-token")||null}catch(e){}
+try{token=EDITOR?(localStorage.getItem("pb-token")||null):null}catch(e){}
 function rememberOpen(){try{localStorage.setItem("pb-open",JSON.stringify([...open]))}catch(e){}}
 
 function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
@@ -424,7 +425,7 @@ async function signIn(tok){
   }catch(e){toast("That token did not work. Check it has Contents read and write on the board repository.");return false}
 }
 function signOut(say){token=null;isAdmin=false;fileSha=null;try{localStorage.removeItem("pb-token")}catch(e){}
-  $("#who-name").textContent="";$("#signout").hidden=true;$("#signin-wrap").hidden=false;$("#signin-form").hidden=true;render();if(say!==false)toast("Signed out of editing")}
+  $("#who-name").textContent="";$("#signout").hidden=true;$("#signin-wrap").hidden=false;$("#signin-form").hidden=false;$("#signin-open").hidden=true;render();if(say!==false)toast("Signed out of editing")}
 
 function byId(id){return docs.find(r=>r.id===id)}
 function act(id,action,el){
@@ -527,7 +528,9 @@ function setLive(on,label){const el=$("#live");if(!el)return;el.classList.toggle
 async function boot(){
   $("#f-deadline").min=todayISO();
   render();
+  if(!EDITOR){$("#signin-wrap").hidden=true;$("#signout").hidden=true}
   if(token){const ok=await signIn(token);if(!ok)signOut(false)}
+  if(EDITOR&&!isAdmin){$("#signin-form").hidden=false;$("#signin-open").hidden=true}
   if(!isAdmin)await loadPublic();
   // Viewers refresh every 60s; editors re-check for others' changes when idle.
   setInterval(()=>{if(isAdmin){if(!dirty&&!saving)loadViaApi().catch(()=>{})}else loadPublic()},60000);
