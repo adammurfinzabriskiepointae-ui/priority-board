@@ -72,9 +72,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-19T07:53:40.191Z",
+    "updatedAt": "2026-10-19T12:55:54.386Z",
     "dept": "HOME",
-    "topOrder": 2
+    "topOrder": 1
   },
   {
     "id": "p06-home",
@@ -88,9 +88,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-19T07:53:40.189Z",
+    "updatedAt": "2026-10-19T12:55:54.388Z",
     "dept": "HOME",
-    "topOrder": 3
+    "topOrder": 2
   },
   {
     "id": "p07-home",
@@ -117,11 +117,12 @@
     "assets": "",
     "status": "in_progress",
     "rank": 9,
-    "top": false,
+    "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-19T12:55:29.581Z",
-    "dept": "ECOM"
+    "updatedAt": "2026-10-19T12:55:54.392Z",
+    "dept": "ECOM",
+    "topOrder": 4
   },
   {
     "id": "p09-ecom",
@@ -226,9 +227,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-19T07:09:23.468Z",
+    "updatedAt": "2026-10-19T12:55:54.390Z",
     "dept": "OTHER",
-    "topOrder": 4
+    "topOrder": 3
   },
   {
     "id": "p19-other",
