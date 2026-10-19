@@ -200,21 +200,6 @@
     "dept": "OTHER"
   },
   {
-    "id": "p16-other",
-    "title": "Ecom Fashion images (collection) on location workflow",
-    "name": "",
-    "deadline": "",
-    "brief": "",
-    "assets": "",
-    "status": "in_progress",
-    "rank": 13,
-    "top": false,
-    "notes": "",
-    "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-19T07:53:40.198Z",
-    "dept": "OTHER"
-  },
-  {
     "id": "p17-other",
     "title": "Optimise SKU upload process",
     "name": "",
