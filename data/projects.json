@@ -120,9 +120,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-19T12:56:01.664Z",
+    "updatedAt": "2026-10-19T12:56:06.219Z",
     "dept": "ECOM",
-    "topOrder": 4
+    "topOrder": 3
   },
   {
     "id": "p09-ecom",
@@ -227,9 +227,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-19T12:55:54.390Z",
+    "updatedAt": "2026-10-19T12:56:06.223Z",
     "dept": "OTHER",
-    "topOrder": 3
+    "topOrder": 4
   },
   {
     "id": "p19-other",
