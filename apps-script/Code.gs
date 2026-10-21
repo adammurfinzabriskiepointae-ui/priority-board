@@ -7,7 +7,8 @@
  *
  * Runs as a Google Apps Script web app (see SETUP.md). Script properties:
  *   GITHUB_TOKEN  required  fine-grained token, Contents: read and write on the board repo
- *   NOTIFY_EMAIL  optional  where "New brief" emails go (Adam). Also used as reply-to on confirmations.
+ *   NOTIFY_EMAIL  optional  where "New brief" emails go (Adam); several addresses separated by commas.
+ *                           The first one is the reply-to on the requester's confirmation.
  *   GITHUB_REPO   optional  owner/name, defaults to the board repo below
  */
 var REPO_DEFAULT = "adammurfinzabriskiepointae-ui/priority-board";
@@ -117,7 +118,8 @@ function overLimit() {
 
 // ---- Emails. Failures here never fail the save.
 function notify(item) {
-  var adam = props().getProperty("NOTIFY_EMAIL") || "";
+  var adam = props().getProperty("NOTIFY_EMAIL") || ""; // one or more addresses, comma separated
+  var replyTo = adam.split(",")[0].trim();
   var when = Utilities.formatDate(new Date(item.createdAt), "Asia/Dubai", "EEE d MMM yyyy, HH:mm") + " Dubai";
   var lines = [
     "New brief on the Priority Board", "",
@@ -148,7 +150,7 @@ function notify(item) {
       "Links: " + (item.assets || "none")
     ];
     var opts = { to: item.email, subject: "Got your brief: " + item.title, body: conf.join("\n") };
-    if (adam) opts.replyTo = adam;
+    if (replyTo) opts.replyTo = replyTo;
     MailApp.sendEmail(opts);
   } catch (err) { console.warn("Confirmation failed: " + err); }
 }

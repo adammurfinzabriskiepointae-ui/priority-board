@@ -1,4 +1,4 @@
 {
-  "briefEndpoint": "",
-  "note": "briefEndpoint is the Google Apps Script web app URL from SETUP.md. While it is empty the brief form shows 'not connected yet'."
+  "briefEndpoint": "https://script.google.com/macros/s/AKfycbwCLxfGOYp5wxC-wad8jl4lPh289s7IT8KGYNTbu8-gZadQ2QXNLKOewK7gWsQ_iSmj/exec",
+  "note": "briefEndpoint is the Google Apps Script web app URL (project 'Priority Board inbox' on adam.murfin.zabriskie.point.ae@gmail.com). See SETUP.md."
 }
