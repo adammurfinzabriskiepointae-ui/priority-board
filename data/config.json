@@ -1,0 +1,4 @@
+{
+  "briefEndpoint": "",
+  "note": "briefEndpoint is the Google Apps Script web app URL from SETUP.md. While it is empty the brief form shows 'not connected yet'."
+}

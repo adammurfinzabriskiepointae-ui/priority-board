@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Send Adam a brief</title>
+<meta name="description" content="Request AI content from Adam. Your brief lands in Waiting on the Priority Board with the time you sent it.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Same look as the board (index.html). One column: title, short intro, the form, one very big send button. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --surface-2:#e9edf2; --line:#d3dae3;
+  --fg:#15202b; --muted:#5b6b7c; --accent:#0f5c6e; --accent-ink:#ffffff; --accent-soft:#d9eaee; --accent-deep:#0a3e4a;
+  --good:#1f7a4d; --good-soft:#d9f0e3; --warn:#9a6200; --warn-soft:#fbeccd; --crit:#b3261e; --crit-soft:#f9dcd9;
+  --display:"Archivo",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --body:"Public Sans",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f151c; --surface:#171f28; --surface-2:#202a35; --line:#2d3946;
+  --fg:#e8edf2; --muted:#93a1b0; --accent:#5fb9cc; --accent-ink:#06222a; --accent-soft:#163742; --accent-deep:#3a8a9a;
+  --good:#5fcf94; --good-soft:#15382a; --warn:#f0b84a; --warn-soft:#3d2d0c; --crit:#ff7b72; --crit-soft:#46201d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151c; --surface:#171f28; --surface-2:#202a35; --line:#2d3946;
+  --fg:#e8edf2; --muted:#93a1b0; --accent:#5fb9cc; --accent-ink:#06222a; --accent-soft:#163742; --accent-deep:#3a8a9a;
+  --good:#5fcf94; --good-soft:#15382a; --warn:#f0b84a; --warn-soft:#3d2d0c; --crit:#ff7b72; --crit-soft:#46201d; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:720px;margin:0 auto}
+h1,h2{font-family:var(--display);font-variation-settings:"wdth" 85;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px;padding-block:28px 18px;border-bottom:2px solid var(--fg)}
+.intro{margin:18px 0 0;font-size:16px;max-width:60ch}
+.intro b{font-weight:600}
+.steps{margin:10px 0 0;padding-left:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted)}
+.steps li::before{content:"→ ";color:var(--accent)}
+
+.form{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px 20px}
+.form label{display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:600;min-width:0}
+.form .lt{display:block} .form .lt small{display:block;font-weight:400;color:var(--muted);margin-top:1px}
+.form .full{grid-column:1/-1}
+.form input,.form select,.form textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:11px 12px;font-size:16px}
+.form input:focus-visible,.form select:focus-visible,.form textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.form select:invalid{color:var(--muted)}
+textarea{resize:vertical;min-height:140px}
+.req{color:var(--crit);font-weight:700}
+.hint{grid-column:1/-1;font-size:13px;color:var(--muted);margin:-6px 0 0}
+
+.send{grid-column:1/-1;margin-top:4px;display:flex;flex-direction:column;gap:10px}
+.btn-send{width:100%;padding:20px 22px;font-family:var(--display);font-variation-settings:"wdth" 90;font-size:22px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+  color:var(--accent-ink);background:var(--accent);border:0;border-radius:8px;cursor:pointer;box-shadow:0 5px 0 var(--accent-deep);transition:transform .06s,box-shadow .06s,filter .15s}
+.btn-send:hover{filter:brightness(1.07)}
+.btn-send:active{transform:translateY(3px);box-shadow:0 2px 0 var(--accent-deep)}
+.btn-send:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.btn-send:disabled{opacity:.55;cursor:default;transform:none;filter:none}
+.msg{font-size:14px;color:var(--muted);min-height:1.4em}
+.msg.err{color:var(--crit);font-weight:600}
+.notice{padding:12px 14px;background:var(--warn-soft);border-left:3px solid var(--warn);font-size:14px;margin-top:18px;border-radius:0 4px 4px 0}
+
+.done{margin-top:22px;padding:28px 26px;border:2px solid var(--good);border-radius:8px;background:var(--surface)}
+.done h2{font-size:28px;color:var(--good);margin-bottom:10px}
+.done p{margin:6px 0}
+.done .when{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-block;border:1px solid var(--line);background:var(--surface);padding:10px 16px;border-radius:5px;font-size:14px;font-weight:600;color:var(--fg);text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--fg)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{margin-top:28px;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.btn-send{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Gloria Jeans · AI content requests</div>
+      <h1>Send Adam a brief</h1>
+    </div>
+    <a class="btn" href="./">See the board →</a>
+  </header>
+
+  <p class="intro">Tell me what you need and when. Your brief goes straight into <b>Waiting</b> on the board, stamped with the time you sent it. If I have questions I will email you.</p>
+  <ul class="steps"><li>Fill in the boxes</li><li>Press the big button</li><li>Watch it on the board</li></ul>
+
+  <div class="notice" id="not-connected" hidden>The form is not connected yet, so nothing can be sent from here for the moment. Please email Adam your brief instead.</div>
+
+  <form class="form" id="form" autocomplete="on" novalidate>
+    <label><span class="lt">Your name <span class="req">*</span></span>
+      <input type="text" id="b-name" name="name" maxlength="60" required autocomplete="name" placeholder="First and last name">
+    </label>
+    <label><span class="lt">Your email <span class="req">*</span> <small>so I can come back to you with questions</small></span>
+      <input type="email" id="b-email" name="email" maxlength="120" required autocomplete="email" placeholder="you@gloria-jeans.ru">
+    </label>
+    <label><span class="lt">Department <span class="req">*</span></span>
+      <select id="b-dept" name="dept" required>
+        <option value="" disabled selected>Choose…</option>
+        <option value="MENS">Mens</option>
+        <option value="WOMENS">Womens</option>
+        <option value="KIDS">Kids</option>
+        <option value="TEENS">Teens</option>
+        <option value="HOME">Home</option>
+        <option value="COSMETICS">Cosmetics</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </label>
+    <label><span class="lt">Deadline <span class="req">*</span> <small>the date you need it delivered</small></span>
+      <input type="date" id="b-deadline" name="deadline" required>
+    </label>
+    <label class="full"><span class="lt">What do you need? <span class="req">*</span> <small>one line, this is the card title on the board</small></span>
+      <input type="text" id="b-title" name="title" maxlength="140" required placeholder="e.g. 6 model images for the new denim jackets, catalogue style">
+    </label>
+    <label class="full"><span class="lt">Brief <span class="req">*</span> <small>what it is for, where it will run, sizes and formats, how many, key message, anything that must be included</small></span>
+      <textarea id="b-brief" name="brief" rows="7" maxlength="4000" required placeholder="Who is it for, where it will be used (site, app, store, social), how many images or videos, sizes, the message, and any must-haves or must-nots."></textarea>
+    </label>
+    <label class="full"><span class="lt">WeTransfer link <small>the product shots, references or files I need to work with · one link per line</small></span>
+      <textarea id="b-assets" name="assets" rows="2" maxlength="2000" placeholder="https://we.tl/…" style="min-height:64px"></textarea>
+    </label>
+    <p class="hint"><span class="req">*</span> required. Priority and order are set by Adam on the board, not here.</p>
+    <div class="hp" aria-hidden="true"><label>Website<input type="text" id="b-website" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <div class="send">
+      <button type="submit" class="btn-send" id="b-send">Send brief to Adam →</button>
+      <span class="msg" id="b-msg"></span>
+    </div>
+  </form>
+
+  <div class="done" id="done" hidden>
+    <h2>✓ Brief sent</h2>
+    <p class="when" id="done-when"></p>
+    <p>It is now in <b>Waiting</b> on the board. Adam will email <span id="done-email"></span> if he has questions.</p>
+    <div class="actions">
+      <a class="btn primary" href="./">See it on the board</a>
+      <button type="button" class="btn" id="again">Send another brief</button>
+    </div>
+  </div>
+
+  <footer>Problems with this page? Email Adam directly.</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const F={name:$("#b-name"),email:$("#b-email"),dept:$("#b-dept"),deadline:$("#b-deadline"),title:$("#b-title"),brief:$("#b-brief"),assets:$("#b-assets"),website:$("#b-website")};
+const btn=$("#b-send"),msg=$("#b-msg");
+let endpoint="";
+
+function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function fmtWhen(iso){const d=new Date(iso);if(isNaN(d))return "";return d.toLocaleString(undefined,{weekday:"short",day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}
+function setMsg(t,err){msg.textContent=t||"";msg.classList.toggle("err",!!err)}
+
+// Remember who is filling it in, so the next brief is quicker.
+try{const me=JSON.parse(localStorage.getItem("pb-brief-me")||"{}");if(me.name)F.name.value=me.name;if(me.email)F.email.value=me.email;if(me.dept)F.dept.value=me.dept}catch(e){}
+F.deadline.min=todayISO();
+
+// The inbox address lives in data/config.json so it can change without touching this page.
+fetch("data/config.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(c=>{endpoint=String(c.briefEndpoint||"").trim();if(!endpoint)notConnected()}).catch(notConnected);
+function notConnected(){$("#not-connected").hidden=false;btn.disabled=true;btn.textContent="Not connected yet"}
+
+function firstProblem(){
+  if(!F.name.value.trim())return [F.name,"Please add your name."];
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(F.email.value.trim()))return [F.email,"Please add a working email address."];
+  if(!F.dept.value)return [F.dept,"Please choose a department."];
+  if(!F.title.value.trim())return [F.title,"Please say what you need, in one line."];
+  if(!F.brief.value.trim())return [F.brief,"Please write the brief."];
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(F.deadline.value))return [F.deadline,"Please pick a deadline."];
+  return null;
+}
+
+$("#form").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const p=firstProblem();if(p){setMsg(p[1],true);p[0].focus();return}
+  if(!endpoint){notConnected();return}
+  const payload={name:F.name.value.trim(),email:F.email.value.trim(),dept:F.dept.value,title:F.title.value.trim(),brief:F.brief.value.trim(),
+    deadline:F.deadline.value,assets:F.assets.value.trim(),website:F.website.value,client:"brief.html"};
+  btn.disabled=true;btn.textContent="Sending…";setMsg("");
+  try{
+    // Sent as plain text on purpose: Apps Script web apps accept it without a CORS preflight.
+    const r=await fetch(endpoint,{method:"POST",body:JSON.stringify(payload)});
+    const j=await r.json().catch(()=>({ok:false,error:"The inbox gave an unexpected reply."}));
+    if(!r.ok||!j.ok)throw new Error(j.error||("Could not send ("+r.status+")"));
+    try{localStorage.setItem("pb-brief-me",JSON.stringify({name:payload.name,email:payload.email,dept:payload.dept}))}catch(x){}
+    $("#done-when").textContent="Sent "+fmtWhen(j.createdAt||new Date().toISOString());
+    $("#done-email").textContent=payload.email;
+    $("#form").hidden=true;$("#done").hidden=false;window.scrollTo({top:0,behavior:"smooth"});
+  }catch(err){
+    setMsg((err&&err.message||"Could not send.")+" Your text is still here, try again or email Adam.",true);
+  }
+  btn.disabled=false;btn.textContent="Send brief to Adam →";
+});
+$("#again").addEventListener("click",()=>{["title","brief","assets","deadline"].forEach(k=>F[k].value="");$("#done").hidden=true;$("#form").hidden=false;setMsg("");F.title.focus()});
+})();
+</script>
+</body>
+</html>
