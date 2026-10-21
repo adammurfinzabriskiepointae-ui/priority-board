@@ -37,11 +37,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 11,
+    "rank": 10,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-20T08:59:27.809Z",
+    "updatedAt": "2026-10-21T11:13:20.840Z",
     "dept": "COSMETICS"
   },
   {
@@ -193,11 +193,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "queued",
-    "rank": 12,
+    "rank": 11,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-20T13:47:19.713Z",
+    "updatedAt": "2026-10-21T11:13:20.844Z",
     "dept": "OTHER"
   },
   {
@@ -223,11 +223,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 10,
+    "rank": 9,
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-20T12:01:36.260Z",
+    "updatedAt": "2026-10-21T11:13:20.836Z",
     "dept": "OTHER",
     "topOrder": 4
   },
@@ -254,10 +254,12 @@
     "deadline": "2026-10-21",
     "brief": "-",
     "assets": "",
-    "status": "in_progress",
-    "rank": 9,
+    "status": "done",
+    "rank": null,
     "notes": "",
     "createdAt": "2026-10-20T08:59:23.654Z",
-    "updatedAt": "2026-10-20T12:01:36.259Z"
+    "updatedAt": "2026-10-21T11:13:20.827Z",
+    "top": false,
+    "topOrder": null
   }
 ]
