@@ -36,13 +36,14 @@
     "deadline": "",
     "brief": "",
     "assets": "",
-    "status": "in_progress",
-    "rank": 9,
+    "status": "done",
+    "rank": null,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-21T13:12:20.145Z",
-    "dept": "COSMETICS"
+    "updatedAt": "2026-10-21T13:12:24.470Z",
+    "dept": "COSMETICS",
+    "topOrder": null
   },
   {
     "id": "p04-cosmetics",
