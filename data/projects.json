@@ -37,11 +37,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 8,
+    "rank": 9,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-21T13:11:56.831Z",
+    "updatedAt": "2026-10-21T13:12:03.483Z",
     "dept": "COSMETICS"
   },
   {
@@ -193,11 +193,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "queued",
-    "rank": 9,
+    "rank": 8,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-21T13:11:56.835Z",
+    "updatedAt": "2026-10-21T13:12:03.477Z",
     "dept": "OTHER"
   },
   {
