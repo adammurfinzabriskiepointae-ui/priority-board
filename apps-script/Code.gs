@@ -14,7 +14,8 @@ var REPO_DEFAULT = "adammurfinzabriskiepointae-ui/priority-board";
 var FILE_PATH = "data/projects.json";
 var BRANCH = "main";
 var BOARD_URL = "https://adammurfinzabriskiepointae-ui.github.io/priority-board/";
-var DEPTS = ["MENS", "WOMENS", "KIDS", "TEENS", "HOME", "COSMETICS", "OTHER"];
+var DEPTS = ["MENS", "WOMENS", "KIDS", "TEENS", "HOME", "COSMETICS", "OTHER"]; // commodity types
+var KINDS = ["IMAGE", "VIDEO", "GRAPHIC", "MIXED"];
 var MAX_PER_HOUR = 40;
 
 function doGet() {
@@ -61,16 +62,20 @@ function validate(b) {
   var clean = function (s, max) { return String(s == null ? "" : s).replace(/\r\n?/g, "\n").trim().slice(0, max); };
   var name = clean(b.name, 60), email = clean(b.email, 120), dept = clean(b.dept, 20).toUpperCase();
   var title = clean(b.title, 140), brief = clean(b.brief, 4000), deadline = clean(b.deadline, 10), assets = clean(b.assets, 2000);
+  var kind = clean(b.kind, 20).toUpperCase(), usage = clean(b.usage, 200), spec = clean(b.spec, 300);
   if (!name) return { error: "Please add your name." };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: "Please add a working email address." };
-  if (DEPTS.indexOf(dept) < 0) return { error: "Please choose a department." };
+  if (DEPTS.indexOf(dept) < 0) return { error: "Please choose a commodity type." };
   if (!title) return { error: "Please say what you need." };
+  if (KINDS.indexOf(kind) < 0) return { error: "Please choose image, video or graphic." };
+  if (!usage) return { error: "Please say where it will be used." };
+  if (!spec) return { error: "Please give the final size and specification." };
   if (!brief) return { error: "Please write the brief." };
   if (deadline && !/^\d{4}-\d{2}-\d{2}$/.test(deadline)) return { error: "The deadline date looks wrong." };
   var now = new Date().toISOString();
   return { item: {
     id: "b" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
-    title: title, dept: dept, name: name, email: email, deadline: deadline, brief: brief, assets: assets,
+    title: title, dept: dept, kind: kind, usage: usage, spec: spec, name: name, email: email, deadline: deadline, brief: brief, assets: assets,
     status: "requested", rank: null, top: false, topOrder: null, notes: "",
     createdAt: now, updatedAt: now, source: "brief-form"
   } };
@@ -117,7 +122,10 @@ function notify(item) {
   var lines = [
     "New brief on the Priority Board", "",
     "What:       " + item.title,
-    "Department: " + item.dept,
+    "Commodity:  " + item.dept,
+    "Type:       " + item.kind,
+    "Used for:   " + item.usage,
+    "Spec:       " + item.spec,
     "From:       " + item.name + " <" + item.email + ">",
     "Deadline:   " + (item.deadline || "not given"),
     "Sent:       " + when, "",
@@ -135,6 +143,7 @@ function notify(item) {
       "Got your brief \"" + item.title + "\" at " + when + ". It is now in Waiting on the board:", BOARD_URL, "",
       "Adam will email you here if he has questions.", "",
       "Your brief:", item.brief, "",
+      "Type: " + item.kind + " · Used for: " + item.usage + " · Spec: " + item.spec,
       "Deadline: " + (item.deadline || "not given"),
       "Links: " + (item.assets || "none")
     ];

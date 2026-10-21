@@ -101,7 +101,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted)}
     <label><span class="lt">Your email <span class="req">*</span> <small>so I can come back to you with questions</small></span>
       <input type="email" id="b-email" name="email" maxlength="120" required autocomplete="email" placeholder="you@gloria-jeans.ru">
     </label>
-    <label><span class="lt">Department <span class="req">*</span></span>
+    <label><span class="lt">Commodity type <span class="req">*</span></span>
       <select id="b-dept" name="dept" required>
         <option value="" disabled selected>Choose…</option>
         <option value="MENS">Mens</option>
@@ -119,10 +119,25 @@ footer{margin-top:28px;font-size:13px;color:var(--muted)}
     <label class="full"><span class="lt">What do you need? <span class="req">*</span> <small>one line, this is the card title on the board</small></span>
       <input type="text" id="b-title" name="title" maxlength="140" required placeholder="e.g. 6 model images for the new denim jackets, catalogue style">
     </label>
-    <label class="full"><span class="lt">Brief <span class="req">*</span> <small>what it is for, where it will run, sizes and formats, how many, key message, anything that must be included</small></span>
-      <textarea id="b-brief" name="brief" rows="7" maxlength="4000" required placeholder="Who is it for, where it will be used (site, app, store, social), how many images or videos, sizes, the message, and any must-haves or must-nots."></textarea>
+    <label><span class="lt">Image, video or graphic? <span class="req">*</span></span>
+      <select id="b-kind" name="kind" required>
+        <option value="" disabled selected>Choose…</option>
+        <option value="IMAGE">Image</option>
+        <option value="VIDEO">Video</option>
+        <option value="GRAPHIC">Graphic</option>
+        <option value="MIXED">Mixed</option>
+      </select>
     </label>
-    <label class="full"><span class="lt">WeTransfer link <small>the product shots, references or files I need to work with · one link per line</small></span>
+    <label><span class="lt">Where will it be used? <span class="req">*</span> <small>site, app, social, store, email, print</small></span>
+      <input type="text" id="b-usage" name="usage" maxlength="200" required placeholder="e.g. app home banner and Instagram">
+    </label>
+    <label class="full"><span class="lt">Final size and specification <span class="req">*</span> <small>pixel size or ratio, resolution, file type, length for video, how many</small></span>
+      <input type="text" id="b-spec" name="spec" maxlength="300" required placeholder="e.g. 6 images, 2000 × 2667 px, 3:4, JPG · or 1 video, 1080 × 1920, 15 s, MP4">
+    </label>
+    <label class="full"><span class="lt">Brief <span class="req">*</span> <small>what you need made, the key message, style or references, must-haves and must-nots</small></span>
+      <textarea id="b-brief" name="brief" rows="7" maxlength="4000" required placeholder="What should it show, which products, what feeling or style, what must be in it and what must not."></textarea>
+    </label>
+    <label class="full"><span class="lt">WeTransfer link <small>the product shots, references or files I need to work with</small></span>
       <textarea id="b-assets" name="assets" rows="2" maxlength="2000" placeholder="https://we.tl/…" style="min-height:64px"></textarea>
     </label>
     <p class="hint"><span class="req">*</span> required. Priority and order are set by Adam on the board, not here.</p>
@@ -150,7 +165,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted)}
 (function(){
 "use strict";
 const $=s=>document.querySelector(s);
-const F={name:$("#b-name"),email:$("#b-email"),dept:$("#b-dept"),deadline:$("#b-deadline"),title:$("#b-title"),brief:$("#b-brief"),assets:$("#b-assets"),website:$("#b-website")};
+const F={name:$("#b-name"),email:$("#b-email"),dept:$("#b-dept"),deadline:$("#b-deadline"),title:$("#b-title"),kind:$("#b-kind"),usage:$("#b-usage"),spec:$("#b-spec"),brief:$("#b-brief"),assets:$("#b-assets"),website:$("#b-website")};
 const btn=$("#b-send"),msg=$("#b-msg");
 let endpoint="";
 
@@ -169,8 +184,11 @@ function notConnected(){$("#not-connected").hidden=false;btn.disabled=true;btn.t
 function firstProblem(){
   if(!F.name.value.trim())return [F.name,"Please add your name."];
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(F.email.value.trim()))return [F.email,"Please add a working email address."];
-  if(!F.dept.value)return [F.dept,"Please choose a department."];
+  if(!F.dept.value)return [F.dept,"Please choose a commodity type."];
   if(!F.title.value.trim())return [F.title,"Please say what you need, in one line."];
+  if(!F.kind.value)return [F.kind,"Please choose image, video or graphic."];
+  if(!F.usage.value.trim())return [F.usage,"Please say where it will be used."];
+  if(!F.spec.value.trim())return [F.spec,"Please give the final size and specification."];
   if(!F.brief.value.trim())return [F.brief,"Please write the brief."];
   if(!/^\d{4}-\d{2}-\d{2}$/.test(F.deadline.value))return [F.deadline,"Please pick a deadline."];
   return null;
@@ -180,8 +198,8 @@ $("#form").addEventListener("submit",async e=>{
   e.preventDefault();
   const p=firstProblem();if(p){setMsg(p[1],true);p[0].focus();return}
   if(!endpoint){notConnected();return}
-  const payload={name:F.name.value.trim(),email:F.email.value.trim(),dept:F.dept.value,title:F.title.value.trim(),brief:F.brief.value.trim(),
-    deadline:F.deadline.value,assets:F.assets.value.trim(),website:F.website.value,client:"brief.html"};
+  const payload={name:F.name.value.trim(),email:F.email.value.trim(),dept:F.dept.value,title:F.title.value.trim(),kind:F.kind.value,usage:F.usage.value.trim(),spec:F.spec.value.trim(),
+    brief:F.brief.value.trim(),deadline:F.deadline.value,assets:F.assets.value.trim(),website:F.website.value,client:"brief.html"};
   btn.disabled=true;btn.textContent="Sending…";setMsg("");
   try{
     // Sent as plain text on purpose: Apps Script web apps accept it without a CORS preflight.
@@ -197,7 +215,7 @@ $("#form").addEventListener("submit",async e=>{
   }
   btn.disabled=false;btn.textContent="Send brief to Adam →";
 });
-$("#again").addEventListener("click",()=>{["title","brief","assets","deadline"].forEach(k=>F[k].value="");$("#done").hidden=true;$("#form").hidden=false;setMsg("");F.title.focus()});
+$("#again").addEventListener("click",()=>{["title","kind","usage","spec","brief","assets","deadline"].forEach(k=>F[k].value="");$("#done").hidden=true;$("#form").hidden=false;setMsg("");F.title.focus()});
 })();
 </script>
 </body>

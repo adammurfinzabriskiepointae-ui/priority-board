@@ -108,6 +108,12 @@ section{margin-top:36px}
 .col .card.dc-MENS{border-left-color:#3b82d6}.col .card.dc-WOMENS{border-left-color:#7c5cd6}.col .card.dc-KIDS{border-left-color:#e8842a}.col .card.dc-TEENS{border-left-color:#1aa39a}
 .col .card.dc-COSMETICS{border-left-color:#e2679f}.col .card.dc-HOME{border-left-color:#e3b800}.col .card.dc-OTHER{border-left-color:#3fae5f}.col .card.dc-ECOM{border-left-color:#8a98a6}
 .card.is-new{border-style:dashed;border-color:var(--crit)} .card.is-new .cr{color:var(--crit);font-weight:600}
+/* Deadline countdown: green with more than a week left, amber inside a week, red inside three days, solid red once overdue. */
+.chip.timer{font-weight:600} .chip.over{background:var(--crit);color:#fff}
+.tbar{display:block;width:100%;height:5px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.tbar i{display:block;height:100%;width:0;background:var(--good);transition:width .3s}
+.tbar.warn i{background:var(--warn)} .tbar.crit i,.tbar.over i{background:var(--crit)}
+.admin .notes input{width:100%}
 .btn.cta{font-size:14px;padding:9px 14px;text-decoration:none;display:inline-block}
 .btn.big{padding:10px 18px;font-size:15px}
 .card .chip.dept{align-self:flex-start}
@@ -246,7 +252,7 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
       <label class="full">Project
         <input type="text" id="f-title" maxlength="140" required placeholder="e.g. 3 × 9:16 cutdowns of the AW campaign film for Instagram">
       </label>
-      <label>Department
+      <label>Commodity type
         <select id="f-dept"><option value="MENS">Mens</option><option value="WOMENS">Womens</option><option value="KIDS">Kids</option><option value="TEENS">Teens</option><option value="HOME">Home</option><option value="COSMETICS">Cosmetics</option><option value="OTHER">Other</option></select>
       </label>
       <label>Requested by
@@ -258,7 +264,16 @@ body.saving-page .kanban,body.saving-page .queue{opacity:.6;pointer-events:none}
       <label>Deadline <small>the date you need it delivered</small>
         <input type="date" id="f-deadline" required>
       </label>
-      <label class="full">Brief <small>audience, channel, formats, sizes, key message, must-haves</small>
+      <label>Image, video or graphic
+        <select id="f-kind"><option value="">—</option><option value="IMAGE">Image</option><option value="VIDEO">Video</option><option value="GRAPHIC">Graphic</option><option value="MIXED">Mixed</option></select>
+      </label>
+      <label>Where will it be used
+        <input type="text" id="f-usage" maxlength="200" placeholder="site, app, social, store…">
+      </label>
+      <label class="full">Final size and specification
+        <input type="text" id="f-spec" maxlength="300" placeholder="e.g. 6 images, 2000 × 2667 px, 3:4, JPG">
+      </label>
+      <label class="full">Brief <small>key message, style, must-haves, must-nots</small>
         <textarea id="f-brief" rows="5" maxlength="4000" required placeholder="Who is it for, where it will run, sizes and lengths, key message, anything that must be included."></textarea>
       </label>
       <label class="full">WeTransfer and file links <small>one link per line: WeTransfer, SharePoint, Drive, moodboards</small>
@@ -310,6 +325,7 @@ const STATUS={requested:"New brief",queued:"Waiting",in_progress:"Doing",done:"D
 const ACTIVE=["queued","in_progress"];
 const DEPTS=["MENS","WOMENS","KIDS","TEENS","HOME","COSMETICS","OTHER"];
 const DEPT_LABEL={MENS:"Mens",WOMENS:"Womens",KIDS:"Kids",TEENS:"Teens",HOME:"Home",COSMETICS:"Cosmetics",OTHER:"Other",ECOM:"Ecom"};
+const KINDS={IMAGE:"Image",VIDEO:"Video",GRAPHIC:"Graphic",MIXED:"Mixed"};
 const EDITOR=!!window.PB_EDITOR;
 const CFG=window.PB_CONFIG||{owner:"",repo:"",branch:"main",path:"data/projects.json"};
 const API=`https://api.github.com/repos/${CFG.owner}/${CFG.repo}/contents/${CFG.path}`;
@@ -325,14 +341,36 @@ function fmtDate(iso){if(!iso)return "No deadline";const d=new Date(iso+"T00:00:
 // Date and time a brief was sent (createdAt is set by the inbox, in UTC; shown in the viewer's local time).
 function fmtWhen(iso){if(!iso)return "";const d=new Date(iso);if(isNaN(d))return "";return d.toLocaleString(undefined,{day:"numeric",month:"short",year:d.getFullYear()!==new Date().getFullYear()?"numeric":undefined,hour:"2-digit",minute:"2-digit"})}
 function mailto(r){return "mailto:"+r.email+"?subject="+encodeURIComponent("Re: "+r.title)}
+// Countdown to the end of the deadline day. band: good (>7 days), warn (4-7), crit (3 or fewer), over (past).
+// frac: how much of the time between the brief being sent and the deadline has gone, for the bar on the card.
+function countdown(r){
+  if(!r.deadline)return null;const end=new Date(r.deadline+"T23:59:59");if(isNaN(end))return null;
+  const now=Date.now(),ms=end-now,H=36e5,D=864e5;let label,band;
+  if(ms<0){label="Overdue "+Math.ceil(-ms/D)+"d";band="over"}
+  else if(ms<D){const h=Math.floor(ms/H);label="Due today · "+(h<1?"under 1h":h+"h")+" left";band="crit"}
+  else if(ms<3*D){const d=Math.floor(ms/D);label=d+"d "+Math.floor((ms-d*D)/H)+"h left";band="crit"}
+  else if(ms<=7*D){label=Math.floor(ms/D)+"d left";band="warn"}
+  else{label=Math.floor(ms/D)+"d left";band="good"}
+  const start=new Date(r.createdAt||NaN);const frac=(!isNaN(start)&&start<end)?Math.min(1,Math.max(0,(now-start)/(end-start))):null;
+  return {label,band,frac};
+}
+function timerText(r,c){return "⏱ "+c.label+" · "+fmtDate(r.deadline)}
 function deadlineChip(r){
   if(r.status==="done"||r.status==="declined"||r.status==="archived")return `<span class="chip mono">${esc(fmtDate(r.deadline))}</span>`;
-  const n=daysUntil(r.deadline);
-  if(n===null)return `<span class="chip mono">No deadline</span>`;
-  if(n<0)return `<span class="chip mono crit">Overdue ${-n}d · ${esc(fmtDate(r.deadline))}</span>`;
-  if(n===0)return `<span class="chip mono crit">Due today</span>`;
-  if(n<=3)return `<span class="chip mono warn">Due in ${n}d · ${esc(fmtDate(r.deadline))}</span>`;
-  return `<span class="chip mono">Due ${esc(fmtDate(r.deadline))}</span>`;
+  const c=countdown(r);
+  if(!c)return `<span class="chip mono">No deadline</span>`;
+  return `<span class="chip mono timer ${c.band}" data-timer="${esc(r.id)}">${esc(timerText(r,c))}</span>`;
+}
+function timerBar(r){
+  if(r.status==="done"||r.status==="declined"||r.status==="archived")return "";
+  const c=countdown(r);if(!c||c.frac===null)return "";
+  return `<span class="tbar ${c.band}" data-tbar="${esc(r.id)}" title="How much of the time until the deadline has gone"><i style="width:${Math.round(c.frac*100)}%"></i></span>`;
+}
+// Keeps the countdowns moving without re-rendering (so an editor's typing is never wiped).
+function tick(){
+  docs.forEach(r=>{const c=countdown(r);if(!c)return;
+    document.querySelectorAll(`[data-timer="${CSS.escape(r.id)}"]`).forEach(el=>{el.className="chip mono timer "+c.band;el.textContent=timerText(r,c)});
+    document.querySelectorAll(`[data-tbar="${CSS.escape(r.id)}"]`).forEach(el=>{el.className="tbar "+c.band;el.firstElementChild.style.width=Math.round((c.frac||0)*100)+"%"})});
 }
 function statusChip(s){const c=s==="in_progress"?"warn":s==="done"?"good":s==="declined"?"crit":s==="queued"||s==="requested"?"crit":"";return `<span class="chip ${c}">${esc(STATUS[s]||s)}</span>`}
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),2400)}
@@ -370,6 +408,8 @@ function render(){
       </div>
       <div class="row-detail" ${isOpen?"":"hidden"}>
         <div class="field"><span class="eyebrow">Brief</span><p>${r.brief?esc(r.brief):'<span class="empty">No brief given</span>'}</p></div>
+        <div class="field"><span class="eyebrow">Deliverable</span><p>${r.kind||r.spec?esc([KINDS[r.kind]||r.kind,r.spec].filter(Boolean).join(" · ")):'<span class="empty">Not specified</span>'}</p>
+          <span class="eyebrow" style="margin-top:8px">Where it will be used</span><p>${r.usage?esc(r.usage):'<span class="empty">Not specified</span>'}</p></div>
         <div class="field assets"><span class="eyebrow">WeTransfer &amp; file links</span>${r.assets&&r.assets.trim()?linkify(r.assets):'<p class="empty">None linked</p>'}</div>
         <div class="field"><span class="eyebrow">From</span><p>${r.name?esc(r.name):'<span class="empty">No name given</span>'}${isAdmin&&r.email?` · <a href="${esc(mailto(r))}">${esc(r.email)}</a>`:""}</p>
           <span class="eyebrow" style="margin-top:8px">Sent</span><p>${fmtWhen(r.createdAt)?esc(fmtWhen(r.createdAt)):'<span class="empty">Unknown</span>'}</p></div>
@@ -380,7 +420,8 @@ function render(){
   };
   const adminHTML=(r,i,ctx,n)=>`<div class="admin" data-admin="${esc(r.id)}">
       <label>Title<input type="text" data-act="title" value="${esc(r.title)}" maxlength="140"></label>
-      <label>Department<select data-act="dept">${(r.dept&&!DEPTS.includes(r.dept)?[r.dept,...DEPTS]:DEPTS).map(d=>`<option value="${esc(d)}" ${d===(r.dept||"")?"selected":""}>${esc(DEPT_LABEL[d]||d)}</option>`).join("")}<option value="" ${!r.dept?"selected":""}>None</option></select></label>
+      <label>Commodity type<select data-act="dept">${(r.dept&&!DEPTS.includes(r.dept)?[r.dept,...DEPTS]:DEPTS).map(d=>`<option value="${esc(d)}" ${d===(r.dept||"")?"selected":""}>${esc(DEPT_LABEL[d]||d)}</option>`).join("")}<option value="" ${!r.dept?"selected":""}>None</option></select></label>
+      <label>Image / video / graphic<select data-act="kind"><option value="" ${!r.kind?"selected":""}>—</option>${Object.keys(KINDS).map(k=>`<option value="${k}" ${k===r.kind?"selected":""}>${KINDS[k]}</option>`).join("")}</select></label>
       <label>Requested by<input type="text" data-act="name" value="${esc(r.name||"")}" maxlength="60"></label>
       <label>Email<input type="text" data-act="email" value="${esc(r.email||"")}" maxlength="120" placeholder="for questions"></label>
       ${r.email?`<label>Questions?<span class="btns"><a class="btn sm" href="${esc(mailto(r))}">✉ Email ${esc(r.name||"them")}</a></span></label>`:""}
@@ -391,6 +432,8 @@ function render(){
       ${ctx==="inbox"?`<label>Triage<span class="btns"><button type="button" class="btn sm primary" data-act="accept">Add to queue</button><button type="button" class="btn sm danger" data-act="decline">Decline</button></span></label>`:""}
       ${r.status==="done"?`<label>Archive<span class="btns"><button type="button" class="btn sm" data-act="archive">Move to archive</button></span></label>`:""}
       ${ctx==="archive"?`<label>Restore<span class="btns"><button type="button" class="btn sm" data-act="restore">Back to Done</button></span></label>`:""}
+      <label class="notes">Where it will be used<input type="text" data-act="usage" value="${esc(r.usage||"")}" maxlength="200"></label>
+      <label class="notes">Final size and specification<input type="text" data-act="spec" value="${esc(r.spec||"")}" maxlength="300"></label>
       <label class="notes">Brief<textarea data-act="brief" rows="3">${esc(r.brief||"")}</textarea></label>
       <label class="notes">Assets &amp; references (one link per line)<textarea data-act="assets" rows="2">${esc(r.assets||"")}</textarea></label>
       <label class="notes">Notes<textarea data-act="notes" rows="2">${esc(r.notes||"")}</textarea></label>
@@ -406,8 +449,9 @@ function render(){
         <span class="cr">${r.top?"★ Top priority · ":""}${rankOf(r.id)?rankOf(r.id)+" in queue":(r.status==="requested"?"NEW BRIEF · sent "+esc(fmtWhen(r.createdAt)):esc(STATUS[r.status]||""))}</span>
         ${r.dept?`<span class="chip dept d-${esc(r.dept)}">${esc(r.dept)}</span>`:""}
         <span class="ct">${esc(r.title)}</span>
+        ${r.kind||r.usage?`<span class="cm">${esc([KINDS[r.kind]||r.kind,r.usage].filter(Boolean).join(" · "))}</span>`:""}
         ${r.name?`<span class="cm">${esc(r.name)}</span>`:""}
-        ${deadlineChip(r)}</button>`).join(""):`<div class="none">${isAdmin?"Drop a card here":"Nothing here"}</div>`}
+        ${deadlineChip(r)}${timerBar(r)}</button>`).join(""):`<div class="none">${isAdmin?"Drop a card here":"Nothing here"}</div>`}
     </div>`}).join("");
 
   const top=topList();
@@ -500,11 +544,12 @@ function act(id,action,el){
   else if(action==="name"){write(id,{name:el.value.trim()});}
   else if(action==="email"){write(id,{email:el.value.trim()});}
   else if(action==="dept"){write(id,{dept:el.value});}
+  else if(action==="kind"){write(id,{kind:el.value});}
   else if(action==="accept"){write(id,{status:"queued",rank:maxRank+1});toast("Added to queue at #"+(active.length+1));}
   else if(action==="decline"){write(id,{status:"declined",rank:null});toast("Declined");}
   else if(action==="archive"){write(id,{status:"archived",rank:null});toast("Archived");}
   else if(action==="restore"){write(id,{status:"done"});toast("Back in Done");}
-  else if(action==="savetext"){const a=el.closest(".admin");write(id,{brief:a.querySelector('[data-act="brief"]').value.trim(),assets:a.querySelector('[data-act="assets"]').value.trim(),notes:a.querySelector('[data-act="notes"]').value.trim(),title:a.querySelector('[data-act="title"]').value.trim()||r.title,name:a.querySelector('[data-act="name"]').value.trim(),email:a.querySelector('[data-act="email"]').value.trim()});toast("Saved");}
+  else if(action==="savetext"){const a=el.closest(".admin");write(id,{brief:a.querySelector('[data-act="brief"]').value.trim(),assets:a.querySelector('[data-act="assets"]').value.trim(),notes:a.querySelector('[data-act="notes"]').value.trim(),title:a.querySelector('[data-act="title"]').value.trim()||r.title,name:a.querySelector('[data-act="name"]').value.trim(),email:a.querySelector('[data-act="email"]').value.trim(),usage:a.querySelector('[data-act="usage"]').value.trim(),spec:a.querySelector('[data-act="spec"]').value.trim()});toast("Saved");}
   else if(action==="up"||action==="down"){
     const j=action==="up"?idx-1:idx+1;if(j<0||j>=active.length)return;
     const list=active.slice();[list[idx],list[j]]=[list[j],list[idx]];
@@ -576,7 +621,7 @@ $("#form").addEventListener("submit",e=>{
   const now=new Date().toISOString();
   const active=sortActive(docs.filter(x=>ACTIVE.includes(x.status)));
   const maxRank=active.reduce((m,x)=>Math.max(m,x.rank||0),0);
-  addDoc({id:newId(),title:$("#f-title").value.trim(),dept:$("#f-dept").value,name:$("#f-name").value.trim(),email:$("#f-email").value.trim(),deadline:$("#f-deadline").value,
+  addDoc({id:newId(),title:$("#f-title").value.trim(),dept:$("#f-dept").value,kind:$("#f-kind").value,usage:$("#f-usage").value.trim(),spec:$("#f-spec").value.trim(),name:$("#f-name").value.trim(),email:$("#f-email").value.trim(),deadline:$("#f-deadline").value,
     brief:$("#f-brief").value.trim(),assets:$("#f-assets").value.trim(),status:"queued",rank:maxRank+1,notes:"",createdAt:now,updatedAt:now});
   $("#form").reset();addOpen=false;$("#add-section").hidden=true;$("#add-open").textContent="+ Add project";toast("Added to Waiting");
 });
@@ -598,6 +643,7 @@ async function boot(){
   if(!isAdmin)await loadPublic();
   // Viewers refresh every 60s; editors re-check for others' changes when idle.
   setInterval(()=>{if(isAdmin){if(!dirty&&!saving)loadViaApi().catch(()=>{})}else loadPublic()},60000);
+  setInterval(tick,30000);
 }
 boot();
 })();
