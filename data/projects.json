@@ -263,26 +263,5 @@
     "updatedAt": "2026-10-21T11:13:20.827Z",
     "top": false,
     "topOrder": null
-  },
-  {
-    "id": "bmvj2hl7wvi81k",
-    "title": "TEST BRIEF - delete me",
-    "dept": "TEENS",
-    "kind": "IMAGE",
-    "usage": "Test only - app home banner",
-    "spec": "1 image, 1080 x 1350 px, JPG",
-    "name": "Adam (test)",
-    "email": "adam.murfin.zabriskie.point.ae@gmail.com",
-    "deadline": "2026-11-05",
-    "brief": "This is a test to prove the inbox works end to end. Delete this card.",
-    "assets": "https://we.tl/t-TEST",
-    "status": "requested",
-    "rank": null,
-    "top": false,
-    "topOrder": null,
-    "notes": "",
-    "createdAt": "2026-10-22T04:54:59.755Z",
-    "updatedAt": "2026-10-22T04:54:59.755Z",
-    "source": "brief-form"
   }
 ]
