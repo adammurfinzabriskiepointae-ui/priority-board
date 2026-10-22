@@ -179,12 +179,12 @@
     "deadline": "",
     "brief": "",
     "assets": "",
-    "status": "queued",
-    "rank": 1,
+    "status": "in_progress",
+    "rank": 4,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-22T06:16:42.133Z",
+    "updatedAt": "2026-10-22T10:30:07.850Z",
     "dept": "OTHER"
   },
   {
@@ -195,11 +195,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "queued",
-    "rank": 4,
+    "rank": 3,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-22T10:28:02.676Z",
+    "updatedAt": "2026-10-22T10:30:07.844Z",
     "dept": "OTHER"
   },
   {
@@ -210,11 +210,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 3,
+    "rank": 2,
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-22T10:28:02.669Z",
+    "updatedAt": "2026-10-22T10:30:07.836Z",
     "dept": "OTHER",
     "topOrder": 4
   },
@@ -226,11 +226,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 2,
+    "rank": 1,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-22T10:28:02.662Z",
+    "updatedAt": "2026-10-22T10:30:07.822Z",
     "dept": "OTHER"
   },
   {
