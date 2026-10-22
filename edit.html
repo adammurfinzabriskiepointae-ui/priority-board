@@ -114,7 +114,12 @@ section{margin-top:36px}
 .tbar i{display:block;height:100%;width:0;background:var(--good);transition:width .3s}
 .tbar.warn i{background:var(--warn)} .tbar.crit i,.tbar.over i{background:var(--crit)}
 .admin .notes input{width:100%}
-.btn.cta{font-size:14px;padding:9px 14px;text-decoration:none;display:inline-block}
+/* "Send Adam a brief": big, green, and it pulses so nobody can miss it. */
+.btn.cta{font-family:var(--display);font-variation-settings:"wdth" 90;font-size:18px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;padding:14px 22px;border-radius:8px;text-decoration:none;display:inline-block;
+  background:#1f9d55;color:#fff;border:0;box-shadow:0 4px 0 #156b3a;animation:cta-flash 1.6s ease-in-out infinite}
+.btn.cta:hover{background:#25b863;animation-play-state:paused}
+@keyframes cta-flash{0%,100%{background:#1f9d55;box-shadow:0 4px 0 #156b3a,0 0 0 0 rgba(31,157,85,.55)}50%{background:#2ecc71;box-shadow:0 4px 0 #156b3a,0 0 0 12px rgba(31,157,85,0)}}
+@media (prefers-reduced-motion:reduce){.btn.cta{animation:none}}
 .btn.big{padding:10px 18px;font-size:15px}
 .card .chip.dept{align-self:flex-start}
 .sec-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
