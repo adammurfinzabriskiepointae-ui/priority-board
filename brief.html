@@ -56,12 +56,14 @@ textarea{resize:vertical;min-height:140px}
 .hint{grid-column:1/-1;font-size:13px;color:var(--muted);margin:-6px 0 0}
 
 .send{grid-column:1/-1;margin-top:4px;display:flex;flex-direction:column;gap:10px}
+/* The send button: big, green, pulsing. It stops pulsing on hover and while disabled. */
 .btn-send{width:100%;padding:20px 22px;font-family:var(--display);font-variation-settings:"wdth" 90;font-size:22px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
-  color:var(--accent-ink);background:var(--accent);border:0;border-radius:8px;cursor:pointer;box-shadow:0 5px 0 var(--accent-deep);transition:transform .06s,box-shadow .06s,filter .15s}
-.btn-send:hover{filter:brightness(1.07)}
-.btn-send:active{transform:translateY(3px);box-shadow:0 2px 0 var(--accent-deep)}
+  color:#fff;background:#1f9d55;border:0;border-radius:8px;cursor:pointer;box-shadow:0 5px 0 #156b3a;transition:transform .06s,box-shadow .06s;animation:send-flash 1.6s ease-in-out infinite}
+.btn-send:hover{background:#25b863;animation-play-state:paused}
+.btn-send:active{transform:translateY(3px);box-shadow:0 2px 0 #156b3a}
 .btn-send:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
-.btn-send:disabled{opacity:.55;cursor:default;transform:none;filter:none}
+.btn-send:disabled{opacity:.55;cursor:default;transform:none;animation:none;background:#1f9d55;box-shadow:0 5px 0 #156b3a}
+@keyframes send-flash{0%,100%{background:#1f9d55;box-shadow:0 5px 0 #156b3a,0 0 0 0 rgba(31,157,85,.55)}50%{background:#2ecc71;box-shadow:0 5px 0 #156b3a,0 0 0 14px rgba(31,157,85,0)}}
 .msg{font-size:14px;color:var(--muted);min-height:1.4em}
 .msg.err{color:var(--crit);font-weight:600}
 .notice{padding:12px 14px;background:var(--warn-soft);border-left:3px solid var(--warn);font-size:14px;margin-top:18px;border-radius:0 4px 4px 0}
@@ -76,7 +78,7 @@ textarea{resize:vertical;min-height:140px}
 .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer{margin-top:28px;font-size:13px;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){.btn-send{transition:none}}
+@media (prefers-reduced-motion:reduce){.btn-send{transition:none;animation:none}}
 </style>
 </head>
 <body>
@@ -173,6 +175,26 @@ function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMo
 function fmtWhen(iso){const d=new Date(iso);if(isNaN(d))return "";return d.toLocaleString(undefined,{weekday:"short",day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}
 function setMsg(t,err){msg.textContent=t||"";msg.classList.toggle("err",!!err)}
 
+// A little "ta-daa" when the brief has gone, made with the browser's own synth (no sound file).
+// Browsers only allow sound after a click, so the audio engine is woken up in the click itself and played later.
+let actx=null;
+function primeAudio(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();if(actx.state==="suspended")actx.resume()}catch(e){actx=null}}
+function tada(){
+  if(!actx)return;
+  try{
+    const t0=actx.currentTime;
+    const master=actx.createGain();master.gain.value=0.45;
+    const lp=actx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=2400;
+    master.connect(lp);lp.connect(actx.destination);
+    const note=(freq,start,dur,type,vol)=>{const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001,t0+start);g.gain.exponentialRampToValueAtTime(vol,t0+start+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+start+dur);
+      o.connect(g);g.connect(master);o.start(t0+start);o.stop(t0+start+dur+0.05)};
+    note(392,0,0.16,"sawtooth",0.35);note(523.25,0,0.16,"triangle",0.3);                 // "ta"
+    [523.25,659.25,783.99,1046.5].forEach(f=>{note(f,0.19,0.95,"sawtooth",0.2);note(f*2,0.19,0.45,"triangle",0.06)}); // "daaa" chord
+    [1318.5,1568,2093,2637].forEach((f,i)=>note(f,0.32+i*0.06,0.28,"sine",0.14));       // sparkle on top
+  }catch(e){}
+}
+
 // Remember who is filling it in, so the next brief is quicker.
 try{const me=JSON.parse(localStorage.getItem("pb-brief-me")||"{}");if(me.name)F.name.value=me.name;if(me.email)F.email.value=me.email;if(me.dept)F.dept.value=me.dept}catch(e){}
 F.deadline.min=todayISO();
@@ -196,6 +218,7 @@ function firstProblem(){
 
 $("#form").addEventListener("submit",async e=>{
   e.preventDefault();
+  primeAudio();
   const p=firstProblem();if(p){setMsg(p[1],true);p[0].focus();return}
   if(!endpoint){notConnected();return}
   const payload={name:F.name.value.trim(),email:F.email.value.trim(),dept:F.dept.value,title:F.title.value.trim(),kind:F.kind.value,usage:F.usage.value.trim(),spec:F.spec.value.trim(),
@@ -209,7 +232,7 @@ $("#form").addEventListener("submit",async e=>{
     try{localStorage.setItem("pb-brief-me",JSON.stringify({name:payload.name,email:payload.email,dept:payload.dept}))}catch(x){}
     $("#done-when").textContent="Sent "+fmtWhen(j.createdAt||new Date().toISOString());
     $("#done-email").textContent=payload.email;
-    $("#form").hidden=true;$("#done").hidden=false;window.scrollTo({top:0,behavior:"smooth"});
+    $("#form").hidden=true;$("#done").hidden=false;window.scrollTo({top:0,behavior:"smooth"});tada();
   }catch(err){
     setMsg((err&&err.message||"Could not send.")+" Your text is still here, try again or email Adam.",true);
   }
