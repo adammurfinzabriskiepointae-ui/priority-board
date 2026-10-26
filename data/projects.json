@@ -304,11 +304,11 @@
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
     "status": "in_progress",
     "rank": 3,
-    "top": false,
-    "topOrder": null,
+    "top": true,
+    "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-10-26T11:58:14.978Z",
+    "updatedAt": "2026-10-26T11:58:18.727Z",
     "source": "brief-form"
   }
 ]
