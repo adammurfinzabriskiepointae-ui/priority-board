@@ -151,11 +151,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 5,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T12:19:05.279Z",
+    "updatedAt": "2026-10-26T12:57:46.920Z",
     "dept": "OTHER"
   },
   {
@@ -182,11 +182,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 6,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T12:19:05.283Z",
+    "updatedAt": "2026-10-26T12:57:46.925Z",
     "dept": "OTHER",
     "topOrder": null
   },
@@ -198,11 +198,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "queued",
-    "rank": 6,
+    "rank": 7,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T12:57:42.607Z",
+    "updatedAt": "2026-10-26T12:57:46.928Z",
     "dept": "OTHER"
   },
   {
@@ -229,11 +229,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 1,
+    "rank": 2,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-22T10:30:07.822Z",
+    "updatedAt": "2026-10-26T12:57:46.906Z",
     "dept": "OTHER"
   },
   {
@@ -265,10 +265,10 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 3,
+    "rank": 4,
     "notes": "",
     "createdAt": "2026-10-22T12:52:29.986Z",
-    "updatedAt": "2026-10-26T12:19:05.272Z"
+    "updatedAt": "2026-10-26T12:57:46.916Z"
   },
   {
     "id": "pmvp6hml7q81k9",
@@ -283,10 +283,10 @@
     "brief": "KIDS Holiday Shoot Boys & Girls",
     "assets": "",
     "status": "in_progress",
-    "rank": 2,
+    "rank": 3,
     "notes": "",
     "createdAt": "2026-10-26T11:33:37.051Z",
-    "updatedAt": "2026-10-26T11:33:46.339Z",
+    "updatedAt": "2026-10-26T12:57:46.912Z",
     "top": true,
     "topOrder": 1
   },
@@ -303,12 +303,12 @@
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
     "status": "queued",
-    "rank": 7,
+    "rank": 1,
     "top": true,
     "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-10-26T12:57:42.614Z",
+    "updatedAt": "2026-10-26T12:57:46.898Z",
     "source": "brief-form"
   }
 ]
