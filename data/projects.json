@@ -151,11 +151,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 4,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T11:58:14.989Z",
+    "updatedAt": "2026-10-26T12:19:05.279Z",
     "dept": "OTHER"
   },
   {
@@ -182,11 +182,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 5,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T11:58:14.996Z",
+    "updatedAt": "2026-10-26T12:19:05.283Z",
     "dept": "OTHER",
     "topOrder": null
   },
@@ -198,11 +198,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 6,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T11:58:15.002Z",
+    "updatedAt": "2026-10-26T12:19:05.287Z",
     "dept": "OTHER"
   },
   {
@@ -265,10 +265,10 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 3,
     "notes": "",
     "createdAt": "2026-10-22T12:52:29.986Z",
-    "updatedAt": "2026-10-26T11:58:14.983Z"
+    "updatedAt": "2026-10-26T12:19:05.272Z"
   },
   {
     "id": "pmvp6hml7q81k9",
@@ -302,13 +302,13 @@
     "deadline": "2026-10-30",
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
-    "status": "in_progress",
-    "rank": 3,
+    "status": "queued",
+    "rank": 7,
     "top": true,
     "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-10-26T11:58:18.727Z",
+    "updatedAt": "2026-10-26T12:19:05.291Z",
     "source": "brief-form"
   }
 ]
