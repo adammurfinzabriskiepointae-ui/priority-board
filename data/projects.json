@@ -133,13 +133,14 @@
     "deadline": "",
     "brief": "",
     "assets": "",
-    "status": "done",
+    "status": "archived",
     "rank": null,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-16T10:25:17.381Z",
-    "dept": "ECOM"
+    "updatedAt": "2026-10-26T06:07:19.741Z",
+    "dept": "ECOM",
+    "topOrder": null
   },
   {
     "id": "p11-other",
