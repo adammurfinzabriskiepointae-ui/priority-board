@@ -198,11 +198,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 5,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T06:13:55.876Z",
+    "updatedAt": "2026-10-26T09:25:57.747Z",
     "dept": "OTHER"
   },
   {
@@ -265,9 +265,9 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 4,
     "notes": "",
     "createdAt": "2026-10-22T12:52:29.986Z",
-    "updatedAt": "2026-10-23T14:28:04.881Z"
+    "updatedAt": "2026-10-26T09:25:57.743Z"
   }
 ]
