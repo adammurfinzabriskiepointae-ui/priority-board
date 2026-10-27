@@ -310,5 +310,23 @@
     "createdAt": "2026-10-26T11:52:56.481Z",
     "updatedAt": "2026-10-27T10:41:29.520Z",
     "source": "brief-form"
+  },
+  {
+    "id": "pmvqrhn4ic4jt2",
+    "title": "Image Upscale for print",
+    "dept": "MENS",
+    "kind": "",
+    "usage": "",
+    "spec": "",
+    "name": "",
+    "email": "",
+    "deadline": "2026-10-28",
+    "brief": "upscale x8 images fro store print\n\nGHO000169-1_6 \nGHO000176-1_6 \nGHO000224-2_6 \nGHO000170-1_6 \n\nGHO000232-1_6 \nGHO000160-1_6 \nGHO000221-1_6 \nGHO000168-1_6 \nGHO000184-1_6",
+    "assets": "",
+    "status": "queued",
+    "rank": 7,
+    "notes": "",
+    "createdAt": "2026-10-27T14:09:15.858Z",
+    "updatedAt": "2026-10-27T14:09:15.858Z"
   }
 ]
