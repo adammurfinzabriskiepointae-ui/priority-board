@@ -229,11 +229,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 2,
+    "rank": 1,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-26T12:57:46.906Z",
+    "updatedAt": "2026-10-27T07:59:54.095Z",
     "dept": "OTHER"
   },
   {
@@ -283,10 +283,10 @@
     "brief": "KIDS Holiday Shoot Boys & Girls",
     "assets": "",
     "status": "in_progress",
-    "rank": 3,
+    "rank": 2,
     "notes": "",
     "createdAt": "2026-10-26T11:33:37.051Z",
-    "updatedAt": "2026-10-26T12:57:46.912Z",
+    "updatedAt": "2026-10-27T07:59:54.104Z",
     "top": true,
     "topOrder": 1
   },
@@ -302,13 +302,13 @@
     "deadline": "2026-10-30",
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
-    "status": "queued",
-    "rank": 1,
+    "status": "in_progress",
+    "rank": 3,
     "top": true,
     "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-10-26T12:57:46.898Z",
+    "updatedAt": "2026-10-27T07:59:54.112Z",
     "source": "brief-form"
   }
 ]
