@@ -403,10 +403,12 @@
     "deadline": "2026-10-28",
     "brief": "change styling",
     "assets": "",
-    "status": "queued",
-    "rank": 8,
+    "status": "done",
+    "rank": null,
     "notes": "",
     "createdAt": "2026-10-28T12:31:58.733Z",
-    "updatedAt": "2026-10-28T12:31:58.733Z"
+    "updatedAt": "2026-10-28T12:32:25.754Z",
+    "top": false,
+    "topOrder": null
   }
 ]
