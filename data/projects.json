@@ -390,5 +390,23 @@
     "createdAt": "2026-10-28T12:05:00.404Z",
     "updatedAt": "2026-10-28T12:05:00.404Z",
     "source": "brief-form"
+  },
+  {
+    "id": "pmvs3gdu5q88xq",
+    "title": "Kids Holiday Re edit",
+    "dept": "MENS",
+    "kind": "",
+    "usage": "",
+    "spec": "",
+    "name": "",
+    "email": "",
+    "deadline": "2026-10-28",
+    "brief": "change styling",
+    "assets": "",
+    "status": "queued",
+    "rank": 8,
+    "notes": "",
+    "createdAt": "2026-10-28T12:31:58.733Z",
+    "updatedAt": "2026-10-28T12:31:58.733Z"
   }
 ]
