@@ -151,11 +151,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 5,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-27T14:42:26.692Z",
+    "updatedAt": "2026-10-28T07:45:01.601Z",
     "dept": "OTHER"
   },
   {
@@ -182,11 +182,11 @@
     "brief": "",
     "assets": "",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 6,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-27T14:42:26.696Z",
+    "updatedAt": "2026-10-28T07:45:01.606Z",
     "dept": "OTHER",
     "topOrder": null
   },
@@ -198,11 +198,11 @@
     "brief": "Automate AI model generation",
     "assets": "",
     "status": "queued",
-    "rank": 8,
+    "rank": 7,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-10-27T14:42:26.702Z",
+    "updatedAt": "2026-10-28T07:45:01.614Z",
     "dept": "OTHER"
   },
   {
@@ -265,10 +265,10 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 4,
     "notes": "",
     "createdAt": "2026-10-22T12:52:29.986Z",
-    "updatedAt": "2026-10-27T14:42:26.689Z"
+    "updatedAt": "2026-10-28T07:45:01.595Z"
   },
   {
     "id": "pmvp6hml7q81k9",
@@ -323,13 +323,13 @@
     "deadline": "2026-10-28",
     "brief": "upscale x8 images fro store print\n\nGHO000169-1_6 \nGHO000176-1_6 \nGHO000224-2_6 \nGHO000170-1_6 \n\nGHO000232-1_6 \nGHO000160-1_6 \nGHO000221-1_6 \nGHO000168-1_6 \nGHO000184-1_6",
     "assets": "",
-    "status": "in_progress",
-    "rank": 3,
+    "status": "done",
+    "rank": null,
     "notes": "",
     "createdAt": "2026-10-27T14:09:15.858Z",
-    "updatedAt": "2026-10-27T14:42:35.858Z",
-    "top": true,
-    "topOrder": 2
+    "updatedAt": "2026-10-28T07:45:01.579Z",
+    "top": false,
+    "topOrder": null
   },
   {
     "id": "pmvqso6ulqy9ho",
@@ -344,9 +344,9 @@
     "brief": "Black loose insulated jeans BWB002173-1 size M\nClassic Black Insulated Jeans BWB002172-2 Size 46\nGrey loose insulated jeans BWB002173-2 size M\nClassic Insulated Jeans BWB002172-1 Size 46\nGrey loose insulated jeans BWB002174-1 size 46\nLoose insulated jeans BWB002173-3 size M\nBlack Straight Insulated Jeans GWB001598-1 Size 140\nStraight insulated jeans GWB001598-3 size 140\nGrey straight insulated jeans BWB002079-2 size 152\nDark gray voluminous insulated trousers with velour effect BWB002178-1 size 140\nBlue wide insulated velour trousers BWB002168-2 size 140\nBlack wide insulated velour trousers BWB002168-1 size 140\nBlack wide insulated jeans BWB002150-1 size 140\nStraight Insulated Jeans With Hearts For Girl GWB001593-1 Size 104\nWide-leg jeans with keychain for girls GWB001600-1 size 104\nGrey Insulated Straight Jeans With Shiny Print For Girl GWB001596-1 Size 104\nInsulated Straight Jeans With Shiny Print For Girl GWB001592-1 Size 104\nGray voluminous insulated jeans with tucks for a boy BWB002165-1 size 104\nBulky insulated jeans for a boy BWB002163-1 size 104\nInsulated parachute jeans for a boy BWB002164-1 size 104\nStraight Insulated Jeans For Boy BWB002141-1 Size 104\nInsulated loose-fitting jeans for a boy BWB002181-1 size 104\nGrey straight insulated jeans with embroidery for boy BWB002166-1 size 104\nInsulated Straight Jeans With Embroidery For Boy BWB002162-1 Size 104",
     "assets": "",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 3,
     "notes": "",
     "createdAt": "2026-10-27T14:42:20.973Z",
-    "updatedAt": "2026-10-27T14:42:31.824Z"
+    "updatedAt": "2026-10-28T07:45:01.588Z"
   }
 ]
