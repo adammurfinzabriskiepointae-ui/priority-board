@@ -433,5 +433,26 @@
     "notes": "",
     "createdAt": "2026-10-29T05:38:41.178Z",
     "updatedAt": "2026-11-02T06:03:26.429Z"
+  },
+  {
+    "id": "bmvz163m1diumv",
+    "title": "i need one ski campaign apres ski",
+    "dept": "WOMENS",
+    "kind": "IMAGE",
+    "usage": "site and social media",
+    "spec": "10 images",
+    "name": "dzerassa",
+    "email": "tsotsieva@gloria-jeans.ru",
+    "deadline": "2026-11-09",
+    "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
+    "assets": "",
+    "status": "requested",
+    "rank": null,
+    "top": false,
+    "topOrder": null,
+    "notes": "",
+    "createdAt": "2026-11-02T09:02:22.920Z",
+    "updatedAt": "2026-11-02T09:02:22.920Z",
+    "source": "brief-form"
   }
 ]
