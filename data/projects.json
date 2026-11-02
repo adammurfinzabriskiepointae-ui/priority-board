@@ -446,13 +446,13 @@
     "deadline": "2026-11-09",
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
-    "status": "requested",
-    "rank": null,
+    "status": "in_progress",
+    "rank": 9,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-02T09:02:22.920Z",
+    "updatedAt": "2026-11-02T09:19:14.189Z",
     "source": "brief-form"
   }
 ]
