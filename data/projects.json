@@ -428,11 +428,13 @@
     "deadline": "2026-11-08",
     "brief": "how do we get images on the regular from moscow to dubai",
     "assets": "",
-    "status": "in_progress",
-    "rank": 8,
+    "status": "done",
+    "rank": null,
     "notes": "",
     "createdAt": "2026-10-29T05:38:41.178Z",
-    "updatedAt": "2026-11-02T06:03:26.429Z"
+    "updatedAt": "2026-11-02T09:31:15.273Z",
+    "top": false,
+    "topOrder": null
   },
   {
     "id": "bmvz163m1diumv",
@@ -447,12 +449,12 @@
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
     "status": "in_progress",
-    "rank": 9,
+    "rank": 8,
     "top": true,
     "topOrder": 3,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-02T09:19:18.496Z",
+    "updatedAt": "2026-11-02T09:31:15.287Z",
     "source": "brief-form"
   }
 ]
