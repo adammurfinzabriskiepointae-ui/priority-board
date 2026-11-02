@@ -151,11 +151,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 6,
+    "rank": 7,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-02T06:03:26.417Z",
+    "updatedAt": "2026-11-02T09:35:15.776Z",
     "dept": "OTHER"
   },
   {
@@ -182,11 +182,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 7,
+    "rank": 8,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-02T06:03:26.423Z",
+    "updatedAt": "2026-11-02T09:35:15.782Z",
     "dept": "OTHER",
     "topOrder": null
   },
@@ -448,13 +448,13 @@
     "deadline": "2026-11-09",
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
-    "status": "in_progress",
-    "rank": 8,
+    "status": "queued",
+    "rank": 6,
     "top": true,
     "topOrder": 3,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-02T09:31:15.287Z",
+    "updatedAt": "2026-11-02T09:35:15.765Z",
     "source": "brief-form"
   }
 ]
