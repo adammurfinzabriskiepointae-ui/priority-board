@@ -448,11 +448,11 @@
     "assets": "",
     "status": "in_progress",
     "rank": 9,
-    "top": false,
-    "topOrder": null,
+    "top": true,
+    "topOrder": 3,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-02T09:19:14.189Z",
+    "updatedAt": "2026-11-02T09:19:18.496Z",
     "source": "brief-form"
   }
 ]
