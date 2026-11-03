@@ -202,9 +202,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-03T07:50:18.379Z",
+    "updatedAt": "2026-11-03T07:50:26.748Z",
     "dept": "OTHER",
-    "topOrder": 2
+    "topOrder": 3
   },
   {
     "id": "p18-other",
@@ -308,10 +308,10 @@
     "status": "in_progress",
     "rank": 2,
     "top": true,
-    "topOrder": 1,
+    "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-03T06:27:08.558Z",
+    "updatedAt": "2026-11-03T07:50:26.742Z",
     "source": "brief-form"
   },
   {
@@ -368,11 +368,11 @@
     "assets": "",
     "status": "in_progress",
     "rank": 5,
-    "top": false,
-    "topOrder": null,
+    "top": true,
+    "topOrder": 1,
     "notes": "",
     "createdAt": "2026-10-28T11:37:48.763Z",
-    "updatedAt": "2026-11-03T07:50:18.351Z",
+    "updatedAt": "2026-11-03T07:50:26.736Z",
     "source": "brief-form"
   },
   {
@@ -451,10 +451,10 @@
     "status": "in_progress",
     "rank": 7,
     "top": true,
-    "topOrder": 3,
+    "topOrder": 4,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-03T07:50:21.426Z",
+    "updatedAt": "2026-11-03T07:50:26.755Z",
     "source": "brief-form"
   }
 ]
