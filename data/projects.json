@@ -202,9 +202,9 @@
     "top": true,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-03T07:50:30.933Z",
+    "updatedAt": "2026-11-03T07:50:36.557Z",
     "dept": "OTHER",
-    "topOrder": 4
+    "topOrder": 5
   },
   {
     "id": "p18-other",
@@ -451,10 +451,10 @@
     "status": "in_progress",
     "rank": 7,
     "top": true,
-    "topOrder": 5,
+    "topOrder": 4,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-03T07:50:30.941Z",
+    "updatedAt": "2026-11-03T07:50:36.550Z",
     "source": "brief-form"
   }
 ]
