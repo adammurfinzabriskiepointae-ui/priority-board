@@ -308,10 +308,10 @@
     "status": "in_progress",
     "rank": 2,
     "top": true,
-    "topOrder": 2,
+    "topOrder": 3,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-03T07:50:26.742Z",
+    "updatedAt": "2026-11-03T07:50:33.508Z",
     "source": "brief-form"
   },
   {
@@ -390,10 +390,10 @@
     "status": "in_progress",
     "rank": 6,
     "top": true,
-    "topOrder": 3,
+    "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-28T12:05:00.404Z",
-    "updatedAt": "2026-11-03T07:50:30.924Z",
+    "updatedAt": "2026-11-03T07:50:33.502Z",
     "source": "brief-form"
   },
   {
