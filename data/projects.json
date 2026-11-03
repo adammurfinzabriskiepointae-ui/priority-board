@@ -151,11 +151,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 3,
+    "rank": 2,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-03T07:50:18.322Z",
+    "updatedAt": "2026-11-03T08:09:25.549Z",
     "dept": "OTHER"
   },
   {
@@ -182,11 +182,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 4,
+    "rank": 3,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-03T07:50:18.338Z",
+    "updatedAt": "2026-11-03T08:09:25.569Z",
     "dept": "OTHER",
     "topOrder": null
   },
@@ -306,12 +306,12 @@
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
     "status": "in_progress",
-    "rank": 2,
+    "rank": 6,
     "top": true,
     "topOrder": 3,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-03T07:50:33.508Z",
+    "updatedAt": "2026-11-03T08:09:25.591Z",
     "source": "brief-form"
   },
   {
@@ -367,12 +367,12 @@
     "brief": "They idea is too create a shoot of teenage boys playing video games as a home party for example...\n\nWe need looks as always created from the list below (bottoms may be duplicated). Just make sure we have used all the tops.\n\nThank you very much :)\n\nBAC015429-1\nBAC015582-2\nBAC015582-1\nBAC015583-1\nBAC015583-2\nBAC015586-1\nBAC015587-1\nBAC015588-1\nBAC015597-2\nBAC015597-1\nBAC015598-2\nBAC015598-1\nBAC015615-1\nBAC015690-1\nBJN018556-1\nBJN018592-1\nBJN018611-1\nBJN018659-1\nBKT018917-1\nBKT018958-1\nBKT019007-1\nBKT019057-2\nBKT019057-3\nBKT019065-1\nBKT019085-1\nBKT019087-2\nBKT019087-1\nBKT019204-2\nBKT019204-1\nBKT019214-1\nBKT019216-1\nBKT019217-1\nBKT019220-2\nBKT019220-1\nBKT019221-2\nBKT019222-2\nBPT004387-1\nBPT004423-1\nBPT004423-2\nBSW002928-1\nBSW002951-1\nBSW002971-1\nBSW002989-2\nBSW002989-1\nBWT002454-1\nBWT002476-1\nBWT002524-1",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 4,
     "top": true,
     "topOrder": 1,
     "notes": "",
     "createdAt": "2026-10-28T11:37:48.763Z",
-    "updatedAt": "2026-11-03T07:50:26.736Z",
+    "updatedAt": "2026-11-03T08:09:25.580Z",
     "source": "brief-form"
   },
   {
@@ -388,12 +388,12 @@
     "brief": "Teenage girlfriends are getting ready for a party at one of their bedrooms. Dressing up, making up (not attaching cc for gloria glow, please use the ones you want). They girls are anticipating the party...\n\nGAC026755-1\nGAC026812-1\nGAC026812-2\nGAC026833-1\nGAC026886-2\nGAC026936-1\nGAC026955-1\nGDR031489-1\nGFT000246-1\nGFT000345-1\nGFT000347-2\nGFT000347-1\nGFT000356-2\nGFT000439-1\nGJC007233-1\nGJN038680-1\nGJN038819-1\nGJN038824-1\nGJN038828-1\nGJN038996-1\nGKT027823-2\nGKT028058-1\nGKT030502-2\nGKT030507-1\nGKT030516-1\nGKT030615-1\nGKT030640-1\nGKT030645-1\nGKT030646-1\nGKT030865-1\nGKT031001-2\nGKT031008-1\nGKT031012-1\nGPT011648-1\nGPT011917-1\nGPT012017-1\nGSE001797-1\nGSK020978-1\nGSK021121-2\nGSK021121-1\nGSK021385-1\nGSO000849-1\nGSO000856-1\nGSO000857-1\nGSO000886-1\nGSW009269-1\nGTN005272-1\nGTN005276-1\nGTN005289-1",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 5,
     "top": true,
     "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-28T12:05:00.404Z",
-    "updatedAt": "2026-11-03T07:50:33.502Z",
+    "updatedAt": "2026-11-03T08:09:25.586Z",
     "source": "brief-form"
   },
   {
