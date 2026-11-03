@@ -308,10 +308,10 @@
     "status": "in_progress",
     "rank": 7,
     "top": true,
-    "topOrder": 5,
+    "topOrder": 2,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-03T11:41:06.625Z",
+    "updatedAt": "2026-11-03T11:41:11.174Z",
     "source": "brief-form"
   },
   {
@@ -369,10 +369,10 @@
     "status": "in_progress",
     "rank": 5,
     "top": true,
-    "topOrder": 2,
+    "topOrder": 3,
     "notes": "",
     "createdAt": "2026-10-28T11:37:48.763Z",
-    "updatedAt": "2026-11-03T11:40:31.119Z",
+    "updatedAt": "2026-11-03T11:41:11.182Z",
     "source": "brief-form"
   },
   {
@@ -390,10 +390,10 @@
     "status": "in_progress",
     "rank": 6,
     "top": true,
-    "topOrder": 3,
+    "topOrder": 4,
     "notes": "",
     "createdAt": "2026-10-28T12:05:00.404Z",
-    "updatedAt": "2026-11-03T11:40:31.130Z",
+    "updatedAt": "2026-11-03T11:41:11.190Z",
     "source": "brief-form"
   },
   {
@@ -451,10 +451,10 @@
     "status": "in_progress",
     "rank": 8,
     "top": true,
-    "topOrder": 4,
+    "topOrder": 5,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-03T11:41:06.614Z",
+    "updatedAt": "2026-11-03T11:41:11.202Z",
     "source": "brief-form"
   },
   {
