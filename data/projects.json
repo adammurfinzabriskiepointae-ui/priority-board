@@ -456,5 +456,26 @@
     "createdAt": "2026-11-02T09:02:22.920Z",
     "updatedAt": "2026-11-03T07:50:38.937Z",
     "source": "brief-form"
+  },
+  {
+    "id": "bmw0fnnm9mf92k",
+    "title": "one video",
+    "dept": "OTHER",
+    "kind": "GRAPHIC",
+    "usage": "stores",
+    "spec": "5440×2720 px",
+    "name": "dzerassa",
+    "email": "tsotsieva@gloria-jeans.ru",
+    "deadline": "2026-11-10",
+    "brief": "link for the toys https://dropmefiles.com/HR7Fl \ni need graphic video for store this is the reference and i want to add toys and logo in silver color to greate like new yesr festive mood \nref https://pin.it/1AGf0XOx1\n5440×2720 px, landscape. This is one video file for a U-shaped LED screen. Only these areas are visible:\nTop screen: 5440×480 px (x 0–5440, y 0–480)\nLeft screen: 640×2240 px (x 0–640, y 480–2720)\nRight screen: 640×2240 px (x 4800–5440, y 480–2720)\nThe middle area of 4160×2240 px (x 640–4800, y 480–2720) is not displayed because it is the store entrance. Keep it black and put no important content there.\nFrame rate: 25 fps\nFile format : MP4 / H.264    \nand i send you the file with the all sizes",
+    "assets": "",
+    "status": "requested",
+    "rank": null,
+    "top": false,
+    "topOrder": null,
+    "notes": "",
+    "createdAt": "2026-11-03T08:35:42.801Z",
+    "updatedAt": "2026-11-03T08:35:42.801Z",
+    "source": "brief-form"
   }
 ]
