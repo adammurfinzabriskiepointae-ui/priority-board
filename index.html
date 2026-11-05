@@ -532,9 +532,16 @@ async function commit(attempt){
 }
 
 // ---- Editor sign-in (a GitHub access token kept only in this browser)
+// Only accounts that can write to the board repository get the editor; any other GitHub account is turned away here.
+async function canWrite(t,login){
+  if(String(login||"").toLowerCase()===String(CFG.owner).toLowerCase())return true;
+  const r=await fetch(`https://api.github.com/repos/${CFG.owner}/${CFG.repo}`,{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"},cache:"no-store"});
+  if(!r.ok)return false;const p=(await r.json()).permissions||{};return !!(p.push||p.maintain||p.admin);
+}
 async function signIn(tok){
   const t=(tok||"").trim();if(!t)return false;
   try{const r=await fetch("https://api.github.com/user",{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"}});if(!r.ok)throw 0;const u=await r.json();
+    if(!(await canWrite(t,u.login))){toast("This GitHub account can't edit the board. Only Adam's account can.");return false}
     token=t;try{localStorage.setItem("pb-token",t)}catch(e){}
     await loadViaApi();isAdmin=true;render();
     $("#who-name").textContent=u.login||"editor";$("#signin-wrap").hidden=true;$("#signout").hidden=false;toast("Signed in as "+(u.login||"editor"));return true;
