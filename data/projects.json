@@ -481,5 +481,23 @@
     "createdAt": "2026-11-03T08:35:42.801Z",
     "updatedAt": "2026-11-03T08:35:42.801Z",
     "source": "brief-form"
+  },
+  {
+    "id": "pmw32pcvhfbvtg",
+    "title": "Flat Lay machine",
+    "dept": "MENS",
+    "kind": "",
+    "usage": "",
+    "spec": "",
+    "name": "",
+    "email": "",
+    "deadline": "2026-12-06",
+    "brief": "-",
+    "assets": "",
+    "status": "queued",
+    "rank": 7,
+    "notes": "",
+    "createdAt": "2026-11-05T04:56:25.709Z",
+    "updatedAt": "2026-11-05T04:56:25.709Z"
   }
 ]
