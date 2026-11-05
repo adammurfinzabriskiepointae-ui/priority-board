@@ -183,11 +183,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 3,
+    "rank": 4,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-05T05:40:57.222Z",
+    "updatedAt": "2026-11-05T06:01:57.837Z",
     "dept": "OTHER",
     "topOrder": null,
     "email": "",
@@ -234,11 +234,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 2,
+    "rank": 3,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-05T05:40:57.209Z",
+    "updatedAt": "2026-11-05T06:01:57.824Z",
     "dept": "OTHER"
   },
   {
@@ -310,12 +310,12 @@
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 5,
     "top": true,
     "topOrder": 1,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-05T05:40:57.231Z",
+    "updatedAt": "2026-11-05T06:01:57.846Z",
     "source": "brief-form"
   },
   {
@@ -392,12 +392,12 @@
     "brief": "Teenage girlfriends are getting ready for a party at one of their bedrooms. Dressing up, making up (not attaching cc for gloria glow, please use the ones you want). They girls are anticipating the party...\n\nGAC026755-1\nGAC026812-1\nGAC026812-2\nGAC026833-1\nGAC026886-2\nGAC026936-1\nGAC026955-1\nGDR031489-1\nGFT000246-1\nGFT000345-1\nGFT000347-2\nGFT000347-1\nGFT000356-2\nGFT000439-1\nGJC007233-1\nGJN038680-1\nGJN038819-1\nGJN038824-1\nGJN038828-1\nGJN038996-1\nGKT027823-2\nGKT028058-1\nGKT030502-2\nGKT030507-1\nGKT030516-1\nGKT030615-1\nGKT030640-1\nGKT030645-1\nGKT030646-1\nGKT030865-1\nGKT031001-2\nGKT031008-1\nGKT031012-1\nGPT011648-1\nGPT011917-1\nGPT012017-1\nGSE001797-1\nGSK020978-1\nGSK021121-2\nGSK021121-1\nGSK021385-1\nGSO000849-1\nGSO000856-1\nGSO000857-1\nGSO000886-1\nGSW009269-1\nGTN005272-1\nGTN005276-1\nGTN005289-1",
     "assets": "",
     "status": "queued",
-    "rank": 7,
+    "rank": 2,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-10-28T12:05:00.404Z",
-    "updatedAt": "2026-11-05T06:01:54.072Z",
+    "updatedAt": "2026-11-05T06:01:57.800Z",
     "source": "brief-form"
   },
   {
@@ -453,12 +453,12 @@
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 6,
     "top": true,
     "topOrder": 2,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-05T05:40:57.240Z",
+    "updatedAt": "2026-11-05T06:01:57.857Z",
     "source": "brief-form"
   },
   {
@@ -495,9 +495,9 @@
     "brief": "-",
     "assets": "",
     "status": "queued",
-    "rank": 6,
+    "rank": 7,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-05T05:40:57.249Z"
+    "updatedAt": "2026-11-05T06:01:57.867Z"
   }
 ]
