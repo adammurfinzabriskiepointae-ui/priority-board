@@ -183,11 +183,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 3,
+    "rank": 4,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-05T06:02:07.923Z",
+    "updatedAt": "2026-11-05T06:02:12.274Z",
     "dept": "OTHER",
     "topOrder": null,
     "email": "",
@@ -234,11 +234,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 2,
+    "rank": 3,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-05T06:02:07.912Z",
+    "updatedAt": "2026-11-05T06:02:12.263Z",
     "dept": "OTHER"
   },
   {
@@ -310,12 +310,12 @@
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 5,
     "top": true,
     "topOrder": 1,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-05T06:02:07.934Z",
+    "updatedAt": "2026-11-05T06:02:12.286Z",
     "source": "brief-form"
   },
   {
@@ -370,13 +370,13 @@
     "deadline": "",
     "brief": "They idea is too create a shoot of teenage boys playing video games as a home party for example...\n\nWe need looks as always created from the list below (bottoms may be duplicated). Just make sure we have used all the tops.\n\nThank you very much :)\n\nBAC015429-1\nBAC015582-2\nBAC015582-1\nBAC015583-1\nBAC015583-2\nBAC015586-1\nBAC015587-1\nBAC015588-1\nBAC015597-2\nBAC015597-1\nBAC015598-2\nBAC015598-1\nBAC015615-1\nBAC015690-1\nBJN018556-1\nBJN018592-1\nBJN018611-1\nBJN018659-1\nBKT018917-1\nBKT018958-1\nBKT019007-1\nBKT019057-2\nBKT019057-3\nBKT019065-1\nBKT019085-1\nBKT019087-2\nBKT019087-1\nBKT019204-2\nBKT019204-1\nBKT019214-1\nBKT019216-1\nBKT019217-1\nBKT019220-2\nBKT019220-1\nBKT019221-2\nBKT019222-2\nBPT004387-1\nBPT004423-1\nBPT004423-2\nBSW002928-1\nBSW002951-1\nBSW002971-1\nBSW002989-2\nBSW002989-1\nBWT002454-1\nBWT002476-1\nBWT002524-1",
     "assets": "",
-    "status": "archived",
-    "rank": null,
+    "status": "queued",
+    "rank": 2,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-10-28T11:37:48.763Z",
-    "updatedAt": "2026-11-05T06:02:07.869Z",
+    "updatedAt": "2026-11-05T06:02:12.235Z",
     "source": "brief-form"
   },
   {
@@ -453,12 +453,12 @@
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 6,
     "top": true,
     "topOrder": 2,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-05T06:02:07.942Z",
+    "updatedAt": "2026-11-05T06:02:12.296Z",
     "source": "brief-form"
   },
   {
@@ -495,9 +495,9 @@
     "brief": "-",
     "assets": "",
     "status": "queued",
-    "rank": 6,
+    "rank": 7,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-05T06:02:07.950Z"
+    "updatedAt": "2026-11-05T06:02:12.304Z"
   }
 ]
