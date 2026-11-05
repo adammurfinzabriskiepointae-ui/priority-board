@@ -499,5 +499,23 @@
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
     "updatedAt": "2026-11-05T06:02:12.304Z"
+  },
+  {
+    "id": "pmw3hd0amr91td",
+    "title": "Weekly best Sellers",
+    "dept": "OTHER",
+    "kind": "",
+    "usage": "web site",
+    "spec": "",
+    "name": "",
+    "email": "",
+    "deadline": "2026-11-13",
+    "brief": "Generate additionsadditional content for weekly best sellers",
+    "assets": "",
+    "status": "queued",
+    "rank": 8,
+    "notes": "",
+    "createdAt": "2026-11-05T11:46:43.774Z",
+    "updatedAt": "2026-11-05T11:46:43.774Z"
   }
 ]
