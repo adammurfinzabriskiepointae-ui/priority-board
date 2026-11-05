@@ -187,9 +187,12 @@
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-05T04:55:52.513Z",
+    "updatedAt": "2026-11-05T04:55:57.525Z",
     "dept": "OTHER",
-    "topOrder": null
+    "topOrder": null,
+    "email": "",
+    "usage": "",
+    "spec": ""
   },
   {
     "id": "p15-other",
