@@ -518,5 +518,26 @@
     "createdAt": "2026-11-05T11:46:43.774Z",
     "updatedAt": "2026-11-05T11:59:26.548Z",
     "top": true
+  },
+  {
+    "id": "bmw4mwlcvlowbf",
+    "title": "3 videos and 3 stills",
+    "dept": "OTHER",
+    "kind": "VIDEO",
+    "usage": "site and social media",
+    "spec": "1920 × 1920 px for video",
+    "name": "dzerassa",
+    "email": "tsotsieva@gloria-jeans.ru",
+    "deadline": "2026-11-11",
+    "brief": "https://www.instagram.com/p/DSNjVYVCtF8/?obrf=MXgxZnJiZHFkMW93dA==",
+    "assets": "",
+    "status": "requested",
+    "rank": null,
+    "top": false,
+    "topOrder": null,
+    "notes": "",
+    "createdAt": "2026-11-06T07:09:41.791Z",
+    "updatedAt": "2026-11-06T07:09:41.791Z",
+    "source": "brief-form"
   }
 ]
