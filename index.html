@@ -461,7 +461,7 @@ function render(){
       <span class="btns" style="width:100%;justify-content:space-between"><button type="button" class="btn primary big" data-act="savetext">✓ Save changes</button><button type="button" class="btn sm danger" data-act="delete">Delete</button></span>
     </div>`;
 
-  // New briefs from the form (status "requested") sit at the bottom of Waiting until Adam drags them into the queue.
+  // Briefs from the form now arrive as "queued". Any older "requested" card still shows in Waiting, marked NEW BRIEF.
   const cols=[["waiting","Waiting",waiting],["doing","Doing",active.filter(r=>r.status==="in_progress")],["done","Done",closed.filter(r=>r.status==="done").slice(0,12)]];
   const rankOf=id=>waitNum.has(id)?"#"+waitNum.get(id):"";
   $("#kanban").innerHTML=cols.map(([s,label,items])=>{
@@ -495,7 +495,7 @@ function render(){
   else{$("#detail-panel").hidden=true;$("#detail").innerHTML=""}
   $("#bin").hidden=!isAdmin;
   $("#add-open").hidden=!isAdmin;if(!isAdmin){addOpen=false}$("#add-section").hidden=!isAdmin||!addOpen;
-  $("#kanban-hint").textContent=isAdmin?"Drag cards between columns to change stage. Waiting sorts itself by deadline, soonest at the top and no deadline at the bottom; new briefs sit in that order marked NEW BRIEF until you drag them in or press Add to queue. Click a card to see its details.":"Every project by stage. Waiting is sorted by deadline, soonest at the top. Click a card to see its details.";
+  $("#kanban-hint").textContent=isAdmin?"Drag cards between columns to change stage. Waiting sorts itself by deadline, soonest at the top and no deadline at the bottom. Briefs from the form join the queue automatically. Click a card to see its details.":"Every project by stage. Waiting is sorted by deadline, soonest at the top. Click a card to see its details.";
 }
 
 // ---- Loading and saving: the project list is data/projects.json in the GitHub repository.

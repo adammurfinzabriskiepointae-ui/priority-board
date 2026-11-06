@@ -2,8 +2,8 @@
  * Priority Board — brief inbox.
  *
  * brief.html POSTs a brief here. This script appends it to data/projects.json in the
- * GitHub repository (status "requested", so it shows at the bottom of Waiting on the
- * board), then emails Adam and sends the requester a confirmation.
+ * GitHub repository straight into the queue (status "queued"; the board sorts Waiting by
+ * deadline), then emails Adam and sends the requester a confirmation.
  *
  * Runs as a Google Apps Script web app (see SETUP.md). Script properties:
  *   GITHUB_TOKEN  required  fine-grained token, Contents: read and write on the board repo
@@ -43,6 +43,7 @@ function doPost(e) {
     var item = v.item;
     for (var attempt = 0; attempt < 3; attempt++) {
       var cur = readBoard();
+      item.rank = nextRank(cur.items); // joins the queue straight away; Waiting is ordered by deadline on the board
       cur.items.push(item);
       var code = writeBoard(cur.items, cur.sha, "New brief: " + item.title);
       if (code === 409 || code === 422) continue; // someone saved in between: reload and retry
@@ -77,9 +78,16 @@ function validate(b) {
   return { item: {
     id: "b" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
     title: title, dept: dept, kind: kind, usage: usage, spec: spec, name: name, email: email, deadline: deadline, brief: brief, assets: assets,
-    status: "requested", rank: null, top: false, topOrder: null, notes: "",
+    status: "queued", rank: null, top: false, topOrder: null, notes: "",
     createdAt: now, updatedAt: now, source: "brief-form"
   } };
+}
+
+// One after the highest rank in use, so the new card queues behind cards with the same deadline (or none).
+function nextRank(items) {
+  var max = 0;
+  for (var i = 0; i < items.length; i++) { var r = Number(items[i].rank) || 0; if (r > max) max = r; }
+  return max + 1;
 }
 
 // ---- GitHub: data/projects.json via the Contents API.
