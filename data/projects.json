@@ -531,13 +531,13 @@
     "deadline": "2026-11-11",
     "brief": "https://www.instagram.com/p/DSNjVYVCtF8/?obrf=MXgxZnJiZHFkMW93dA==",
     "assets": "",
-    "status": "requested",
-    "rank": null,
+    "status": "queued",
+    "rank": 10,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-06T07:09:41.791Z",
-    "updatedAt": "2026-11-06T07:09:41.791Z",
+    "updatedAt": "2026-11-06T07:47:15.528Z",
     "source": "brief-form"
   }
 ]
