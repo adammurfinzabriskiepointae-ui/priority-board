@@ -386,6 +386,10 @@ function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show")
 function linkify(text){return String(text||"").split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>/^https?:\/\//i.test(l)?`<a href="${esc(l)}" target="_blank" rel="noopener">${esc(l)}</a>`:`<span>${esc(l)}</span>`).join("")}
 function topList(){return docs.filter(r=>r.top&&ACTIVE.includes(r.status)).sort((a,b)=>(a.topOrder??99)-(b.topOrder??99)||(a.rank??1e9)-(b.rank??1e9)).slice(0,5)}
 function sortActive(list){return list.slice().sort((a,b)=>(a.rank??1e9)-(b.rank??1e9)||String(a.createdAt).localeCompare(String(b.createdAt)))}
+// Waiting sorts itself by deadline: overdue and soonest first, furthest next, no deadline last.
+// Cards with the same deadline (or none) keep the order they came in with.
+function byDeadline(list){const key=r=>{const n=daysUntil(r.deadline);return n===null?Infinity:n};
+  return list.map((r,k)=>[r,k]).sort((a,b)=>(key(a[0])-key(b[0]))||(a[1]-b[1])).map(x=>x[0])}
 function newId(){return "p"+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
 // Buttons that take an archived card back onto the board (editors only).
 const RESTORE_TO={waiting:"Waiting",doing:"Doing",done:"Done"};
@@ -394,6 +398,9 @@ function restoreBtns(){return Object.keys(RESTORE_TO).map(s=>`<button type="butt
 function render(){
   const active=sortActive(docs.filter(r=>ACTIVE.includes(r.status)));
   const inbox=docs.filter(r=>r.status==="requested").sort((a,b)=>String(a.createdAt).localeCompare(String(b.createdAt)));
+  // The Waiting column: queued cards and new briefs together, by deadline. Its numbers (#1 = most urgent) count queued cards only.
+  const waiting=byDeadline(active.filter(r=>r.status==="queued").concat(inbox));
+  const waitNum=new Map(waiting.filter(r=>r.status==="queued").map((r,k)=>[r.id,k+1]));
   const closed=docs.filter(r=>r.status==="done"||r.status==="declined").sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt)));
   const archived=docs.filter(r=>r.status==="archived").sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt)));
   const who=r=>r.name||"";
@@ -411,7 +418,7 @@ function render(){
     const isOpen=open.has(r.id);
     return `<li class="row status-${esc(r.status)}" data-id="${esc(r.id)}">
       <div class="row-main" data-toggle="${esc(r.id)}" role="button" tabindex="0" aria-expanded="${isOpen}"${isAdmin&&ctx==="archive"?` draggable="true" data-drag="${esc(r.id)}" title="Drag onto the board to bring it back"`:""}>
-        <div class="rank">${ctx==="queue"?i+1:"·"}</div>
+        <div class="rank">${ctx==="queue"&&waitNum.has(r.id)?waitNum.get(r.id):"·"}</div>
         <div>
           <div class="title">${esc(r.title)}</div>
           <div class="meta">${r.dept?`<span class="chip dept d-${esc(r.dept)}">${esc(r.dept)}</span>`:""}${r.name?`<span class="by">${esc(r.name)}</span>`:""}${r.status==="requested"&&fmtWhen(r.createdAt)?`<span class="by">sent ${esc(fmtWhen(r.createdAt))}</span>`:""}</div>
@@ -441,7 +448,8 @@ function render(){
       <label>Status<select data-act="status">${Object.keys(STATUS).map(s=>`<option value="${s}" ${s===r.status?"selected":""}>${STATUS[s]}</option>`).join("")}</select></label>
       <label>Deadline<input type="date" data-act="deadline" value="${esc(r.deadline||"")}"></label>
       ${ACTIVE.includes(r.status)?`<label>Top priority<span class="btns"><button type="button" class="btn sm ${r.top?"primary":""}" data-act="star">${r.top?"★ Remove from top":"☆ Top priority"}</button>${r.top?`<button type="button" class="btn sm" data-act="topup">▲ Up</button><button type="button" class="btn sm" data-act="topdown">▼ Down</button>`:""}</span></label>`:""}
-      ${ctx==="queue"?`<label>Order<span class="btns"><button type="button" class="btn sm" data-act="up" ${i===0?"disabled":""}>▲ Up</button><button type="button" class="btn sm" data-act="down" ${i===n-1?"disabled":""}>▼ Down</button><button type="button" class="btn sm" data-act="top" ${i===0?"disabled":""}>To top</button></span></label>`:""}
+      ${r.status==="queued"?`<label>Order<span class="btns"><span class="empty">Waiting sorts itself by deadline. Change the deadline to move this card.</span></span></label>`:""}
+      ${ctx==="queue"&&r.status!=="queued"?`<label>Order<span class="btns"><button type="button" class="btn sm" data-act="up" ${i===0?"disabled":""}>▲ Up</button><button type="button" class="btn sm" data-act="down" ${i===n-1?"disabled":""}>▼ Down</button><button type="button" class="btn sm" data-act="top" ${i===0?"disabled":""}>To top</button></span></label>`:""}
       ${ctx==="inbox"?`<label>Triage<span class="btns"><button type="button" class="btn sm primary" data-act="accept">Add to queue</button><button type="button" class="btn sm danger" data-act="decline">Decline</button></span></label>`:""}
       ${r.status==="done"?`<label>Archive<span class="btns"><button type="button" class="btn sm" data-act="archive">Move to archive</button></span></label>`:""}
       ${ctx==="archive"?`<label>Bring back to<span class="btns">${restoreBtns()}</span></label>`:""}
@@ -454,8 +462,8 @@ function render(){
     </div>`;
 
   // New briefs from the form (status "requested") sit at the bottom of Waiting until Adam drags them into the queue.
-  const cols=[["waiting","Waiting",active.filter(r=>r.status==="queued").concat(inbox)],["doing","Doing",active.filter(r=>r.status==="in_progress")],["done","Done",closed.filter(r=>r.status==="done").slice(0,12)]];
-  const rankOf=id=>{const i=active.findIndex(x=>x.id===id);return i<0?"":"#"+(i+1)};
+  const cols=[["waiting","Waiting",waiting],["doing","Doing",active.filter(r=>r.status==="in_progress")],["done","Done",closed.filter(r=>r.status==="done").slice(0,12)]];
+  const rankOf=id=>waitNum.has(id)?"#"+waitNum.get(id):"";
   $("#kanban").innerHTML=cols.map(([s,label,items])=>{
     return `<div class="col c-${s}" data-stage="${s}"><div class="col-head"><h3>${label}</h3><span class="n">${items.length}</span></div>
       ${items.length?items.map(r=>`<button type="button" class="card dc-${esc(r.dept||"")}${r.status==="requested"?" is-new":""}" data-jump="${esc(r.id)}" ${isAdmin?'draggable="true"':''}>
@@ -487,7 +495,7 @@ function render(){
   else{$("#detail-panel").hidden=true;$("#detail").innerHTML=""}
   $("#bin").hidden=!isAdmin;
   $("#add-open").hidden=!isAdmin;if(!isAdmin){addOpen=false}$("#add-section").hidden=!isAdmin||!addOpen;
-  $("#kanban-hint").textContent=isAdmin?"Drag cards between columns to change stage, or up and down to reorder the queue. New briefs sit at the bottom of Waiting until you drag them in. Click a card to see its details.":"Every project by stage. New briefs appear at the bottom of Waiting. Click a card to see its details.";
+  $("#kanban-hint").textContent=isAdmin?"Drag cards between columns to change stage. Waiting sorts itself by deadline, soonest at the top and no deadline at the bottom; new briefs sit in that order marked NEW BRIEF until you drag them in or press Add to queue. Click a card to see its details.":"Every project by stage. Waiting is sorted by deadline, soonest at the top. Click a card to see its details.";
 }
 
 // ---- Loading and saving: the project list is data/projects.json in the GitHub repository.
@@ -565,7 +573,7 @@ function act(id,action,el){
   else if(action==="email"){write(id,{email:el.value.trim()});}
   else if(action==="dept"){write(id,{dept:el.value});}
   else if(action==="kind"){write(id,{kind:el.value});}
-  else if(action==="accept"){write(id,{status:"queued",rank:maxRank+1});toast("Added to queue at #"+(active.length+1));}
+  else if(action==="accept"){write(id,{status:"queued",rank:maxRank+1});toast("Added to queue");}
   else if(action==="decline"){write(id,{status:"declined",rank:null});toast("Declined");}
   else if(action==="archive"){write(id,{status:"archived",rank:null});toast("Archived");}
   else if(action==="restore"){const to=RESTORE_TO[el.dataset.to]?el.dataset.to:"done";moveCard(id,to,null);toast("Back on the board in "+RESTORE_TO[to]);}
