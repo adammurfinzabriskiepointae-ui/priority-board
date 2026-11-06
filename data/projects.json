@@ -512,12 +512,13 @@
     "deadline": "2026-11-13",
     "brief": "Generate additionsadditional content for weekly best sellers",
     "assets": "",
-    "status": "queued",
-    "rank": 10,
+    "status": "archived",
+    "rank": null,
     "notes": "",
     "createdAt": "2026-11-05T11:46:43.774Z",
-    "updatedAt": "2026-11-06T12:22:58.697Z",
-    "top": true
+    "updatedAt": "2026-11-06T13:18:12.490Z",
+    "top": false,
+    "topOrder": null
   },
   {
     "id": "bmw4mwlcvlowbf",
