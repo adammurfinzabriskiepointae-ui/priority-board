@@ -540,5 +540,23 @@
     "createdAt": "2026-11-06T07:09:41.791Z",
     "updatedAt": "2026-11-09T04:39:43.596Z",
     "source": "brief-form"
+  },
+  {
+    "id": "pmw93i8y2ler00",
+    "title": "Menswear Editorial Content for Catalog",
+    "dept": "MENS",
+    "kind": "IMAGE",
+    "usage": "Catalog",
+    "spec": "Menswear FW'26 street-style product images",
+    "name": "",
+    "email": "",
+    "deadline": "2026-11-13",
+    "brief": "77 images across 23 clothing SKUs in 9 looks (accessories appear in shots only, no images of their own).\nPer SKU: bottoms = front, back, detail, full body; coats and outer tops = cropped front, back, detail; items under the coat = cropped front, back, detail (layer off); tops = one tight cropped front.\n2750 × 3500 px, JPG (rendered 3:4, cropped to fit the site), photoreal AI renders.\n\nWho: young menswear customers (B13+) across three profiles, Smart, Urban and Streetwear, 3 looks each, one AI model per look \n\nWhy: a test of whether influencer-style imagery lifts sell-through (ST%) on high-stock seasonal styles that sell weakly online.\n\nStyle: candid street style that looks shot on a phone by a friend, in clean, premium Moscow locations (Smart in minimal cafés by day, Urban in courtyards and café fronts, Streetwear at apartment blocks at night). Direct phone flash, close to plain walls, minimal backgrounds. Cool, unimpressed attitude. Gen Z styling with unbranded accessories (sunglasses, watch, tote, coffee).",
+    "assets": "",
+    "status": "queued",
+    "rank": 8,
+    "notes": "",
+    "createdAt": "2026-11-09T10:05:30.698Z",
+    "updatedAt": "2026-11-09T10:05:30.698Z"
   }
 ]
