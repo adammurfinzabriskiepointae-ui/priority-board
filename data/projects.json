@@ -455,10 +455,10 @@
     "status": "in_progress",
     "rank": 8,
     "top": true,
-    "topOrder": 1,
+    "topOrder": 2,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-09T10:05:48.395Z",
+    "updatedAt": "2026-11-09T10:06:05.018Z",
     "source": "brief-form"
   },
   {
@@ -557,6 +557,8 @@
     "rank": 5,
     "notes": "",
     "createdAt": "2026-11-09T10:05:30.698Z",
-    "updatedAt": "2026-11-09T10:05:41.447Z"
+    "updatedAt": "2026-11-09T10:06:05.011Z",
+    "top": true,
+    "topOrder": 1
   }
 ]
