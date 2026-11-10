@@ -309,13 +309,13 @@
     "deadline": "2026-11-06",
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
-    "status": "in_progress",
-    "rank": 8,
+    "status": "done",
+    "rank": null,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-10T12:09:40.426Z",
+    "updatedAt": "2026-11-10T12:09:43.239Z",
     "source": "brief-form"
   },
   {
@@ -453,12 +453,12 @@
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
     "status": "in_progress",
-    "rank": 9,
+    "rank": 8,
     "top": true,
     "topOrder": 3,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-10T12:09:40.438Z",
+    "updatedAt": "2026-11-10T12:09:43.249Z",
     "source": "brief-form"
   },
   {
@@ -474,12 +474,12 @@
     "brief": "link for the toys https://dropmefiles.com/HR7Fl \ni need graphic video for store this is the reference and i want to add toys and logo in silver color to greate like new yesr festive mood \nref https://pin.it/1AGf0XOx1\n5440×2720 px, landscape. This is one video file for a U-shaped LED screen. Only these areas are visible:\nTop screen: 5440×480 px (x 0–5440, y 0–480)\nLeft screen: 640×2240 px (x 0–640, y 480–2720)\nRight screen: 640×2240 px (x 4800–5440, y 480–2720)\nThe middle area of 4160×2240 px (x 640–4800, y 480–2720) is not displayed because it is the store entrance. Keep it black and put no important content there.\nFrame rate: 25 fps\nFile format : MP4 / H.264    \nand i send you the file with the all sizes",
     "assets": "",
     "status": "in_progress",
-    "rank": 10,
+    "rank": 9,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-03T08:35:42.801Z",
-    "updatedAt": "2026-11-10T12:09:40.448Z",
+    "updatedAt": "2026-11-10T12:09:43.258Z",
     "source": "brief-form"
   },
   {
@@ -595,9 +595,9 @@
     "brief": "Top line: a single brand guide that tells anyone producing imagery (photographers, stylists, retouchers, ecommerce, store anyone ) exactly how a shoot should look, so output is consistent across channels and needs fewer rounds of feedback.\n\nWhat goes into it\n\nBrand look: positioning, mood, keywords, and on-brand vs. off-brand examples\nVisual style: lighting, colour and grade, camera angles, composition\nPeople: casting, styling, posing, rules for kids and teens\nProduct and locations: how product is shown, plus sets, props and backdrops\nShot lists: required shots per use case (e-com, editorial, campaign, video, banners)\nPost-production: retouching level, export specs, file naming, delivery\nProcess: briefing template, approval stages, usage rights and legal\nAI imagery: where it’s allowed, perspective and camera rules, review checklist, labelling\n\nWhat to define first\n\nScope: which brands, markets and channels\nUsers: who will actually work from the guide\nFormat: short PDF, living page, or checklist pack\nReference images: 20-30 on-brand and off-brand examples\nOwnership: who writes it, signs it off, and keeps it updated\nSuccess measure: e.g. fewer reshoots, faster approvals",
     "assets": "",
     "status": "queued",
-    "rank": 11,
+    "rank": 10,
     "notes": "",
     "createdAt": "2026-11-10T08:53:51.180Z",
-    "updatedAt": "2026-11-10T10:48:59.265Z"
+    "updatedAt": "2026-11-10T12:09:43.267Z"
   }
 ]
