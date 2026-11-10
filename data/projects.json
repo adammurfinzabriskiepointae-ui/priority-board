@@ -560,5 +560,26 @@
     "updatedAt": "2026-11-09T10:06:08.114Z",
     "top": true,
     "topOrder": 2
+  },
+  {
+    "id": "bmwad55pk64rd7",
+    "title": "photos",
+    "dept": "MENS",
+    "kind": "IMAGE",
+    "usage": "website and social media",
+    "spec": "JPG  2:3",
+    "name": "DZERA",
+    "email": "tsotsieva@gloria-jeans.ru",
+    "deadline": "2026-11-16",
+    "brief": "link with outfits https://drive.google.com/drive/folders/1q2VvopWS8RhcG53XQghe0arPAT9JVEVE?usp=drive_link\nmoodboard: https://dropmefiles.com/KUEht\\",
+    "assets": "",
+    "status": "queued",
+    "rank": 9,
+    "top": false,
+    "topOrder": null,
+    "notes": "",
+    "createdAt": "2026-11-10T07:23:02.312Z",
+    "updatedAt": "2026-11-10T07:23:02.312Z",
+    "source": "brief-form"
   }
 ]
