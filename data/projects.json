@@ -495,10 +495,10 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 10,
+    "rank": 9,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-11T11:10:17.984Z"
+    "updatedAt": "2026-11-11T13:17:08.936Z"
   },
   {
     "id": "pmw3hd0amr91td",
@@ -533,12 +533,12 @@
     "brief": "https://www.instagram.com/p/DSNjVYVCtF8/?obrf=MXgxZnJiZHFkMW93dA==",
     "assets": "",
     "status": "in_progress",
-    "rank": 9,
+    "rank": 8,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-06T07:09:41.791Z",
-    "updatedAt": "2026-11-11T11:10:17.972Z",
+    "updatedAt": "2026-11-11T13:17:08.929Z",
     "source": "brief-form"
   },
   {
@@ -595,10 +595,10 @@
     "brief": "Top line: a single brand guide that tells anyone producing imagery (photographers, stylists, retouchers, ecommerce, store anyone ) exactly how a shoot should look, so output is consistent across channels and needs fewer rounds of feedback.\n\nWhat goes into it\n\nBrand look: positioning, mood, keywords, and on-brand vs. off-brand examples\nVisual style: lighting, colour and grade, camera angles, composition\nPeople: casting, styling, posing, rules for kids and teens\nProduct and locations: how product is shown, plus sets, props and backdrops\nShot lists: required shots per use case (e-com, editorial, campaign, video, banners)\nPost-production: retouching level, export specs, file naming, delivery\nProcess: briefing template, approval stages, usage rights and legal\nAI imagery: where it’s allowed, perspective and camera rules, review checklist, labelling\n\nWhat to define first\n\nScope: which brands, markets and channels\nUsers: who will actually work from the guide\nFormat: short PDF, living page, or checklist pack\nReference images: 20-30 on-brand and off-brand examples\nOwnership: who writes it, signs it off, and keeps it updated\nSuccess measure: e.g. fewer reshoots, faster approvals",
     "assets": "",
     "status": "queued",
-    "rank": 8,
+    "rank": 7,
     "notes": "",
     "createdAt": "2026-11-10T08:53:51.180Z",
-    "updatedAt": "2026-11-11T11:10:17.962Z"
+    "updatedAt": "2026-11-11T13:17:08.920Z"
   },
   {
     "id": "bmwbwavony6e5j",
@@ -612,13 +612,13 @@
     "deadline": "2026-11-13",
     "brief": "https://claude.ai/artifact/4V1uS1cPpLCuX97ePHzFSC?sk=9xgXCSflOyHKdMezZY1Kgw#e3cac9cc-8654 \nattached",
     "assets": "https://www.gloria-jeans.ru/product/BWB002172-2/Klassiceskie-cernye-uteplennye-dzinsy?code=BWB002172F0018",
-    "status": "in_progress",
-    "rank": 7,
+    "status": "done",
+    "rank": null,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-11T09:07:08.135Z",
-    "updatedAt": "2026-11-11T11:10:17.951Z",
+    "updatedAt": "2026-11-11T13:17:08.896Z",
     "source": "brief-form"
   }
 ]
