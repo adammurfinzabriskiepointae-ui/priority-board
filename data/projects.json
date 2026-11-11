@@ -234,11 +234,11 @@
     "brief": "",
     "assets": "",
     "status": "queued",
-    "rank": 5,
+    "rank": 4,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-10T13:14:48.204Z",
+    "updatedAt": "2026-11-11T11:10:17.904Z",
     "dept": "OTHER"
   },
   {
@@ -453,12 +453,12 @@
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 6,
     "top": true,
     "topOrder": 3,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-11T10:22:49.478Z",
+    "updatedAt": "2026-11-11T11:10:17.941Z",
     "source": "brief-form"
   },
   {
@@ -494,11 +494,11 @@
     "deadline": "",
     "brief": "-",
     "assets": "",
-    "status": "queued",
-    "rank": 4,
+    "status": "in_progress",
+    "rank": 10,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-10T13:14:48.195Z"
+    "updatedAt": "2026-11-11T11:10:17.984Z"
   },
   {
     "id": "pmw3hd0amr91td",
@@ -533,12 +533,12 @@
     "brief": "https://www.instagram.com/p/DSNjVYVCtF8/?obrf=MXgxZnJiZHFkMW93dA==",
     "assets": "",
     "status": "in_progress",
-    "rank": 10,
+    "rank": 9,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-06T07:09:41.791Z",
-    "updatedAt": "2026-11-11T10:22:53.225Z",
+    "updatedAt": "2026-11-11T11:10:17.972Z",
     "source": "brief-form"
   },
   {
@@ -554,10 +554,10 @@
     "brief": "77 images across 23 clothing SKUs in 9 looks (accessories appear in shots only, no images of their own).\nPer SKU: bottoms = front, back, detail, full body; coats and outer tops = cropped front, back, detail; items under the coat = cropped front, back, detail (layer off); tops = one tight cropped front.\n2750 × 3500 px, JPG (rendered 3:4, cropped to fit the site), photoreal AI renders.\n\nWho: young menswear customers (B13+) across three profiles, Smart, Urban and Streetwear, 3 looks each, one AI model per look \n\nWhy: a test of whether influencer-style imagery lifts sell-through (ST%) on high-stock seasonal styles that sell weakly online.\n\nStyle: candid street style that looks shot on a phone by a friend, in clean, premium Moscow locations (Smart in minimal cafés by day, Urban in courtyards and café fronts, Streetwear at apartment blocks at night). Direct phone flash, close to plain walls, minimal backgrounds. Cool, unimpressed attitude. Gen Z styling with unbranded accessories (sunglasses, watch, tote, coffee).",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 5,
     "notes": "",
     "createdAt": "2026-11-09T10:05:30.698Z",
-    "updatedAt": "2026-11-11T10:22:49.454Z",
+    "updatedAt": "2026-11-11T11:10:17.929Z",
     "top": true,
     "topOrder": 2
   },
@@ -595,10 +595,10 @@
     "brief": "Top line: a single brand guide that tells anyone producing imagery (photographers, stylists, retouchers, ecommerce, store anyone ) exactly how a shoot should look, so output is consistent across channels and needs fewer rounds of feedback.\n\nWhat goes into it\n\nBrand look: positioning, mood, keywords, and on-brand vs. off-brand examples\nVisual style: lighting, colour and grade, camera angles, composition\nPeople: casting, styling, posing, rules for kids and teens\nProduct and locations: how product is shown, plus sets, props and backdrops\nShot lists: required shots per use case (e-com, editorial, campaign, video, banners)\nPost-production: retouching level, export specs, file naming, delivery\nProcess: briefing template, approval stages, usage rights and legal\nAI imagery: where it’s allowed, perspective and camera rules, review checklist, labelling\n\nWhat to define first\n\nScope: which brands, markets and channels\nUsers: who will actually work from the guide\nFormat: short PDF, living page, or checklist pack\nReference images: 20-30 on-brand and off-brand examples\nOwnership: who writes it, signs it off, and keeps it updated\nSuccess measure: e.g. fewer reshoots, faster approvals",
     "assets": "",
     "status": "queued",
-    "rank": 9,
+    "rank": 8,
     "notes": "",
     "createdAt": "2026-11-10T08:53:51.180Z",
-    "updatedAt": "2026-11-11T10:22:53.206Z"
+    "updatedAt": "2026-11-11T11:10:17.962Z"
   },
   {
     "id": "bmwbwavony6e5j",
@@ -613,12 +613,12 @@
     "brief": "https://claude.ai/artifact/4V1uS1cPpLCuX97ePHzFSC?sk=9xgXCSflOyHKdMezZY1Kgw#e3cac9cc-8654 \nattached",
     "assets": "https://www.gloria-jeans.ru/product/BWB002172-2/Klassiceskie-cernye-uteplennye-dzinsy?code=BWB002172F0018",
     "status": "in_progress",
-    "rank": 8,
+    "rank": 7,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-11T09:07:08.135Z",
-    "updatedAt": "2026-11-11T10:22:45.907Z",
+    "updatedAt": "2026-11-11T11:10:17.951Z",
     "source": "brief-form"
   }
 ]
