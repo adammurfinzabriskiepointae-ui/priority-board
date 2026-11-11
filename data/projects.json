@@ -233,13 +233,14 @@
     "deadline": "",
     "brief": "",
     "assets": "",
-    "status": "queued",
-    "rank": 4,
+    "status": "archived",
+    "rank": null,
     "top": false,
     "notes": "",
     "createdAt": "2026-10-16T08:06:48.000Z",
-    "updatedAt": "2026-11-11T11:10:17.904Z",
-    "dept": "OTHER"
+    "updatedAt": "2026-11-11T14:03:47.840Z",
+    "dept": "OTHER",
+    "topOrder": null
   },
   {
     "id": "pmvggc6melreln",
@@ -495,10 +496,10 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 8,
+    "rank": 7,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-11T14:03:23.879Z"
+    "updatedAt": "2026-11-11T14:03:47.902Z"
   },
   {
     "id": "pmw3hd0amr91td",
@@ -533,12 +534,12 @@
     "brief": "https://www.instagram.com/p/DSNjVYVCtF8/?obrf=MXgxZnJiZHFkMW93dA==",
     "assets": "",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 6,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-06T07:09:41.791Z",
-    "updatedAt": "2026-11-11T14:03:23.867Z",
+    "updatedAt": "2026-11-11T14:03:47.891Z",
     "source": "brief-form"
   },
   {
@@ -554,10 +555,10 @@
     "brief": "77 images across 23 clothing SKUs in 9 looks (accessories appear in shots only, no images of their own).\nPer SKU: bottoms = front, back, detail, full body; coats and outer tops = cropped front, back, detail; items under the coat = cropped front, back, detail (layer off); tops = one tight cropped front.\n2750 × 3500 px, JPG (rendered 3:4, cropped to fit the site), photoreal AI renders.\n\nWho: young menswear customers (B13+) across three profiles, Smart, Urban and Streetwear, 3 looks each, one AI model per look \n\nWhy: a test of whether influencer-style imagery lifts sell-through (ST%) on high-stock seasonal styles that sell weakly online.\n\nStyle: candid street style that looks shot on a phone by a friend, in clean, premium Moscow locations (Smart in minimal cafés by day, Urban in courtyards and café fronts, Streetwear at apartment blocks at night). Direct phone flash, close to plain walls, minimal backgrounds. Cool, unimpressed attitude. Gen Z styling with unbranded accessories (sunglasses, watch, tote, coffee).",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 4,
     "notes": "",
     "createdAt": "2026-11-09T10:05:30.698Z",
-    "updatedAt": "2026-11-11T11:10:17.929Z",
+    "updatedAt": "2026-11-11T14:03:47.869Z",
     "top": true,
     "topOrder": 2
   },
@@ -595,10 +596,10 @@
     "brief": "Top line: a single brand guide that tells anyone producing imagery (photographers, stylists, retouchers, ecommerce, store anyone ) exactly how a shoot should look, so output is consistent across channels and needs fewer rounds of feedback.\n\nWhat goes into it\n\nBrand look: positioning, mood, keywords, and on-brand vs. off-brand examples\nVisual style: lighting, colour and grade, camera angles, composition\nPeople: casting, styling, posing, rules for kids and teens\nProduct and locations: how product is shown, plus sets, props and backdrops\nShot lists: required shots per use case (e-com, editorial, campaign, video, banners)\nPost-production: retouching level, export specs, file naming, delivery\nProcess: briefing template, approval stages, usage rights and legal\nAI imagery: where it’s allowed, perspective and camera rules, review checklist, labelling\n\nWhat to define first\n\nScope: which brands, markets and channels\nUsers: who will actually work from the guide\nFormat: short PDF, living page, or checklist pack\nReference images: 20-30 on-brand and off-brand examples\nOwnership: who writes it, signs it off, and keeps it updated\nSuccess measure: e.g. fewer reshoots, faster approvals",
     "assets": "",
     "status": "queued",
-    "rank": 6,
+    "rank": 5,
     "notes": "",
     "createdAt": "2026-11-10T08:53:51.180Z",
-    "updatedAt": "2026-11-11T14:03:23.860Z"
+    "updatedAt": "2026-11-11T14:03:47.882Z"
   },
   {
     "id": "bmwbwavony6e5j",
