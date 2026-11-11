@@ -599,5 +599,26 @@
     "notes": "",
     "createdAt": "2026-11-10T08:53:51.180Z",
     "updatedAt": "2026-11-10T12:09:43.267Z"
+  },
+  {
+    "id": "bmwbwavony6e5j",
+    "title": "Images for SMM",
+    "dept": "MENS",
+    "kind": "IMAGE",
+    "usage": "Social Media",
+    "spec": "images 1080×1920 и 1500x1500 и 1092х1639",
+    "name": "Jannet Tabuldinova",
+    "email": "jannet.tabuldinova@gloria-jeans.ae",
+    "deadline": "2026-11-13",
+    "brief": "https://claude.ai/artifact/4V1uS1cPpLCuX97ePHzFSC?sk=9xgXCSflOyHKdMezZY1Kgw#e3cac9cc-8654 \nattached",
+    "assets": "https://www.gloria-jeans.ru/product/BWB002172-2/Klassiceskie-cernye-uteplennye-dzinsy?code=BWB002172F0018",
+    "status": "queued",
+    "rank": 11,
+    "top": false,
+    "topOrder": null,
+    "notes": "",
+    "createdAt": "2026-11-11T09:07:08.135Z",
+    "updatedAt": "2026-11-11T09:07:08.135Z",
+    "source": "brief-form"
   }
 ]
