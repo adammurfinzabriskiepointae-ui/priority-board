@@ -496,10 +496,10 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 6,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-12T13:08:05.366Z"
+    "updatedAt": "2026-11-12T13:09:12.800Z"
   },
   {
     "id": "pmw3hd0amr91td",
@@ -534,12 +534,12 @@
     "brief": "https://www.instagram.com/p/DSNjVYVCtF8/?obrf=MXgxZnJiZHFkMW93dA==",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 5,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-06T07:09:41.791Z",
-    "updatedAt": "2026-11-12T13:08:05.357Z",
+    "updatedAt": "2026-11-12T13:09:12.777Z",
     "source": "brief-form"
   },
   {
@@ -614,12 +614,12 @@
     "brief": "https://claude.ai/artifact/4V1uS1cPpLCuX97ePHzFSC?sk=9xgXCSflOyHKdMezZY1Kgw#e3cac9cc-8654 \nattached",
     "assets": "https://www.gloria-jeans.ru/product/BWB002172-2/Klassiceskie-cernye-uteplennye-dzinsy?code=BWB002172F0018",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 7,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-11T09:07:08.135Z",
-    "updatedAt": "2026-11-12T13:08:05.347Z",
+    "updatedAt": "2026-11-12T13:09:12.808Z",
     "source": "brief-form"
   }
 ]
