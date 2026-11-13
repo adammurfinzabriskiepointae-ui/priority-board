@@ -454,12 +454,12 @@
     "brief": "https://docs.google.com/presentation/d/1WWc4-uEtnIZqCiMrSBhc-PSIT1l9_6BjrpjECC2-XR4/edit?slide=id.p#slide=id.p",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 7,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-02T09:02:22.920Z",
-    "updatedAt": "2026-11-13T11:43:51.027Z",
+    "updatedAt": "2026-11-13T14:53:30.191Z",
     "source": "brief-form"
   },
   {
@@ -496,10 +496,10 @@
     "brief": "-",
     "assets": "",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 8,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-13T11:43:51.044Z"
+    "updatedAt": "2026-11-13T14:53:30.201Z"
   },
   {
     "id": "pmw3hd0amr91td",
@@ -554,11 +554,11 @@
     "deadline": "2026-11-13",
     "brief": "77 images across 23 clothing SKUs in 9 looks (accessories appear in shots only, no images of their own).\nPer SKU: bottoms = front, back, detail, full body; coats and outer tops = cropped front, back, detail; items under the coat = cropped front, back, detail (layer off); tops = one tight cropped front.\n2750 × 3500 px, JPG (rendered 3:4, cropped to fit the site), photoreal AI renders.\n\nWho: young menswear customers (B13+) across three profiles, Smart, Urban and Streetwear, 3 looks each, one AI model per look \n\nWhy: a test of whether influencer-style imagery lifts sell-through (ST%) on high-stock seasonal styles that sell weakly online.\n\nStyle: candid street style that looks shot on a phone by a friend, in clean, premium Moscow locations (Smart in minimal cafés by day, Urban in courtyards and café fronts, Streetwear at apartment blocks at night). Direct phone flash, close to plain walls, minimal backgrounds. Cool, unimpressed attitude. Gen Z styling with unbranded accessories (sunglasses, watch, tote, coffee).",
     "assets": "",
-    "status": "done",
-    "rank": null,
+    "status": "in_progress",
+    "rank": 6,
     "notes": "",
     "createdAt": "2026-11-09T10:05:30.698Z",
-    "updatedAt": "2026-11-12T13:08:05.317Z",
+    "updatedAt": "2026-11-13T14:53:30.180Z",
     "top": false,
     "topOrder": null
   },
