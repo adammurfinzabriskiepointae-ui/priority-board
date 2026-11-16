@@ -495,11 +495,13 @@
     "deadline": "",
     "brief": "-",
     "assets": "",
-    "status": "in_progress",
-    "rank": 8,
+    "status": "archived",
+    "rank": null,
     "notes": "",
     "createdAt": "2026-11-05T04:56:25.709Z",
-    "updatedAt": "2026-11-13T14:53:30.201Z"
+    "updatedAt": "2026-11-16T05:56:14.268Z",
+    "top": false,
+    "topOrder": null
   },
   {
     "id": "pmw3hd0amr91td",
