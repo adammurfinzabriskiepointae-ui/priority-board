@@ -312,11 +312,11 @@
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
     "status": "in_progress",
     "rank": 8,
-    "top": false,
-    "topOrder": null,
+    "top": true,
+    "topOrder": 4,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-17T10:07:38.056Z",
+    "updatedAt": "2026-11-17T10:07:50.868Z",
     "source": "brief-form"
   },
   {
