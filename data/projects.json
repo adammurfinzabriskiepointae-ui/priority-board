@@ -683,5 +683,26 @@
     "notes": "",
     "createdAt": "2026-11-18T14:53:43.010Z",
     "updatedAt": "2026-11-18T14:54:14.356Z"
+  },
+  {
+    "id": "bmwnn5mbiltge3",
+    "title": "1 image to be used in SMM",
+    "dept": "OTHER",
+    "kind": "IMAGE",
+    "usage": "social",
+    "spec": "1 image",
+    "name": "Jannet Tabuldinova",
+    "email": "jannet.tabuldinova@gloria-jeans.ae",
+    "deadline": "2026-11-19",
+    "brief": "we need   post about GTA and Gloria Jeans , maybe with male product focus \n\nhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrCc-5KiuHnsYigThcW5k-A_KkBjRXYl_xYdgPn4fz8lSzsZixgE6avqc&s=10\n\nhttps://www.gamespot.com/wp-content/uploads/2025/05/Official_Cover_Art_landscape-Large.jpeg?w=1024\nhttps://kotaku.com/app/uploads/2026/06/ULTIMATE_EDITION_VICE_CITY_STYLE_01-1.jpg\nhttps://media.gtaboom.com/variants/761/media/images/e1/72/new-official-gta-6-screenshots-and-cover-art-arrive-via-dazed-magazine-1.jpg",
+    "assets": "((",
+    "status": "queued",
+    "rank": 7,
+    "top": false,
+    "topOrder": null,
+    "notes": "",
+    "createdAt": "2026-11-19T14:24:20.286Z",
+    "updatedAt": "2026-11-19T14:24:20.286Z",
+    "source": "brief-form"
   }
 ]
