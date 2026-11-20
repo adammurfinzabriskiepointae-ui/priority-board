@@ -311,12 +311,12 @@
     "brief": "attached https://we.tl/t-gpODRQMLYQ2H8w4g\nDeadlines clarifications: \n1st approach to the video creative routes till Oct 29-30, \nfeedback and choice of routes: 1-2 days\nkey frames and storyboards for the chosen routes:  TBD\nFirst video cuts:  TBD\nFinal 9:16 masters: ideally launch in November, TBD",
     "assets": "https://we.tl/t-gpODRQMLYQ2H8w4g",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 6,
     "top": true,
     "topOrder": 1,
     "notes": "",
     "createdAt": "2026-10-26T11:52:56.481Z",
-    "updatedAt": "2026-11-19T14:27:11.878Z",
+    "updatedAt": "2026-11-20T05:16:26.344Z",
     "source": "brief-form"
   },
   {
@@ -577,12 +577,12 @@
     "brief": "link with outfits https://drive.google.com/drive/folders/1q2VvopWS8RhcG53XQghe0arPAT9JVEVE?usp=drive_link\nmoodboard: https://dropmefiles.com/KUEht\\",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 5,
     "top": true,
     "topOrder": 2,
     "notes": "8 outfits × 3 = 24 images.",
     "createdAt": "2026-11-10T07:23:02.312Z",
-    "updatedAt": "2026-11-19T14:27:11.864Z",
+    "updatedAt": "2026-11-20T05:16:26.327Z",
     "source": "brief-form"
   },
   {
@@ -679,10 +679,10 @@
     "brief": "AI holiday cosmetics for Gloria Glow (10 SKUs). Client deck: \"AI holiday cosmetics fin\".\n\nDELIVERABLES\n• 02 Statics — one per product type (8): shiny silver/pink bg, drips, holiday party mood\n• 03 Grinch — 085 gold liner · video · needs IP OK\n• 04 Drip bottle — 131 bronze · video (2 shots) + static · READY TO START\n• 05 Santa climbers — 226 lip gloss ×5 · video\n• 06 Snow swap (Chanel ref) — 280 mascara ×3 · video + static\n• 07 Blue light (Dior ref) — 2 products TBC · video\n• 08 Tree cutout — 5 products · video\n• 09 Ornament — hero product TBC · video\n• 10 Illustrated animation — 083 / 085 / 226 / 084, baby goat end · video\n\nNEED FROM CLIENT\n• Final approver + feedback turnaround\n• Formats, video lengths, deadline\n• Slide 7: which 2 products · Slide 9: hero product · Statics: confirm 8 types + colours\n• GJ Glow logo (vector), 083 shade names, end-card / on-screen copy (EN/RU), music\n• Legal OK on Grinch + Dior / Chanel homages\n\nSTATUS (18 Nov)\n• All product photos + 7 reference videos collected and checked\n• Figma review board built (horizontal canvas + a page per brief)\n• Next: send client questions, start slide 4 drip bottle + ready statics\n\nDeadline 15 Dec is a placeholder — client deadline TBC.",
     "assets": "Figma board: https://www.figma.com/design/hivZRob3FvIEHDf7iNibfZ\nClient deck: https://docs.google.com/presentation/d/16FAO2MAWdSJeSKo-7t0QtCNtaaBHNIC4WNdch-JsPJQ\nProduct photos: https://drive.google.com/drive/folders/1HQVqJwwAD0VvBa1n3ZxAC0vpicRYFn_Y",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 4,
     "notes": "",
     "createdAt": "2026-11-18T14:53:43.010Z",
-    "updatedAt": "2026-11-19T14:27:11.852Z"
+    "updatedAt": "2026-11-20T05:16:26.313Z"
   },
   {
     "id": "bmwnn5mbiltge3",
@@ -696,13 +696,13 @@
     "deadline": "2026-11-19",
     "brief": "we need   post about GTA and Gloria Jeans , maybe with male product focus \n\nhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrCc-5KiuHnsYigThcW5k-A_KkBjRXYl_xYdgPn4fz8lSzsZixgE6avqc&s=10\n\nhttps://www.gamespot.com/wp-content/uploads/2025/05/Official_Cover_Art_landscape-Large.jpeg?w=1024\nhttps://kotaku.com/app/uploads/2026/06/ULTIMATE_EDITION_VICE_CITY_STYLE_01-1.jpg\nhttps://media.gtaboom.com/variants/761/media/images/e1/72/new-official-gta-6-screenshots-and-cover-art-arrive-via-dazed-magazine-1.jpg",
     "assets": "((",
-    "status": "in_progress",
-    "rank": 4,
+    "status": "done",
+    "rank": null,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-19T14:24:20.286Z",
-    "updatedAt": "2026-11-19T14:27:11.840Z",
+    "updatedAt": "2026-11-20T05:16:26.293Z",
     "source": "brief-form"
   },
   {
@@ -718,12 +718,12 @@
     "brief": "https://fasteastltd-my.sharepoint.com/:w:/g/personal/jannet_tabuldinova_gloria-jeans_com/IQA9N66CMWuhSqgMNQcol8RmAcP8MtTD6DWF8dhBnXhACYM?rtime=yHjB4DNG30g\nwe need to integrate all products (apparel, cosmetics, accessories,  home etc)",
     "assets": ":'-(",
     "status": "queued",
-    "rank": 8,
+    "rank": 7,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-19T14:28:06.311Z",
-    "updatedAt": "2026-11-19T14:28:06.311Z",
+    "updatedAt": "2026-11-20T05:16:26.362Z",
     "source": "brief-form"
   }
 ]
