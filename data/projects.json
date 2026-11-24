@@ -579,10 +579,10 @@
     "status": "in_progress",
     "rank": 6,
     "top": true,
-    "topOrder": 2,
+    "topOrder": 1,
     "notes": "8 outfits × 3 = 24 images.",
     "createdAt": "2026-11-10T07:23:02.312Z",
-    "updatedAt": "2026-11-20T05:53:52.896Z",
+    "updatedAt": "2026-11-24T07:29:24.614Z",
     "source": "brief-form"
   },
   {
@@ -719,11 +719,11 @@
     "assets": ":'-(",
     "status": "in_progress",
     "rank": 4,
-    "top": false,
-    "topOrder": null,
+    "top": true,
+    "topOrder": 2,
     "notes": "",
     "createdAt": "2026-11-19T14:28:06.311Z",
-    "updatedAt": "2026-11-20T05:53:52.855Z",
+    "updatedAt": "2026-11-24T07:29:24.635Z",
     "source": "brief-form"
   }
 ]
