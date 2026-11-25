@@ -727,5 +727,26 @@
     "createdAt": "2026-11-19T14:28:06.311Z",
     "updatedAt": "2026-11-24T07:29:24.635Z",
     "source": "brief-form"
+  },
+  {
+    "id": "bmwvr3qz5h73an",
+    "title": "Black Friday banner",
+    "dept": "OTHER",
+    "kind": "GRAPHIC",
+    "usage": "web site, app, marketing campaigns",
+    "spec": "1 key visual",
+    "name": "Jannet Tabuldinova",
+    "email": "jannet.tabuldinova@gloria-jeans.ae",
+    "deadline": "2026-11-25",
+    "brief": "we need a Black Friday banner,  I was thinking about some GIF or shorth video",
+    "assets": "",
+    "status": "queued",
+    "rank": 7,
+    "top": false,
+    "topOrder": null,
+    "notes": "",
+    "createdAt": "2026-11-25T06:37:00.881Z",
+    "updatedAt": "2026-11-25T06:37:00.881Z",
+    "source": "brief-form"
   }
 ]
