@@ -742,11 +742,11 @@
     "assets": "",
     "status": "in_progress",
     "rank": 4,
-    "top": false,
-    "topOrder": null,
+    "top": true,
+    "topOrder": 4,
     "notes": "",
     "createdAt": "2026-11-25T06:37:00.881Z",
-    "updatedAt": "2026-11-25T10:32:49.431Z",
+    "updatedAt": "2026-11-25T10:32:53.799Z",
     "source": "brief-form"
   }
 ]
