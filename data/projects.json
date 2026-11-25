@@ -598,10 +598,10 @@
     "brief": "Top line: a single brand guide that tells anyone producing imagery (photographers, stylists, retouchers, ecommerce, store anyone ) exactly how a shoot should look, so output is consistent across channels and needs fewer rounds of feedback.\n\nWhat goes into it\n\nBrand look: positioning, mood, keywords, and on-brand vs. off-brand examples\nVisual style: lighting, colour and grade, camera angles, composition\nPeople: casting, styling, posing, rules for kids and teens\nProduct and locations: how product is shown, plus sets, props and backdrops\nShot lists: required shots per use case (e-com, editorial, campaign, video, banners)\nPost-production: retouching level, export specs, file naming, delivery\nProcess: briefing template, approval stages, usage rights and legal\nAI imagery: where it’s allowed, perspective and camera rules, review checklist, labelling\n\nWhat to define first\n\nScope: which brands, markets and channels\nUsers: who will actually work from the guide\nFormat: short PDF, living page, or checklist pack\nReference images: 20-30 on-brand and off-brand examples\nOwnership: who writes it, signs it off, and keeps it updated\nSuccess measure: e.g. fewer reshoots, faster approvals",
     "assets": "",
     "status": "queued",
-    "rank": 4,
+    "rank": 3,
     "notes": "",
     "createdAt": "2026-11-10T08:53:51.180Z",
-    "updatedAt": "2026-11-25T07:44:07.707Z"
+    "updatedAt": "2026-11-25T10:32:49.387Z"
   },
   {
     "id": "bmwbwavony6e5j",
@@ -740,13 +740,13 @@
     "deadline": "2026-11-25",
     "brief": "we need a Black Friday banner,  I was thinking about some GIF or shorth video",
     "assets": "",
-    "status": "queued",
-    "rank": 3,
+    "status": "in_progress",
+    "rank": 4,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-25T06:37:00.881Z",
-    "updatedAt": "2026-11-25T07:44:07.673Z",
+    "updatedAt": "2026-11-25T10:32:49.431Z",
     "source": "brief-form"
   }
 ]
