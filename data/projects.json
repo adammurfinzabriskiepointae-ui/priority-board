@@ -577,12 +577,12 @@
     "brief": "link with outfits https://drive.google.com/drive/folders/1q2VvopWS8RhcG53XQghe0arPAT9JVEVE?usp=drive_link\nmoodboard: https://dropmefiles.com/KUEht\\",
     "assets": "",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 7,
     "top": true,
     "topOrder": 1,
     "notes": "8 outfits × 3 = 24 images.",
     "createdAt": "2026-11-10T07:23:02.312Z",
-    "updatedAt": "2026-11-24T07:29:24.614Z",
+    "updatedAt": "2026-11-25T07:33:27.751Z",
     "source": "brief-form"
   },
   {
@@ -679,10 +679,10 @@
     "brief": "AI holiday cosmetics for Gloria Glow (10 SKUs). Client deck: \"AI holiday cosmetics fin\".\n\nDELIVERABLES\n• 02 Statics — one per product type (8): shiny silver/pink bg, drips, holiday party mood\n• 03 Grinch — 085 gold liner · video · needs IP OK\n• 04 Drip bottle — 131 bronze · video (2 shots) + static · READY TO START\n• 05 Santa climbers — 226 lip gloss ×5 · video\n• 06 Snow swap (Chanel ref) — 280 mascara ×3 · video + static\n• 07 Blue light (Dior ref) — 2 products TBC · video\n• 08 Tree cutout — 5 products · video\n• 09 Ornament — hero product TBC · video\n• 10 Illustrated animation — 083 / 085 / 226 / 084, baby goat end · video\n\nNEED FROM CLIENT\n• Final approver + feedback turnaround\n• Formats, video lengths, deadline\n• Slide 7: which 2 products · Slide 9: hero product · Statics: confirm 8 types + colours\n• GJ Glow logo (vector), 083 shade names, end-card / on-screen copy (EN/RU), music\n• Legal OK on Grinch + Dior / Chanel homages\n\nSTATUS (18 Nov)\n• All product photos + 7 reference videos collected and checked\n• Figma review board built (horizontal canvas + a page per brief)\n• Next: send client questions, start slide 4 drip bottle + ready statics\n\nDeadline 15 Dec is a placeholder — client deadline TBC.",
     "assets": "Figma board: https://www.figma.com/design/hivZRob3FvIEHDf7iNibfZ\nClient deck: https://docs.google.com/presentation/d/16FAO2MAWdSJeSKo-7t0QtCNtaaBHNIC4WNdch-JsPJQ\nProduct photos: https://drive.google.com/drive/folders/1HQVqJwwAD0VvBa1n3ZxAC0vpicRYFn_Y",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 6,
     "notes": "",
     "createdAt": "2026-11-18T14:53:43.010Z",
-    "updatedAt": "2026-11-24T07:29:28.436Z",
+    "updatedAt": "2026-11-25T07:33:27.733Z",
     "top": true,
     "topOrder": 3
   },
@@ -720,12 +720,12 @@
     "brief": "https://fasteastltd-my.sharepoint.com/:w:/g/personal/jannet_tabuldinova_gloria-jeans_com/IQA9N66CMWuhSqgMNQcol8RmAcP8MtTD6DWF8dhBnXhACYM?rtime=yHjB4DNG30g\nwe need to integrate all products (apparel, cosmetics, accessories,  home etc)",
     "assets": ":'-(",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 5,
     "top": true,
     "topOrder": 2,
     "notes": "",
     "createdAt": "2026-11-19T14:28:06.311Z",
-    "updatedAt": "2026-11-24T07:29:24.635Z",
+    "updatedAt": "2026-11-25T07:33:27.713Z",
     "source": "brief-form"
   },
   {
@@ -740,13 +740,13 @@
     "deadline": "2026-11-25",
     "brief": "we need a Black Friday banner,  I was thinking about some GIF or shorth video",
     "assets": "",
-    "status": "queued",
-    "rank": 7,
+    "status": "in_progress",
+    "rank": 4,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-25T06:37:00.881Z",
-    "updatedAt": "2026-11-25T06:37:00.881Z",
+    "updatedAt": "2026-11-25T07:33:27.682Z",
     "source": "brief-form"
   }
 ]
