@@ -579,10 +579,10 @@
     "status": "in_progress",
     "rank": 7,
     "top": true,
-    "topOrder": 3,
+    "topOrder": 4,
     "notes": "8 outfits × 3 = 24 images.",
     "createdAt": "2026-11-10T07:23:02.312Z",
-    "updatedAt": "2026-11-25T10:33:05.990Z",
+    "updatedAt": "2026-11-25T10:33:09.128Z",
     "source": "brief-form"
   },
   {
@@ -682,9 +682,9 @@
     "rank": 6,
     "notes": "",
     "createdAt": "2026-11-18T14:53:43.010Z",
-    "updatedAt": "2026-11-25T10:33:01.543Z",
+    "updatedAt": "2026-11-25T10:33:09.091Z",
     "top": true,
-    "topOrder": 4
+    "topOrder": 3
   },
   {
     "id": "bmwnn5mbiltge3",
