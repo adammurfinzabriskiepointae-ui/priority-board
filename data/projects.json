@@ -748,5 +748,23 @@
     "createdAt": "2026-11-25T06:37:00.881Z",
     "updatedAt": "2026-11-25T10:33:01.495Z",
     "source": "brief-form"
+  },
+  {
+    "id": "pmww1lhyz3gmvr",
+    "title": "Buyer Prez",
+    "dept": "MENS",
+    "kind": "",
+    "usage": "",
+    "spec": "",
+    "name": "",
+    "email": "",
+    "deadline": "2026-11-27",
+    "brief": "-",
+    "assets": "",
+    "status": "queued",
+    "rank": 8,
+    "notes": "",
+    "createdAt": "2026-11-25T11:30:45.178Z",
+    "updatedAt": "2026-11-25T11:30:45.178Z"
   }
 ]
