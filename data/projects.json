@@ -371,13 +371,13 @@
     "deadline": "",
     "brief": "They idea is too create a shoot of teenage boys playing video games as a home party for example...\n\nWe need looks as always created from the list below (bottoms may be duplicated). Just make sure we have used all the tops.\n\nThank you very much :)\n\nBAC015429-1\nBAC015582-2\nBAC015582-1\nBAC015583-1\nBAC015583-2\nBAC015586-1\nBAC015587-1\nBAC015588-1\nBAC015597-2\nBAC015597-1\nBAC015598-2\nBAC015598-1\nBAC015615-1\nBAC015690-1\nBJN018556-1\nBJN018592-1\nBJN018611-1\nBJN018659-1\nBKT018917-1\nBKT018958-1\nBKT019007-1\nBKT019057-2\nBKT019057-3\nBKT019065-1\nBKT019085-1\nBKT019087-2\nBKT019087-1\nBKT019204-2\nBKT019204-1\nBKT019214-1\nBKT019216-1\nBKT019217-1\nBKT019220-2\nBKT019220-1\nBKT019221-2\nBKT019222-2\nBPT004387-1\nBPT004423-1\nBPT004423-2\nBSW002928-1\nBSW002951-1\nBSW002971-1\nBSW002989-2\nBSW002989-1\nBWT002454-1\nBWT002476-1\nBWT002524-1",
     "assets": "",
-    "status": "queued",
-    "rank": 2,
+    "status": "archived",
+    "rank": null,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-10-28T11:37:48.763Z",
-    "updatedAt": "2026-11-17T10:08:04.297Z",
+    "updatedAt": "2026-11-26T08:59:48.813Z",
     "source": "brief-form"
   },
   {
@@ -577,12 +577,12 @@
     "brief": "link with outfits https://drive.google.com/drive/folders/1q2VvopWS8RhcG53XQghe0arPAT9JVEVE?usp=drive_link\nmoodboard: https://dropmefiles.com/KUEht\\",
     "assets": "",
     "status": "in_progress",
-    "rank": 9,
+    "rank": 8,
     "top": true,
     "topOrder": 4,
     "notes": "8 outfits × 3 = 24 images.",
     "createdAt": "2026-11-10T07:23:02.312Z",
-    "updatedAt": "2026-11-26T07:32:46.708Z",
+    "updatedAt": "2026-11-26T08:59:48.940Z",
     "source": "brief-form"
   },
   {
@@ -598,10 +598,10 @@
     "brief": "Top line: a single brand guide that tells anyone producing imagery (photographers, stylists, retouchers, ecommerce, store anyone ) exactly how a shoot should look, so output is consistent across channels and needs fewer rounds of feedback.\n\nWhat goes into it\n\nBrand look: positioning, mood, keywords, and on-brand vs. off-brand examples\nVisual style: lighting, colour and grade, camera angles, composition\nPeople: casting, styling, posing, rules for kids and teens\nProduct and locations: how product is shown, plus sets, props and backdrops\nShot lists: required shots per use case (e-com, editorial, campaign, video, banners)\nPost-production: retouching level, export specs, file naming, delivery\nProcess: briefing template, approval stages, usage rights and legal\nAI imagery: where it’s allowed, perspective and camera rules, review checklist, labelling\n\nWhat to define first\n\nScope: which brands, markets and channels\nUsers: who will actually work from the guide\nFormat: short PDF, living page, or checklist pack\nReference images: 20-30 on-brand and off-brand examples\nOwnership: who writes it, signs it off, and keeps it updated\nSuccess measure: e.g. fewer reshoots, faster approvals",
     "assets": "",
     "status": "queued",
-    "rank": 3,
+    "rank": 2,
     "notes": "",
     "createdAt": "2026-11-10T08:53:51.180Z",
-    "updatedAt": "2026-11-25T10:32:49.387Z"
+    "updatedAt": "2026-11-26T08:59:48.837Z"
   },
   {
     "id": "bmwbwavony6e5j",
@@ -679,10 +679,10 @@
     "brief": "AI holiday cosmetics for Gloria Glow (10 SKUs). Client deck: \"AI holiday cosmetics fin\".\n\nDELIVERABLES\n• 02 Statics — one per product type (8): shiny silver/pink bg, drips, holiday party mood\n• 03 Grinch — 085 gold liner · video · needs IP OK\n• 04 Drip bottle — 131 bronze · video (2 shots) + static · READY TO START\n• 05 Santa climbers — 226 lip gloss ×5 · video\n• 06 Snow swap (Chanel ref) — 280 mascara ×3 · video + static\n• 07 Blue light (Dior ref) — 2 products TBC · video\n• 08 Tree cutout — 5 products · video\n• 09 Ornament — hero product TBC · video\n• 10 Illustrated animation — 083 / 085 / 226 / 084, baby goat end · video\n\nNEED FROM CLIENT\n• Final approver + feedback turnaround\n• Formats, video lengths, deadline\n• Slide 7: which 2 products · Slide 9: hero product · Statics: confirm 8 types + colours\n• GJ Glow logo (vector), 083 shade names, end-card / on-screen copy (EN/RU), music\n• Legal OK on Grinch + Dior / Chanel homages\n\nSTATUS (25 Nov)\n• 02 Statics: GPT Image 2.6 chosen. Lip gloss 226 explored in 3 directions (A glitter, B floating ribbon, C pour & drip) on the Figma \"Choose a direction\" panel. BD1 + BD2 drip shots added to client deck (slide 3). One shade per product picked and uploaded for the other 7. WAITING: client picks direction + background, then roll out to all 8.\n• 04, 06, 08: renders on board, waiting for client approval\n• 07 Blue light: BL1–BL6 + end cards EC1/EC2 on board, waiting for approval\n• Open with client: 05 end card, 07 stars, 10 text, 09 hero product\n• Casting: with Dzera (model shots wait for approved faces)\n\nDeadline 15 Dec is a placeholder — client deadline TBC.",
     "assets": "Figma board: https://www.figma.com/design/hivZRob3FvIEHDf7iNibfZ\nClient deck: https://docs.google.com/presentation/d/16FAO2MAWdSJeSKo-7t0QtCNtaaBHNIC4WNdch-JsPJQ\nProduct photos: https://drive.google.com/drive/folders/1HQVqJwwAD0VvBa1n3ZxAC0vpicRYFn_Y",
     "status": "in_progress",
-    "rank": 7,
+    "rank": 6,
     "notes": "",
     "createdAt": "2026-11-18T14:53:43.010Z",
-    "updatedAt": "2026-11-26T07:32:46.675Z",
+    "updatedAt": "2026-11-26T08:59:48.903Z",
     "top": true,
     "topOrder": 2
   },
@@ -720,12 +720,12 @@
     "brief": "https://fasteastltd-my.sharepoint.com/:w:/g/personal/jannet_tabuldinova_gloria-jeans_com/IQA9N66CMWuhSqgMNQcol8RmAcP8MtTD6DWF8dhBnXhACYM?rtime=yHjB4DNG30g\nwe need to integrate all products (apparel, cosmetics, accessories,  home etc)",
     "assets": ":'-(",
     "status": "in_progress",
-    "rank": 6,
+    "rank": 5,
     "top": true,
     "topOrder": 3,
     "notes": "",
     "createdAt": "2026-11-19T14:28:06.311Z",
-    "updatedAt": "2026-11-26T07:32:46.662Z",
+    "updatedAt": "2026-11-26T08:59:48.887Z",
     "source": "brief-form"
   },
   {
@@ -741,12 +741,12 @@
     "brief": "we need a Black Friday banner,  I was thinking about some GIF or shorth video",
     "assets": "",
     "status": "in_progress",
-    "rank": 5,
+    "rank": 4,
     "top": true,
     "topOrder": 1,
     "notes": "",
     "createdAt": "2026-11-25T06:37:00.881Z",
-    "updatedAt": "2026-11-26T07:32:46.648Z",
+    "updatedAt": "2026-11-26T08:59:48.870Z",
     "source": "brief-form"
   },
   {
@@ -762,10 +762,10 @@
     "brief": "-",
     "assets": "",
     "status": "queued",
-    "rank": 10,
+    "rank": 9,
     "notes": "",
     "createdAt": "2026-11-25T11:30:45.178Z",
-    "updatedAt": "2026-11-26T07:32:46.724Z"
+    "updatedAt": "2026-11-26T08:59:48.962Z"
   },
   {
     "id": "pmww5p70ehjpkl",
@@ -780,10 +780,10 @@
     "brief": "·\nGloria Glow Holiday — AI cosmetics: 8 videos + statics\nCOSMETICS\n★ Top\n⏱ 20d left · Dec 15\nDoing\nBrief\nAI holiday cosmetics for Gloria Glow (10 SKUs). Client deck: \"AI holiday cosmetics fin\".\n\nDELIVERABLES\n• 02 Statics — one per product type (8): shiny silver/pink bg, drips, holiday party mood\n• 03 Grinch — 085 gold liner · video · needs IP OK\n• 04 Drip bottle — 131 bronze · video (2 shots) + static · READY TO START\n• 05 Santa climbers — 226 lip gloss ×5 · video\n• 06 Snow swap (Chanel ref) — 280 mascara ×3 · video + static\n• 07 Blue light (Dior ref) — 2 products TBC · video\n• 08 Tree cutout — 5 products · video\n• 09 Ornament — hero product TBC · video\n• 10 Illustrated animation — 083 / 085 / 226 / 084, baby goat end · video\n\nNEED FROM CLIENT\n• Final approver + feedback turnaround\n• Formats, video lengths, deadline\n• Slide 7: which 2 products · Slide 9: hero product · Statics: confirm 8 types + colours\n• GJ Glow logo (vector), 083 shade names, end-card / on-screen copy (EN/RU), music\n• Legal OK on Grinch + Dior / Chanel homages\n\nSTATUS (25 Nov)\n• 02 Statics: GPT Image 2.6 chosen. Lip gloss 226 explored in 3 directions (A glitter, B floating ribbon, C pour & drip) on the Figma \"Choose a direction\" panel. BD1 + BD2 drip shots added to client deck (slide 3). One shade per product picked and uploaded for the other 7. WAITING: client picks direction + background, then roll out to all 8.\n• 04, 06, 08: renders on board, waiting for client approval\n• 07 Blue light: BL1–BL6 + end cards EC1/EC2 on board, waiting for approval\n• Open with client: 05 end card, 07 stars, 10 text, 09 hero product\n• Casting: with Dzera (model shots wait for approved faces)\n\nDeadline 15 Dec is a placeholder — client deadline TBC.\n\nDeliverable\nMixed · 8 videos (9:16 proposed, lengths TBC) + 10 statics (8 product types + slide 4 & 6 statics). Sizes TBC.\n\nWhere it will be used\nsite, app, social (TBC)\n\nWeTransfer & file links\nFigma board: https://www.figma.com/design/hivZRob3FvIEHDf7iNibfZ\nClient deck: https://docs.google.com/presentation/d/16FAO2MAWdSJeSKo-7t0QtCNtaaBHNIC4WNdch-JsPJQ\nProduct photos: https://drive.google.com/drive/folders/1HQVqJwwAD0VvBa1n3ZxAC0vpicRYFn_Y\nFrom\nNo name given\n\nSent\nNov 18, 06:53 PM\n\nNotes from Adam\nNone yet\n\nTitle\nGloria Glow Holiday — AI cosmetics: 8 videos + statics\nCommodity type\nCosmetics\nImage / video / graphic\nMixed\nRequested by\nEmail\nfor questions\nStatus\nDoing\nDeadline\n15/12/2026\nTop priority\n★ Remove from top\n▲ Up\n▼ Down\nOrder\n▲ Up\n▼ Down\nTo top\nWhere it will be used\nsite, app, social (TBC)\nFinal size and specification\n8 videos (9:16 proposed, lengths TBC) + 10 statics (8 product types + slide 4 & 6 statics). Sizes TBC.\nBrief\nAI holiday cosmetics for Gloria Glow (10 SKUs). Client deck: \"AI holiday cosmetics fin\".\n\nDELIVERABLES\n• 02 Statics — one per product type (8): shiny silver/pink bg, drips, holiday party mood\n• 03 Grinch — 085 gold liner · video · needs IP OK\n• 04 Drip bottle — 131 bronze · video (2 shots) + static · READY TO START\n• 05 Santa climbers — 226 lip gloss ×5 · video\n• 06 Snow swap (Chanel ref) — 280 mascara ×3 · video + static\n• 07 Blue light (Dior ref) — 2 products TBC · video\n• 08 Tree cutout — 5 products · video\n• 09 Ornament — hero product TBC · video\n• 10 Illustrated animation — 083 / 085 / 226 / 084, baby goat end · video\n\nNEED FROM CLIENT\n• Final appr",
     "assets": "",
     "status": "in_progress",
-    "rank": 8,
+    "rank": 7,
     "notes": "",
     "createdAt": "2026-11-25T13:25:36.061Z",
-    "updatedAt": "2026-11-26T07:32:46.692Z"
+    "updatedAt": "2026-11-26T08:59:48.919Z"
   },
   {
     "id": "bmwx8g78rn3b1s",
@@ -798,12 +798,12 @@
     "brief": "https://dropmefiles.com/atBJF   examples how we did for autumn, now we need to change for winter mood, like snow or smth like this, better if it will be like in autumn, not static pictures, to show the winter atmosphere",
     "assets": "",
     "status": "in_progress",
-    "rank": 4,
+    "rank": 3,
     "top": false,
     "topOrder": null,
     "notes": "",
     "createdAt": "2026-11-26T07:30:21.476Z",
-    "updatedAt": "2026-11-26T07:32:46.620Z",
+    "updatedAt": "2026-11-26T08:59:48.854Z",
     "source": "brief-form"
   }
 ]
